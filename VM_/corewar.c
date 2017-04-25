@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: pdady <pdady@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 16:36:40 by pdady             #+#    #+#             */
-/*   Updated: 2017/04/25 17:55:45 by pdady            ###   ########.fr       */
+/*   Updated: 2017/04/25 19:17:19 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "op.h"
+#include "../libft/includes/libft.h"
+#include "../shared_files/op.h"
 
 int			print_usage()
 {
