@@ -21,3 +21,18 @@ Program that convert .s to .cor.
 | lldi | 0x0e | T_REG \| T_DIR \| T_IND, T_DIR \| T_REG, T_REG | Same as ldi, but does not apply any modulo to the addresses. | long load index |
 | lfork | 0x0f | T_DIR | To be able to fork abut straw from a distance of 15 meters, exactly like with its opcode. Same as a fork without modulo in the address. | long fork |
 | aff | 0x10 | T_REG | There is an argument’s coding byte, even if it’s a bit silly because there is only 1 argument that is a registry, which is a registry, and its content is interpreted by the character’s ASCII value to display on the standard output. The code is modulo 256. | aff |
+
+### Arguments
+| Name | Symbole | Binary Code | Nb octet |
+|:----:|:-------:|:-----------:|:--------:|
+|T_REG | r       | 01          | 1 octet  |
+|T_IND |         | 11          | 2 octets |
+|T_DIR | %       | 10          | 4 octets |
+
+## Example Code Arguments
+```
+r2 23 %34
+>> r2  --> 01 --> 1 octet
+>> 23  --> 11 --> 2 octets
+>> %34 --> 10 --> 4 octets
+```
