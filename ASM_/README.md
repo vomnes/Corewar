@@ -23,19 +23,19 @@ Program that convert .s to .cor.
 | aff | 0x10 | T_REG | There is an argument’s coding byte, even if it’s a bit silly because there is only 1 argument that is a registry, which is a registry, and its content is interpreted by the character’s ASCII value to display on the standard output. The code is modulo 256. | aff |
 
 ### Arguments
-| Name | Symbole | Binary Code | Nb octet |
+| Name | Symbole | Binary Code | Nb bits |
 |:----:|:-------:|:-----------:|:--------:|
-|T_REG | r       | 01          | 1 octet  |
-|T_IND |         | 11          | 2 octets |
-|T_DIR | %       | 10          | 4 octets |
+|T_REG | r       | 01          | 1 bit  |
+|T_IND |         | 11          | 2 bits |
+|T_DIR | %       | 10          | 4 bits |
 
 ## Example Code Arguments
 ```
 r2 23 %34
 
->> r2  --> 01 --> 1 octet
->> 23  --> 11 --> 2 octets
->> %34 --> 10 --> 4 octets
+>> r2  --> 01 --> 1 bit
+>> 23  --> 11 --> 2 bits
+>> %34 --> 10 --> 4 bits
 
 Binary value --> 0b01111000 --> 0x78
 ```
