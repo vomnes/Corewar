@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vomnes <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/11 15:13:19 by vomnes            #+#    #+#             */
-/*   Updated: 2017/03/19 15:18:04 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/04/25 18:50:51 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include <wchar.h>
 # include <locale.h>
-# include "../libft/libft.h"
+# include "libft.h"
 
 typedef enum		e_length
 {

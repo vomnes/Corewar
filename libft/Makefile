@@ -56,11 +56,11 @@ pf_ok :
 
 $(OBJET) : ./%.o : ./%.c
 		@echo -n \#
-		@gcc -c $(FLAGS) $^ -o $@
+		@gcc -c $(FLAGS) $^ -o $@ -I includes
 
 $(OBJET_PF) : ./ft_printf/%.o : ./ft_printf/%.c
 		@echo -n \#
-		@gcc -c $(FLAGS) $^ -o $@
+		@gcc -c $(FLAGS) $^ -o $@ -I includes
 
 clean:
 		@echo Clean objects $(NAME)
