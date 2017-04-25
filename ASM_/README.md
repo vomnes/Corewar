@@ -32,7 +32,10 @@ Program that convert .s to .cor.
 ## Example Code Arguments
 ```
 r2 23 %34
+
 >> r2  --> 01 --> 1 octet
 >> 23  --> 11 --> 2 octets
 >> %34 --> 10 --> 4 octets
+
+Binary value --> 0b01111000 --> 0x78
 ```
