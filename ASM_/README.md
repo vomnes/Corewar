@@ -55,11 +55,11 @@ Program that convert .s to .cor.
 (16) - There is an argument’s coding byte, even if it’s a bit silly because there is only 1 argument that is a registry, which is a registry, and its content is interpreted by the character’s ASCII value to display on the standard output. The code is modulo 256.
 
 ### Arguments
-| Name | Symbole | Binary Code | Nb bits |
+| Name | Symbole | Binary Code | Bits |
 |:----:|:-------:|:-----------:|:--------:|
 |T_REG | r       | 01          | 1 bit  |
 |T_IND |         | 11          | 2 bits |
-|T_DIR | %       | 10          | 4 bits |
+|T_DIR | %       | 10          | 4 or 2 bits |
 
 ## Example Code Arguments
 ```
