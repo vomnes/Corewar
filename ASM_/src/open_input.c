@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 12:51:51 by vomnes            #+#    #+#             */
-/*   Updated: 2017/04/26 15:20:16 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/04/26 17:06:12 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 
 static int open_input_error(char *file_name, int *fd)
 {
+    char *term;
+
     if (open(file_name, O_DIRECTORY) > 0)
     {
         ft_printf("Input can't be a directory\n");
@@ -35,7 +37,7 @@ static int open_input_error(char *file_name, int *fd)
         ft_printf("File name too long (> 128 char) %s\n", file_name);
         return (-1);
     }
-    if (ft_strstr(file_name, ".s") == NULL)
+    if ((term = ft_strstr(file_name, ".s")) == NULL || ft_strlen(term) > 2)
     {
         ft_putstr("Wrong file name - [.s]\n");
         return (-1);
@@ -67,6 +69,5 @@ int open_input(int argc, char **argv, t_input *input_data)
     {
         ft_putstr("Option [on]\n");
     }
-    ft_printf("Writing output program to %s\n", input_data->file_name);
     return (0);
 }
