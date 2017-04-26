@@ -6,7 +6,7 @@
 #    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/26 15:21:01 by atrudel           #+#    #+#              #
-#    Updated: 2017/04/26 15:56:54 by atrudel          ###   ########.fr        #
+#    Updated: 2017/04/26 17:08:59 by atrudel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,10 @@ $(NAME): $(OBJ) $(INC) $(LIB_PATH)/libft.a $(LIB_PATH)/includes/libft.h
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) $(LIB_PATH)/includes/libft.h
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	gcc -o $@ -c $< $(FLAGS) -I . -I $(INC_PATH) -I $(LIB_PATH)/includes
+
+$(LIB_PATH)/libft.a: $(LIB_PATH)/Makefile $(LIB_PATH)/includes/libft.h
+	@make -C $(LIB_PATH)
+	@echo "libft created"
 
 clean:
 	rm -Rf $(OBJ_PATH)
