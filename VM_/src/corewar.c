@@ -6,11 +6,11 @@
 /*   By: pdady <pdady@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 16:36:40 by pdady             #+#    #+#             */
-/*   Updated: 2017/04/26 14:59:02 by pdady            ###   ########.fr       */
+/*   Updated: 2017/04/26 16:51:10 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/includes/libft.h"
+#include "libft.h"
 #include "../shared_files/op.h"
 #include <fcntl.h>
 
