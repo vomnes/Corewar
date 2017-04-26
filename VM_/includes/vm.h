@@ -6,13 +6,15 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/25 19:19:34 by atrudel           #+#    #+#             */
-/*   Updated: 2017/04/25 19:57:30 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/04/26 17:06:35 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
 
+#include <fcntl.h>
+#include <stdio.h>
 typedef	struct		s_player
 {
 	char			*name;

@@ -1,6 +1,6 @@
 #include "libft.h"
 #include "../shared_files/op.h"
-#include <fcntl.h>
+#include "vm.h"
 
 int			print_usage()
 {
@@ -90,7 +90,11 @@ t_champ					read_files(char **av)
 	ret = 0;
 	header.count = PROG_NAME_LENGTH + 4;
 	ft_memset(&header, 0, sizeof(header_t));
-	fd = open(av[1], O_RDONLY);
+	if ((fd = open(av[1], O_RDONLY)) < 0)
+	{
+		perror(0);
+		exit(-1);
+	}
 	while ((ret = read(fd, buf, 16)) > 0)
 		check_is_correct(buf, &header, &find);
 	if (header.prog_size > CHAMP_MAX_SIZE)
