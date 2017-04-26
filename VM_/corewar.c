@@ -6,12 +6,13 @@
 /*   By: pdady <pdady@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/23 16:36:40 by pdady             #+#    #+#             */
-/*   Updated: 2017/04/25 19:17:19 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/04/26 14:59:02 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/includes/libft.h"
 #include "../shared_files/op.h"
+#include <fcntl.h>
 
 int			print_usage()
 {
@@ -19,7 +20,7 @@ int			print_usage()
 	return (0);
 }
 
-int			handle_comment(unsigned char buf[16], header_t *header, char *c, char i)
+int			handle_comment(unsigned char buf[16], t_champ *header, char *c, char i)
 {
 	int len;
 
@@ -37,7 +38,7 @@ int			handle_comment(unsigned char buf[16], header_t *header, char *c, char i)
 	return (1);
 }
 
-int			handle_size(unsigned char buf[16], header_t *header, char *c, char i)
+int			handle_size(unsigned char buf[16], t_champ *header, char *c, char i)
 {
 	int a = 0;
 	int b = 0;
@@ -64,7 +65,7 @@ int			handle_size(unsigned char buf[16], header_t *header, char *c, char i)
 	return (1);
 }
 
-int			handle_name(unsigned char buf[16], header_t *header, char *c, char i)
+int			handle_name(unsigned char buf[16], t_champ *header, char *c, char i)
 {
 	int len;
 
@@ -82,7 +83,7 @@ int			handle_name(unsigned char buf[16], header_t *header, char *c, char i)
 	return (1);
 }
 
-int			check_is_correct(unsigned char buf[16], header_t *header, char *c, int count)
+int			check_is_correct(unsigned char buf[16], t_champ *header, char *c)
 {
 	if (*c == 1)
 		handle_name(buf, header, c, 0);
@@ -93,20 +94,20 @@ int			check_is_correct(unsigned char buf[16], header_t *header, char *c, int cou
 	return (0);
 }
 
-header_t					read_files(char **av, int count)
+t_champ					read_files(char **av)
 {
 	int				fd;
 	int				ret;
 	char			find;
 	unsigned char	buf[16];
-	header_t		header;
+	t_champ		header;
 
 	find = 1;
 	ret = 0;
 	ft_memset(&header, 0, sizeof(header_t));
 	fd = open(av[1], O_RDONLY);
 	while ((ret = read(fd, buf, 16)) > 0)
-		check_is_correct(buf, &header, &find, count);
+		check_is_correct(buf, &header, &find);
 	if (header.prog_size > CHAMP_MAX_SIZE)
 	{
 		ft_printf("Error: File %s has too large a code (%d bytes > %d bytes)\n", av[1], header.prog_size, CHAMP_MAX_SIZE);
@@ -119,13 +120,12 @@ int			main(int ac, char **av)
 {
 	int fd = 0;
 	char find = 1;
-	int count = 0;
-	header_t header;
+	t_champ header;
 
 	ft_memset(&header, 0, sizeof(header_t));
 	if (ac < 2)
 		return (print_usage());
-	header = read_files(av, count);
+	header = read_files(av);
 	ft_putendl("Introducing contestants...");
 	ft_printf("* Player 1, weighing %d bytes, \"%s\" \(\"%s\") !\n", header.prog_size,
 			header.prog_name, header.comment);
