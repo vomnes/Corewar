@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 15:46:35 by atrudel           #+#    #+#             */
-/*   Updated: 2017/03/17 14:47:11 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/04/26 17:28:03 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct		s_specifier
 
 int					ft_printf(const char *format, ...);
 int					ft_asprintf(char **ret, const char *format, ...);
+int					ft_dprintf(int fd, const char *format, ...);
 
 const char			*parse_character(const char *format, t_stringl *output,
 					va_list args);
