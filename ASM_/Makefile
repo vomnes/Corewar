@@ -10,7 +10,7 @@ GCC = gcc
 FLAGS = -Wall -Werror -Wextra
 
 INC = ./includes
-LIB = ./libft
+LIB = ../libft
 OBJ_PATH = ./obj
 
 .PHONY: clean fclean all re lib
@@ -27,7 +27,7 @@ ok :
 $(OBJ): ./obj/%.o : ./src/%.c
 				@mkdir $(OBJ_PATH) 2> /dev/null || true
 				@echo "$(NAME) >>> Add/Update $^"
-	    	@$(GCC) $(FLAGS) -c -I $(INC) $< -o $@
+	    	@$(GCC) $(FLAGS) -c -I $(INC) $< -o $@ -I $(INC)
 
 lib:
 				@$(MAKE) -C $(LIB)

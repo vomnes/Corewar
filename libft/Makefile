@@ -6,7 +6,7 @@
 #    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 14:49:06 by atrudel           #+#    #+#              #
-#    Updated: 2017/03/17 14:49:44 by atrudel          ###   ########.fr        #
+#    Updated: 2017/04/26 12:08:07 by vomnes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -134,21 +134,31 @@ FLAGS = -Wall -Wextra -Werror -g
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+$(NAME): create_libft $(OBJ) ok_libft
+	@ar rc $(NAME) $(OBJ)
+	@ranlib $(NAME)
+	@echo "> Library :  [\\033[32mOK\\033[0m]"
+
+create_libft :
+	@echo -n \ \ \ \ libft\ :\ \
+
+ok_libft :
+	@echo " [\\033[32mOK\\033[0m]"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@mkdir $(OBJ_PATH)/ft_printf 2> /dev/null || true
-	gcc -o $@ -c $< $(FLAGS) -I $(INC_PATH)
+	@echo -n \#
+	@gcc -o $@ -c $< $(FLAGS) -I $(INC_PATH)
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
+	@echo Clean objects libft
 
 fclean: clean
-	rm -Rf $(OBJ_PATH)
-	rm -f $(NAME)
+	@rm -Rf $(OBJ_PATH)
+	@rm -f $(NAME)
+	@echo Clean libft
 
 re: fclean all
 
