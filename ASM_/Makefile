@@ -1,8 +1,14 @@
 NAME = asm
 
-SRC =	./src/main.c
+SRC =	./src/main.c \
+			./src/write_header.c \
+			./src/open_input.c \
+			./src/create_binary_file.c
 
-OBJ =	./obj/main.o
+OBJ =	./obj/main.o \
+			./obj/write_header.o \
+			./obj/open_input.o \
+			./obj/create_binary_file.o
 
 MAKE = make
 
