@@ -8,14 +8,14 @@ int			print_usage()
 	return (0);
 }
 
-int			handle_comment(unsigned char buf[16], t_champ *header, char *c, char i)
+int			handle_comment(unsigned char buf[16], t_champ *header, char *c, int i)
 {
 	int len;
 
 	len = ft_strlen(header->comment);
 	while (buf[i] == 0 && i < 16)
 		i++;
-	while (i < 16 && buf[i])
+	while (i < 16 && buf[i] != 0)
 	{
 		if (ft_isprint(buf[i]))
 			header->comment[len++] = buf[i];
@@ -26,7 +26,7 @@ int			handle_comment(unsigned char buf[16], t_champ *header, char *c, char i)
 	return (1);
 }
 
-int					handle_size(unsigned char buf[16], t_champ *header, char *c, char i)
+int					handle_size(unsigned char buf[16], t_champ *header, char *c, int i)
 {
 	unsigned char	tab[4];
 
@@ -48,7 +48,7 @@ int					handle_size(unsigned char buf[16], t_champ *header, char *c, char i)
 	return (1);
 }
 
-int					handle_name(unsigned char buf[16], t_champ *header, char *c, char i)
+int					handle_name(unsigned char buf[16], t_champ *header, char *c, int i)
 {
 	int				len;
 
@@ -103,8 +103,6 @@ t_champ					read_files(char **av)
 
 int			main(int ac, char **av)
 {
-	int fd = 0;
-	char find = 1;
 	t_champ header;
 
 	ft_memset(&header, 0, sizeof(header_t));
