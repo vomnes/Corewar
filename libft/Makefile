@@ -6,7 +6,7 @@
 #    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 14:49:06 by atrudel           #+#    #+#              #
-#    Updated: 2017/04/26 12:08:07 by vomnes           ###   ########.fr        #
+#    Updated: 2017/04/26 15:39:31 by vomnes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,7 +121,9 @@ SRC_FILES =	ft_memset.c \
 			ft_printf/conversion_s.c \
 			ft_printf/conversion_b.c \
 			ft_printf/conversion_undefined.c \
-			ft_printf/wchar.c
+			ft_printf/wchar.c \
+			ft_strindex.c \
+			ft_strndup.c
 
 OBJ_FILES =	$(SRC_FILES:.c=.o)
 
