@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 16:12:25 by atrudel           #+#    #+#             */
-/*   Updated: 2017/04/27 18:05:50 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/04/27 19:08:14 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,5 +136,7 @@ char				*ft_strndup(const char *s1, size_t n);
 int					ft_strindex(const char *s, const char *to_check);
 char				*ft_strjoin_free(char *s1, char *s2);
 int					ft_charindex(const char *s, char c);
+int					ft_nb_occ(const char *str, char c);
+int 				ft_isstr_ctype(const char *str, int (*c_type)());
 
 #endif
