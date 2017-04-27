@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 16:12:25 by atrudel           #+#    #+#             */
-/*   Updated: 2017/04/26 17:28:17 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/04/27 18:05:50 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,5 +135,6 @@ int					ft_dprintf(int fd, const char *format, ...);
 char				*ft_strndup(const char *s1, size_t n);
 int					ft_strindex(const char *s, const char *to_check);
 char				*ft_strjoin_free(char *s1, char *s2);
+int					ft_charindex(const char *s, char c);
 
 #endif
