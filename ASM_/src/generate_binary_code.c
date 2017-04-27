@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 11:56:22 by vomnes            #+#    #+#             */
-/*   Updated: 2017/04/27 12:10:34 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/04/27 17:03:44 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void get_comment(char *line, char comment[COMMENT_LENGTH + 1])
 int generate_binary_code(t_data *data)
 {
 	char *line;
-	// char **tab;
 
 	line = NULL;
 	while (get_next_line(data->input.fd, &line) > 0)

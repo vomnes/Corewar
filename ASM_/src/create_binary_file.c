@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 15:14:15 by vomnes            #+#    #+#             */
-/*   Updated: 2017/04/26 17:10:13 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/04/27 17:09:14 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int create_binary_file(t_input input)
                             S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH, 0777);
     if (binary_fd == -1)
         return (-1);
-    ft_printf("Writing output program to %s\n", name_dot_cor);
+    // ft_printf("Writing output program to %s\n", name_dot_cor);
     ft_strdel(&name_dot_cor);
     return (binary_fd);
 }
