@@ -29,12 +29,14 @@ typedef struct			s_process
 
 typedef struct			s_vm
 {
-	unsigned char		*memory;
+	unsigned char		memory[MEM_SIZE];
 	t_player			players[MAX_PLAYERS + 1];
 	int					nb_players;
 	t_process			*processes;
 	int					cycle_nbr;
 }						t_vm;
+
+t_process				*vm_create_process(t_vm *vm);
 
 void 					vm_error_exit(t_vm *vm, char *message);
 

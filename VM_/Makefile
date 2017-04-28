@@ -6,7 +6,7 @@
 #    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/26 15:21:01 by atrudel           #+#    #+#              #
-#    Updated: 2017/04/28 17:39:43 by atrudel          ###   ########.fr        #
+#    Updated: 2017/04/28 19:09:30 by atrudel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ OBJ_PATH = ./obj
 SRC_PATH = ./src
 INC_PATH = ./includes
 
-SRC_FILES =	corewar.c
+SRC_FILES =	corewar.c \
+			vm_process.c \
+			vm_error.c
 
 INC_FILES = vm.h
 
@@ -27,7 +29,7 @@ OBJ = $(addprefix $(OBJ_PATH)/, $(SRC_FILES:.c=.o)) \
 
 INC = $(addprefix $(INC_PATH)/, $(INC_FILES))
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g
 
 all : $(NAME)
 
