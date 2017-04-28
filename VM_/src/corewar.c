@@ -1,5 +1,3 @@
-#include "libft.h"
-#include "../shared_files/op.h"
 #include "vm.h"
 
 int			print_usage()
