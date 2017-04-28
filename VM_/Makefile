@@ -6,7 +6,7 @@
 #    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/26 15:21:01 by atrudel           #+#    #+#              #
-#    Updated: 2017/04/26 17:08:59 by atrudel          ###   ########.fr        #
+#    Updated: 2017/04/28 17:39:43 by atrudel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,11 +32,11 @@ FLAGS = -Wall -Wextra -Werror
 all : $(NAME)
 
 $(NAME): $(OBJ) $(INC) $(LIB_PATH)/libft.a $(LIB_PATH)/includes/libft.h
-	gcc -o $(NAME) $(OBJ) $(FLAGS) -L $(LIB_PATH) -lft -I . -I $(INC_PATH) -I $(LIB_PATH)/includes
+	gcc -o $(NAME) $(OBJ) $(FLAGS) -L $(LIB_PATH) -lft -I . -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) $(LIB_PATH)/includes/libft.h
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	gcc -o $@ -c $< $(FLAGS) -I . -I $(INC_PATH) -I $(LIB_PATH)/includes
+	gcc -o $@ -c $< $(FLAGS) -I . -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files
 
 $(LIB_PATH)/libft.a: $(LIB_PATH)/Makefile $(LIB_PATH)/includes/libft.h
 	@make -C $(LIB_PATH)
