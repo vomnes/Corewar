@@ -56,11 +56,6 @@ void		parse_header(size_t size, unsigned char buf[size], t_vm *vm, int nb)
 		vm_error_exit(vm, "Error: Number of player already taken");
 	vm->players[nb].number = nb;
 	pick_info(size, buf, &vm->players[nb]);
-
-	ft_putendl(vm->players[nb].name);
-	ft_putendl(vm->players[nb].comment);
-	ft_putnbr(vm->players[nb].size_player);
-	ft_putchar('\n');
 }
 
 char		**vm_read_file_champ(char **av, t_vm *vm, int no_player)
@@ -78,7 +73,10 @@ char		**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 		av += 2;
 	}
 	if ((fd = open(*av, O_RDONLY)) < 0)
-		vm_error_exit(vm, "Error: failed open ...");
+	{
+		perror(0);
+		exit(-1);
+	}
 	int ret = 0;
 	ret = read(fd, buf, size);
 	parse_header(size, buf, vm, no_player);
