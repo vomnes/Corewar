@@ -21,7 +21,7 @@ typedef struct			s_process
 	int					no;
 	int					player_no;
 	int					alive;
-	unsigned char		registers[REG_NUMBER * REG_SIZE];
+	unsigned char		registers[REG_NUMBER + 1][REG_SIZE];
 	unsigned char		pc[REG_SIZE];
 	int					carry;
 	struct s_process	*next;
@@ -37,7 +37,19 @@ typedef struct			s_vm
 	int					cycle_nbr;
 }						t_vm;
 
+typedef struct			s_instruction
+{
+	unsigned char		opcode;
+	void				(*op)(t_process *, t_vm *vm);
+}						t_instruction;
+
 t_process				*vm_create_process(t_vm *vm);
+
+
+unsigned int			vm_n_bytes_to_uint(unsigned char *ptr, size_t n);
+unsigned int			vm_read_from_register(unsigned char *reg);
+void					vm_store_in_register(unsigned char (*reg)[REG_SIZE],
+						int value);
 
 void 					vm_error_exit(t_vm *vm, char *message);
 

@@ -6,7 +6,7 @@
 #    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/26 15:21:01 by atrudel           #+#    #+#              #
-#    Updated: 2017/04/28 19:09:30 by atrudel          ###   ########.fr        #
+#    Updated: 2017/04/29 18:48:42 by atrudel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ INC_PATH = ./includes
 
 SRC_FILES =	corewar.c \
 			vm_process.c \
-			vm_error.c
+			vm_error.c \
+			vm_utils.c
 
 INC_FILES = vm.h
 

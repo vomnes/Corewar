@@ -18,3 +18,21 @@ unsigned int	vm_n_bytes_to_uint(unsigned char *ptr, size_t n)
 	}
 	return (value);
 }
+
+unsigned int	vm_read_from_register(unsigned char reg[REG_SIZE])
+{
+	return (vm_n_bytes_to_uint((unsigned char *)reg, REG_SIZE));
+}
+
+void			vm_store_in_register(unsigned char (*reg)[REG_SIZE], int value)
+{
+	int				i;
+
+	i = REG_SIZE - 1;
+	while (i >= 0)
+	{
+		(*reg)[i] = (unsigned char)value;
+		value = value >> 8;
+		i--;
+	}
+}
