@@ -27,7 +27,7 @@ void		check_exec_magic(unsigned char *buf)
 	nb = (*(unsigned int*)tab);
 	if (nb != COREWAR_EXEC_MAGIC)
 	{
-		ft_putendl("Error: Not a file .cor");
+		ft_putendl_fd("Error: Not a .cor file", 2);
 		exit(-1);
 	}
 }
@@ -60,13 +60,13 @@ void		parse_header(size_t size, unsigned char buf[size], t_vm *vm, int nb)
 		vm_error_exit(vm, "Error: Number of player already taken");
 	vm->players[nb].number = nb;
 	pick_info(size, buf, &vm->players[nb]);
-/*
+
 	ft_printf("player -->> {%d}\n", nb);
 	ft_putendl(vm->players[nb].name);
 	ft_putendl(vm->players[nb].comment);		//DEBUG
 	ft_putnbr(vm->players[nb].size_player);
 	ft_putchar('\n');
-*/
+
 }
 
 
@@ -104,13 +104,13 @@ char		**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 	if ((fd = open(*av, O_RDONLY)) < 0)
 		vm_error_exit(vm, "Error: failed open ...");
 	read(fd, buf, size);
-	print_hexa(size, buf);
-	ft_putchar('\n');
+//	print_hexa(size, buf);
+//	ft_putchar('\n');
 	parse_header(size, buf, vm, no_player);
-	ft_memset(buf, 0,size);
-	size = vm->players[no_player].size_player;
-	read(fd, buf, size);
-	print_hexa(size, buf);
+//	ft_memset(buf, 0,size);
+	//size = vm->players[no_player].size_player;
+	//read(fd, buf, size);
+	//print_hexa(size, buf);
 	return (av);
 }
 
