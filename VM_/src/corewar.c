@@ -8,23 +8,19 @@ int			print_usage(void)
 
 void		pick_size_player(unsigned char *buf, t_player *player)
 {
-	unsigned char tab[4];
-	tab[0] = buf[3];
-	tab[1] = buf[2];
-	tab[2] = buf[1];
-	tab[3] = buf[0];
-	player->size_player = (*(unsigned short*)tab);
+	player->size_player = vm_n_bytes_to_uint(buf, 4);
+	if (player->size_player > CHAMP_MAX_SIZE)
+	{
+		dprintf(2, "Error: champ %s has too large code (%d bytes > %d bytes)\n",
+				player->name, player->size_player, CHAMP_MAX_SIZE);
+		exit(-1);
+	}
 }
 
 void		check_exec_magic(unsigned char *buf)
 {
 	unsigned int nb;
-	unsigned char tab[4];
-	tab[0] = buf[3];
-	tab[1] = buf[2];
-	tab[2] = buf[1];
-	tab[3] = buf[0];
-	nb = (*(unsigned int*)tab);
+	nb = vm_n_bytes_to_uint(buf, 4);
 	if (nb != COREWAR_EXEC_MAGIC)
 	{
 		ft_putendl_fd("Error: Not a .cor file", 2);
@@ -61,41 +57,21 @@ void		parse_header(size_t size, unsigned char buf[size], t_vm *vm, int nb)
 	vm->players[nb].number = nb;
 	pick_info(size, buf, &vm->players[nb]);
 
-	ft_printf("player -->> {%d}\n", nb);
 	ft_putendl(vm->players[nb].name);
-	ft_putendl(vm->players[nb].comment);		//DEBUG
+	ft_putendl(vm->players[nb].comment);
 	ft_putnbr(vm->players[nb].size_player);
 	ft_putchar('\n');
-
-}
-
-
-void	print_hexa(size_t size, unsigned char buf[size])
-{
-	size_t i = 0;
-	size_t j = 0;
-	while (i < size)
-	{
-		j = 0;
-		while (j < 16)
-		{
-			ft_printf("%02x ", buf[i]);
-			i++;
-			j++;
-		}
-	ft_putchar('\n');
-	}
 }
 
 char		**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 {
 	int fd;
 	size_t size;
-	unsigned char buf[PROG_NAME_LENGTH + COMMENT_LENGTH + 4];
+	unsigned char buf[PROG_NAME_LENGTH + COMMENT_LENGTH + 16];
 	char	c;
 
 	c = 0;
-	size = PROG_NAME_LENGTH + COMMENT_LENGTH + 4;
+	size = PROG_NAME_LENGTH + COMMENT_LENGTH;
 	if (*av && ft_strcmp(*av, "-n") == 0)
 	{
 		no_player = ft_atoi(av[1]);
@@ -103,14 +79,11 @@ char		**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 	}
 	if ((fd = open(*av, O_RDONLY)) < 0)
 		vm_error_exit(vm, "Error: failed open ...");
-	read(fd, buf, size);
-//	print_hexa(size, buf);
-//	ft_putchar('\n');
+	int ret = 0;
+	ret = read(fd, buf, size);
 	parse_header(size, buf, vm, no_player);
-//	ft_memset(buf, 0,size);
-	//size = vm->players[no_player].size_player;
-	//read(fd, buf, size);
-	//print_hexa(size, buf);
+	size = vm->players[no_player].size_player + 16;
+	read(fd, buf, size);
 	return (av);
 }
 
