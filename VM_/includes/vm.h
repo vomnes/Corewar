@@ -11,6 +11,7 @@ typedef	struct			s_player
 {
 	char				name[PROG_NAME_LENGTH + 1];
 	char				comment[COMMENT_LENGTH + 1];
+	unsigned int		size_player;
 	int					number;
 	int					nb_lives;
 }						t_player;

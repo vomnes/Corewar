@@ -6,59 +6,136 @@ int			print_usage(void)
 	return (0);
 }
 
-void		print_hexa(int size, unsigned char buf[size])
+void		pick_size_player(unsigned char *buf, t_player *player)
 {
-	int i;
-	int j;
+	unsigned char tab[4];
+	tab[0] = buf[3];
+	tab[1] = buf[2];
+	tab[2] = buf[1];
+	tab[3] = buf[0];
+	player->size_player = (*(unsigned short*)tab);
+}
 
-	j = 0;
-	while (j < size)
+void		check_exec_magic(unsigned char *buf)
+{
+	unsigned int nb;
+	unsigned char tab[4];
+	tab[0] = buf[3];
+	tab[1] = buf[2];
+	tab[2] = buf[1];
+	tab[3] = buf[0];
+	nb = (*(unsigned int*)tab);
+	if (nb != COREWAR_EXEC_MAGIC)
 	{
-		i = 0;
-		while (i < 16 && j < size)
-		{
-			ft_printf("%02x ", buf[j]);
-			i++;
-			j++;
-			if (j == PROG_NAME_LENGTH)
-		ft_putchar('\n');
-		}
-		ft_putchar('\n');
+		ft_putendl("Error: Not a file .cor");
+		exit(-1);
 	}
 }
 
-void		vm_read_file(char **av)
+void		pick_info(size_t size, unsigned char buf[size], t_player *player)
+{
+	size_t i;
+	size_t j;
+
+	i = 4;
+	j = 0;
+	check_exec_magic(buf);
+	while (i < size && i < PROG_NAME_LENGTH)
+		player->name[j++] = buf[i++];
+	pick_size_player(&buf[i + 8], player);
+	i += 12;
+	j = 0;
+	while (i < size)
+		player->comment[j++] = buf[i++];
+}
+
+void		parse_header(size_t size, unsigned char buf[size], t_vm *vm, int nb)
+{
+	size_t i;
+
+	i = 1;
+	if (nb >= MAX_PLAYERS)
+		vm_error_exit(vm, "Error: too many players");
+	if (nb && vm->players[nb].number != 0)
+		vm_error_exit(vm, "Error: Number of player already taken");
+	vm->players[nb].number = nb;
+	pick_info(size, buf, &vm->players[nb]);
+/*
+	ft_printf("player -->> {%d}\n", nb);
+	ft_putendl(vm->players[nb].name);
+	ft_putendl(vm->players[nb].comment);		//DEBUG
+	ft_putnbr(vm->players[nb].size_player);
+	ft_putchar('\n');
+*/
+}
+
+
+void	print_hexa(size_t size, unsigned char buf[size])
+{
+	size_t i = 0;
+	size_t j = 0;
+	while (i < size)
+	{
+		j = 0;
+		while (j < 16)
+		{
+			ft_printf("%02x ", buf[i]);
+			i++;
+			j++;
+		}
+	ft_putchar('\n');
+	}
+}
+
+char		**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 {
 	int fd;
-	int number;
-	int size;
+	size_t size;
 	unsigned char buf[PROG_NAME_LENGTH + COMMENT_LENGTH + 4];
+	char	c;
 
-	number = 0;
+	c = 0;
 	size = PROG_NAME_LENGTH + COMMENT_LENGTH + 4;
 	if (*av && ft_strcmp(*av, "-n") == 0)
-		number = ft_atoi(*(++av));
-	fd = open(*av, O_RDONLY);
-	while (read(fd, buf, size) > 0)
 	{
-		print_hexa(size, buf);
-		ft_putstr("\n\n\n");
+		no_player = ft_atoi(av[1]);
+		av += 2;
 	}
+	if ((fd = open(*av, O_RDONLY)) < 0)
+		vm_error_exit(vm, "Error: failed open ...");
+	read(fd, buf, size);
+	print_hexa(size, buf);
+	ft_putchar('\n');
+	parse_header(size, buf, vm, no_player);
+	ft_memset(buf, 0,size);
+	size = vm->players[no_player].size_player;
+	read(fd, buf, size);
+	print_hexa(size, buf);
+	return (av);
 }
 
 int main(int ac, char **av)
 {
-	int dumps;
+	int		dumps;
+	t_vm	vm;
+	int count;
 
 	dumps = 0;
+	count = 1;
+	ft_memset(&vm, 0, sizeof(t_vm));
 	if (ac < 2)
 		return (print_usage());
 	av++;
 	if (*av && ft_strcmp(*av, "-d") == 0)
 	{
 		dumps = ft_atoi(*(++av));
-		av++;
+		++av;
 	}
-	vm_read_file(av);
+	while (*av)
+	{
+		av = vm_read_file_champ(av, &vm, count);
+		count++;
+		++av;
+	}
 	return (0);
 }
