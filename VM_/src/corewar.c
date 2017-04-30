@@ -50,7 +50,7 @@ void		parse_header(size_t size, unsigned char buf[size], t_vm *vm, int nb)
 	size_t i;
 
 	i = 1;
-	if (nb >= MAX_PLAYERS)
+	if (nb > MAX_PLAYERS)
 		vm_error_exit(vm, "Error: too many players");
 	if (nb && vm->players[nb].number != 0)
 		vm_error_exit(vm, "Error: Number of player already taken");
@@ -58,17 +58,36 @@ void		parse_header(size_t size, unsigned char buf[size], t_vm *vm, int nb)
 	pick_info(size, buf, &vm->players[nb]);
 }
 
-void		parse_instruction(size_t size, unsigned char buf[size], t_player player)
+void			print_hexa(size_t size, unsigned char buf[size])
 {
 	size_t i;
-	unsigned char tmp[player.size_player + 16];
+	size_t j;
 
 	i = 0;
-	while(i + 1 < size && buf[i + 1] == 0)
+	while (i < size)
+	{
+		j = 0;
+		while (j < 16)
+		{
+			ft_printf("%02x ", buf[i]);
+			i++;
+			j++;
+		}
+		ft_putchar('\n');
+	}
+}
+
+void		parse_instruction(size_t size, unsigned char buf[size], t_player *player)
+{
+	size_t i;
+	size_t j;
+
+	i = 0;
+	j = 0;
+	while(i < size && buf[i] == 0)
 		i++;
-	while (++i < size)
-		tmp[i] = buf[i];
-	player.memory = tmp;
+	while (i < size)
+		player->memory[j++] = buf[i++];
 }
 
 char		**vm_read_file_champ(char **av, t_vm *vm, int no_player)
@@ -95,7 +114,7 @@ char		**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 	parse_header(size, buf, vm, no_player);
 	size = vm->players[no_player].size_player + 16;
 	size = read(fd, buf, size);
-	parse_instruction(size, buf, vm->players[no_player]);
+	parse_instruction(size, buf, &vm->players[no_player]);
 	return (av);
 }
 
@@ -130,18 +149,56 @@ int			count_number_players(t_vm vm)
 			count++;
 	return (count);
 }
-/*
-void		fill_memory_vm(t_vm vm)
+
+void		print_memory_dump(t_vm vm)
 {
-	int		number_players;
-	unsigned long size;
+	size_t i;
+	size_t j;
+
+	i = 0;
+	while (i < MEM_SIZE)
+	{
+		j = -1;
+		ft_printf("0x%04x : ", i);
+		while (++j < 64)
+			ft_printf("%02x ", vm.memory[i++]);
+		ft_putchar('\n');
+	}
+}
+
+void		fill_memory(t_vm *vm, int no_player, size_t pos)
+{
+	size_t i;
+
+	i = 0;
+	while (i < vm->players[no_player].size_player)
+		vm->memory[pos++] = vm->players[no_player].memory[i++];
+}
+
+void		fill_memory_vm(t_vm *vm)
+{
+	int				number_players;
+	unsigned long	size;
+	unsigned long	tmp;
+	int				no_player;
 
 	size = MEM_SIZE;
-	number_players = count_number_players(vm);
-
-
+	no_player = 2;
+	number_players = count_number_players(*vm);
+	tmp = size/number_players;
+	fill_memory(vm, 1, 0);
+	while (no_player < MAX_PLAYERS)
+	{
+		if (vm->players[no_player].number != 0)
+		{
+			fill_memory(vm, no_player, tmp);
+			tmp = tmp + tmp;
+		}
+		no_player++;
+	}
+	print_memory_dump(*vm);
 }
-*/
+
 int main(int ac, char **av)
 {
 	int		dumps;
@@ -153,5 +210,6 @@ int main(int ac, char **av)
 		return (print_usage());
 	av++;
 	av = parse_line_command(av, &dumps, &vm);
+	fill_memory_vm(&vm);
 		return (0);
 }
