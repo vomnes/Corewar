@@ -58,6 +58,19 @@ void		parse_header(size_t size, unsigned char buf[size], t_vm *vm, int nb)
 	pick_info(size, buf, &vm->players[nb]);
 }
 
+void		parse_instruction(size_t size, unsigned char buf[size], t_player player)
+{
+	size_t i;
+	unsigned char tmp[player.size_player + 16];
+
+	i = 0;
+	while(i + 1 < size && buf[i + 1] == 0)
+		i++;
+	while (++i < size)
+		tmp[i] = buf[i];
+	player.memory = tmp;
+}
+
 char		**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 {
 	int fd;
@@ -81,32 +94,64 @@ char		**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 	ret = read(fd, buf, size);
 	parse_header(size, buf, vm, no_player);
 	size = vm->players[no_player].size_player + 16;
-	read(fd, buf, size);
+	size = read(fd, buf, size);
+	parse_instruction(size, buf, vm->players[no_player]);
 	return (av);
 }
 
+char		**parse_line_command(char **av, int *dumps, t_vm *vm)
+{
+	int count_champs;
+
+	count_champs = 1;
+	if (*av && ft_strcmp(*av, "-d") == 0)
+	{
+		*dumps = ft_atoi(av[1]);
+		av = av + 2;
+	}
+	while (*av)
+	{
+		av = vm_read_file_champ(av, vm, count_champs);
+		count_champs++;
+		++av;
+	}
+	return (av);
+}
+
+int			count_number_players(t_vm vm)
+{
+	int		i;
+	int		count;
+
+	i = 0;
+	count = 0;
+	while (++i < MAX_PLAYERS)
+		if (vm.players[i].number != 0)
+			count++;
+	return (count);
+}
+/*
+void		fill_memory_vm(t_vm vm)
+{
+	int		number_players;
+	unsigned long size;
+
+	size = MEM_SIZE;
+	number_players = count_number_players(vm);
+
+
+}
+*/
 int main(int ac, char **av)
 {
 	int		dumps;
 	t_vm	vm;
-	int count;
 
 	dumps = 0;
-	count = 1;
 	ft_memset(&vm, 0, sizeof(t_vm));
 	if (ac < 2)
 		return (print_usage());
 	av++;
-	if (*av && ft_strcmp(*av, "-d") == 0)
-	{
-		dumps = ft_atoi(*(++av));
-		++av;
-	}
-	while (*av)
-	{
-		av = vm_read_file_champ(av, &vm, count);
-		count++;
-		++av;
-	}
-	return (0);
+	av = parse_line_command(av, &dumps, &vm);
+		return (0);
 }
