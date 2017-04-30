@@ -7,12 +7,14 @@
 #include "libft.h"
 #include "op.h"
 
+typedef struct s_instruction	t_instruction;
+
 typedef	struct			s_player
 {
 	char				name[PROG_NAME_LENGTH + 1];
 	char				comment[COMMENT_LENGTH + 1];
+	unsigned char 		memory[CHAMP_MAX_SIZE];
 	unsigned int		size_player;
-	unsigned char 		*player_memory;
 	int					number;
 	int					nb_lives;
 }						t_player;
@@ -40,12 +42,12 @@ typedef struct			s_vm
 }						t_vm;
 
 
-typedef struct			s_instruction
+struct					s_instruction
 {
 	unsigned char		opcode;
 	unsigned int		(*op)(t_process *, t_vm *);
 	unsigned int		cycles_to_execution;
-}						t_instruction;
+};
 
 
 t_process				*vm_create_process(t_vm *vm);
