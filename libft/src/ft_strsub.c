@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atrudel <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 14:48:11 by atrudel           #+#    #+#             */
-/*   Updated: 2016/11/09 14:48:26 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/02 15:01:09 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 		{
 			i = (size_t)start;
 			j = 0;
-			while (j < len)
+			while (j < len && s[i] != '\0')
 				output[j++] = s[i++];
 			output[j] = '\0';
 		}
