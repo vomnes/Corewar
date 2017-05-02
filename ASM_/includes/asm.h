@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/02 13:15:22 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/02 14:48:45 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ int open_input(int argc, char **argv, t_input *input_data);
 int create_binary_file(t_input input);
 
 int parsing_input(t_data *data);
-char	*ft_strtrim_comment(char const *s, char comment_char);
+char	*ft_strtrim_comment(char *s, char comment_char);
+int parse_name_comment(t_parsing *parsing);
 
 int generate_binary_code(t_data *data);
 

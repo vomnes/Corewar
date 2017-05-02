@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 13:04:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/02 13:29:13 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/02 14:48:32 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void ft_delete_comment(char const *s, size_t index, size_t *len, char com
     }
 }
 
-char	*ft_strtrim_comment(char const *s, char comment_char)
+char	*ft_strtrim_comment(char *s, char comment_char)
 {
 	char	*new_str;
 	size_t	index;
@@ -68,6 +68,10 @@ char	*ft_strtrim_comment(char const *s, char comment_char)
 	new_len = len - index;
 	(new_len <= 0) ? new_len = 0 : (void)new_len;
 	if (!(new_str = ft_strsub(s, index, new_len)))
-		return (NULL);
+    {
+        ft_strdel(&s);
+        return (NULL);
+    }
+    ft_strdel(&s);
 	return (new_str);
 }
