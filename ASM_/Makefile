@@ -5,14 +5,16 @@ SRC =	./src/main.c \
 			./src/open_input.c \
 			./src/create_binary_file.c \
 			./src/generate_binary_code.c \
-			./src/parsing.c
+			./src/parsing.c \
+			./src/ft_strtrim_comment.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
 			./obj/open_input.o \
 			./obj/create_binary_file.o \
 			./obj/generate_binary_code.o \
-			./obj/parsing.o
+			./obj/parsing.o \
+			./obj/ft_strtrim_comment.o
 
 MAKE = make
 
