@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 13:59:02 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/02 14:50:19 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/02 16:48:39 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,34 @@ static int		ft_isprint_nospace(int c)
 		return (0);
 }
 
+static void name_comment_checked(t_parsing *parsing, char flag_type)
+{
+	if (ft_strncmp(parsing->clean_line, NAME_CMD_STRING, \
+		ft_strlen(NAME_CMD_STRING)) == 0 && flag_type == 1)
+	{
+		if (parsing->name_stocked == 0)
+			parsing->name_stocked = 1;
+		else
+		{
+			ft_printf("Name already defined - Line %d\n", parsing->line_nb);
+			exit (-1);
+		}
+	}
+	else if (ft_strncmp(parsing->clean_line, COMMENT_CMD_STRING, \
+			ft_strlen(COMMENT_CMD_STRING)) == 0 && flag_type == 0)
+	{
+		if (parsing->comment_stocked == 0)
+			parsing->comment_stocked = 1;
+		else
+		{
+			ft_printf("Comment already defined - Line %d\n", parsing->line_nb);
+			exit (-1);
+		}
+	}
+}
+
 static void check_header_content(const char *cmd_string, unsigned int content_len,
-t_parsing *parsing)
+t_parsing *parsing, char flag_type)
 {
     char *name;
     int index_open;
@@ -54,16 +80,13 @@ t_parsing *parsing)
             exit (-1);
         }
     }
-	if (ft_strncmp(parsing->clean_line, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)) == 0)
-		parsing->name_stocked = 1;
-	else if (ft_strncmp(parsing->clean_line, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)) == 0)
-		parsing->comment_stocked = 1;
+	name_comment_checked(parsing, flag_type);
 }
 
 int parse_name_comment(t_parsing *parsing)
 {
-	check_header_content(NAME_CMD_STRING, PROG_NAME_LENGTH, parsing);
-	check_header_content(COMMENT_CMD_STRING, COMMENT_LENGTH, parsing);
+	check_header_content(NAME_CMD_STRING, PROG_NAME_LENGTH, parsing, 1);
+	check_header_content(COMMENT_CMD_STRING, COMMENT_LENGTH, parsing, 0);
 	if (ft_strncmp(parsing->clean_line, NAME_CMD_STRING, \
 		ft_strlen(NAME_CMD_STRING)) != 0 &&
 		ft_strncmp(parsing->clean_line, COMMENT_CMD_STRING, \
