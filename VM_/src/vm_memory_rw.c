@@ -19,6 +19,11 @@ unsigned int	vm_n_bytes_to_uint(unsigned char *ptr, size_t n)
 	return (value);
 }
 
+/*
+**	Reads 4 bytes of memory and returns it as a signed int.
+**	Handles circular memory
+*/
+
 int				vm_read_memory_int(t_vm *vm, int index)
 {
 	int	value;
@@ -38,6 +43,11 @@ int				vm_read_memory_int(t_vm *vm, int index)
 	}
 	return (value);
 }
+
+/*
+**	Reads 2 bytes of memory and returns it as a signed short.
+**	Handles circular memory
+*/
 
 short			vm_read_memory_short(t_vm *vm, int index)
 {
@@ -59,6 +69,12 @@ short			vm_read_memory_short(t_vm *vm, int index)
 	return (value);
 }
 
+/*
+**	Takes an int as an input and writes its 4 bytes in memory, starting
+**	at the specified index.
+**	Handles circular memory.
+*/
+
 void			vm_store_in_memory_int(t_vm *vm, int index, int value)
 {
 	int	i;
@@ -72,6 +88,12 @@ void			vm_store_in_memory_int(t_vm *vm, int index, int value)
 		i--;
 	}
 }
+
+/*
+**	Takes an short as an input and writes its 2 bytes in memory, starting
+**	at the specified index.
+**	Handles circular memory.
+*/
 
 void			vm_store_in_memory_short(t_vm *vm, int index, short value)
 {
