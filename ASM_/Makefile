@@ -7,7 +7,8 @@ SRC =	./src/main.c \
 			./src/generate_binary_code.c \
 			./src/parsing.c \
 			./src/ft_strtrim_comment.c \
-			./src/parse_name_comment.c
+			./src/parse_name_comment.c \
+			./src/parse_labels.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -16,7 +17,8 @@ OBJ =	./obj/main.o \
 			./obj/generate_binary_code.o \
 			./obj/parsing.o \
 			./obj/ft_strtrim_comment.o \
-			./obj/parse_name_comment.o
+			./obj/parse_name_comment.o \
+			./obj/parse_labels.o
 
 MAKE = make
 

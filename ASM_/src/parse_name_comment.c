@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 13:59:02 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/02 16:48:39 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/03 16:22:42 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void name_comment_checked(t_parsing *parsing, char flag_type)
 			parsing->name_stocked = 1;
 		else
 		{
-			ft_printf("Name already defined - Line %d\n", parsing->line_nb);
+			ft_printf("Champion name already defined - Line %d\n", parsing->line_nb);
 			exit (-1);
 		}
 	}
@@ -40,7 +40,7 @@ static void name_comment_checked(t_parsing *parsing, char flag_type)
 			parsing->comment_stocked = 1;
 		else
 		{
-			ft_printf("Comment already defined - Line %d\n", parsing->line_nb);
+			ft_printf("Champion comment already defined - Line %d\n", parsing->line_nb);
 			exit (-1);
 		}
 	}
@@ -99,12 +99,12 @@ int parse_name_comment(t_parsing *parsing)
 		}
 		else if (parsing->comment_stocked == 0)
 		{
-			ft_putendl_fd("Comment undefined", 2);
+			ft_putendl_fd("Champion comment undefined", 2);
 			exit (-1);
 		}
 		else if (parsing->name_stocked == 0)
 		{
-			ft_putendl_fd("Name undefined", 2);
+			ft_putendl_fd("Champion name undefined", 2);
 			exit (-1);
 		}
 	}

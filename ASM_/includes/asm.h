@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/02 14:48:45 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/03 16:28:08 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ typedef struct      s_parsing
     unsigned int    line_nb;
     char            name_stocked;
     char            comment_stocked;
+    char            name_comment_stocked;
     char            *clean_line;
+    char            *input_line;
 }                   t_parsing;
 
 typedef struct s_input
@@ -52,6 +54,7 @@ int create_binary_file(t_input input);
 int parsing_input(t_data *data);
 char	*ft_strtrim_comment(char *s, char comment_char);
 int parse_name_comment(t_parsing *parsing);
+int parse_labels(t_parsing *parsing);
 
 int generate_binary_code(t_data *data);
 
