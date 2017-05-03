@@ -10,8 +10,7 @@ SRC_FILES =	corewar.c \
 			vm_parameters.c \
 			vm_error.c \
 			vm_register_utils.c \
-			vm_player_utils.c
-			vm_utils.c \
+			vm_player_utils.c\
 			vm_parse_header.c\
 			vm_fill_memory_vm.c\
 			vm_read_file_champ.c\
@@ -20,7 +19,7 @@ SRC_FILES =	corewar.c \
 INC_FILES = vm.h
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
-OBJ = $(addprefix $(OBJ_PATH)/, $(SRC_FILES:.c=.o)) \
+OBJ = $(addprefix $(OBJ_PATH)/, $(SRC_FILES:.c=.o)) 
 # Ajouter op.o
 
 INC = $(addprefix $(INC_PATH)/, $(INC_FILES))
