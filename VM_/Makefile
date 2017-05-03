@@ -10,11 +10,11 @@ SRC_FILES =	corewar.c \
 			vm_parameters.c \
 			vm_error.c \
 			vm_register_utils.c \
-			vm_player_utils.c
-			vm_utils.c \
-			vm_parse_header.c\
-			vm_fill_memory_vm.c\
-			vm_read_file_champ.c\
+			vm_player_utils.c \
+			vm_memory_rw.c \
+			vm_parse_header.c \
+			vm_fill_memory_vm.c \
+			vm_read_file_champ.c \
 			vm_parse_line_command.c
 
 INC_FILES = vm.h
