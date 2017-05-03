@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:12:00 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/03 16:51:25 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/03 19:23:12 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,21 @@ static int check_label_line(t_parsing *parsing, char *content)
 		{
 			if (ft_isstr_ctype(content, ft_is_label_chars) != 1)
 			{
-					ft_putstr_fd(B_GREEN, 2);
-					ft_putstr_fd(content, 2); /* Need to stock labels */
-					ft_putstr_fd(DEF, 2);
+					// ft_putstr_fd(B_GREEN, 2);
+					// ft_putstr_fd(content, 2); /* Need to stock labels */
+					// ft_putstr_fd(DEF, 2);
+                    if (!(parsing->label_name = ft_strdup(content)))
+                    {
+                        ft_strdel(&content);
+                        return (-1);
+                    }
 					if (ft_strchr(LINE, ':') != NULL)
 						clean = ft_strchr(LINE, ':') + 1;
+                    if (!(parsing->line_label = ft_strdup(LINE)))
+                        return (-1);
 					ft_strdel(&LINE);
 					if (!(LINE = ft_strtrim(clean)))
 						return (-1);
-                    ft_putchar_fd('\n', 2);
                     return (1);
 			}
 			else if (ft_isstr_ctype(content, ft_is_label_chars) == 1)
@@ -75,5 +81,6 @@ int parse_labels(t_parsing *parsing)
 		i++;
 	}
 	ret = check_label_line(parsing, content);
+    ft_strdel(&content);
 	return (ret);
 }

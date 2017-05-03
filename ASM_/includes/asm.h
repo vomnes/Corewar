@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/03 16:28:08 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/03 19:04:36 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,47 @@
 # include "../../libft/includes/get_next_line.h"
 # include "../../shared_files/op.h"
 
+
+typedef struct              s_instructions
+{
+    unsigned int            num_line;
+    char                    *line_label;
+    char                    is_label;
+    char                    *label_name;
+    char                    *line_opcode;
+    char                    *line_args;
+    struct s_instructions   *next;
+}                           t_instructions;
+
 typedef struct      s_parsing
 {
     unsigned int    line_nb;
+    char            *clean_line;
+    char            *label_name;
+    char            *line_label; //clean_line
+    char            *line_opcode; //input_line
+    char            *line_args;
+    t_instructions  *lst;
     char            name_stocked;
     char            comment_stocked;
     char            name_comment_stocked;
-    char            *clean_line;
-    char            *input_line;
 }                   t_parsing;
+
+//t_label
+// liste d'occurrences (numero du byte a modifier)
+// position absolue
+
+// t_operation
+
+// t_arg arg1;
+// t_arg arg2;
+// t_arg arg3;
+// char* output_bytes
 
 typedef struct s_input
 {
   int         fd;
-  char        file_name[PROG_NAME_LENGTH + 1];
+  char        file_name[128 + 1];
 }             t_input;
 
 typedef struct s_output
