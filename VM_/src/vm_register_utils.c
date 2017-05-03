@@ -1,32 +1,24 @@
 #include "vm.h"
 
-
-// AJOUTER LES MOD(X)
-unsigned int	vm_n_bytes_to_uint(unsigned char *ptr, size_t n)
+int		vm_read_register(unsigned char reg[REG_SIZE])
 {
-	unsigned int	value;
-	unsigned int	mask;
+	int	value;
+	int	mask;
+	int	i;
 
 	value = 0;
-	if (n > 4)
-		ft_dprintf(2, "Error: trying to store %lu bytes in an int\n", n);
-	while (n > 0)
+	i = 0;
+	while (i < REG_SIZE)
 	{
 		value = value << 8;
-		mask = (unsigned int)(*ptr);
+		mask = (int)(reg[i]);
 		value = value | mask;
-		ptr++;
-		n--;
+		i++;
 	}
 	return (value);
 }
 
-unsigned int	vm_read_from_register(unsigned char reg[REG_SIZE])
-{
-	return (vm_n_bytes_to_uint((unsigned char *)reg, REG_SIZE));
-}
-
-void			vm_store_in_register(unsigned char (*reg)[REG_SIZE], int value)
+void	vm_store_in_register(unsigned char (*reg)[REG_SIZE], int value)
 {
 	int				i;
 
