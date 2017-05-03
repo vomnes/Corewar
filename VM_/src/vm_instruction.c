@@ -14,7 +14,7 @@ t_instruction	vm_read_opcode(t_vm *vm, unsigned int pc)
 		{6, vm_and, 6, 0, 0, 0},
 		{7, vm_or, 6, 0, 0, 0},
 		{8, vm_xor, 6, 0, 0, 0},
-		{9, vm_zjump, 20, 0, 0, 0},
+		{9, vm_zjmp, 20, 0, 0, 0},
 		{10, vm_ldi, 25, 0, 0, 0},
 		{11, vm_sti, 25, 0, 0, 0},
 		{12, vm_fork, 800, 0, 0, 0},
