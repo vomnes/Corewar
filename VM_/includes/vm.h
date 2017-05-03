@@ -59,6 +59,12 @@ t_process				*vm_create_process(t_vm *vm);
 void					vm_decode_parameter_byte(t_process *process, t_vm *vm);
 
 unsigned int			vm_n_bytes_to_uint(unsigned char *ptr, size_t n);
+int						vm_read_memory_int(t_vm *vm, int index);
+short					vm_read_memory_short(t_vm *vm, int index);
+void					vm_store_in_memory_int(t_vm *vm, int index, int value);
+void					vm_store_in_memory_short(t_vm *vm, int index,
+						short value);
+
 int						vm_read_register(unsigned char reg[REG_SIZE]);
 void					vm_store_in_register(unsigned char (*reg)[REG_SIZE],
 						int value);
@@ -72,5 +78,7 @@ void					vm_parse_header(size_t size, unsigned char buf[size], \
 void					vm_fill_memory_vm(t_vm *vm);
 char					**vm_read_file_champ(char **av, t_vm *vm, int n_player);
 char					**vm_parse_line_command(char **av, int *dump, t_vm *vm);
+
+void					print_memory_dump(t_vm vm);
 
 #endif

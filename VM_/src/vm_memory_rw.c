@@ -72,3 +72,17 @@ void			vm_store_in_memory_int(t_vm *vm, int index, int value)
 		i--;
 	}
 }
+
+void			vm_store_in_memory_short(t_vm *vm, int index, short value)
+{
+	int	i;
+
+	i = 1;
+	while (i >= 0)
+	{
+		index = MOD(index);
+		vm->memory[index] = (unsigned char)(value >> (8 * i));
+		index++;
+		i--;
+	}
+}
