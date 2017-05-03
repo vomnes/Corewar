@@ -13,5 +13,5 @@ void				vm_ld(t_process *process, t_vm *vm)
 	else if (process->instruction.first_type == T_IND)
 		first_param = vm_read_memory_short(vm, pc + 1);
 	second_param = MOD(pc + 1);
-	vm_store_in_register(&process->registers[second_param], first_param);
+	vm_store_in_register(&process->registers[second_param], (PC + (first_param % IDX_MOD)));
 }
