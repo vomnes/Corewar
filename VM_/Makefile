@@ -6,7 +6,7 @@
 #    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/04/26 15:21:01 by atrudel           #+#    #+#              #
-#    Updated: 2017/04/29 18:48:42 by atrudel          ###   ########.fr        #
+#    Updated: 2017/05/02 15:29:47 by atrudel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,10 +17,12 @@ OBJ_PATH = ./obj
 SRC_PATH = ./src
 INC_PATH = ./includes
 
-SRC_FILES =	corewar.c \
+SRC_FILES =	test.c \
 			vm_process.c \
+			vm_parameters.c \
 			vm_error.c \
-			vm_utils.c
+			vm_register_utils.c \
+			vm_player_utils.c
 
 INC_FILES = vm.h
 

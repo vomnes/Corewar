@@ -7,6 +7,8 @@
 # include "libft.h"
 # include "op.h"
 
+# define MOD(x) (x % MEM_SIZE)
+
 typedef struct s_process	t_process;
 
 typedef	struct			s_player
@@ -33,10 +35,10 @@ typedef struct			s_instruction
 	unsigned char		opcode;
 	unsigned int		(*op)(t_process *, t_vm *);
 	unsigned int		cycles_to_execution;
-	unsigned int		first_param;
-	unsigned int		second_param;
-	unsigned int		third_param;
-	unsigned int		fourth_param;
+	t_arg_type			first_type;
+	t_arg_type			second_type;
+	t_arg_type			third_type;
+
 }						t_instruction;
 
 struct					s_process
@@ -54,10 +56,14 @@ struct					s_process
 
 t_process				*vm_create_process(t_vm *vm);
 
+void					vm_decode_parameter_byte(t_process *process, t_vm *vm);
+
 unsigned int			vm_n_bytes_to_uint(unsigned char *ptr, size_t n);
 unsigned int			vm_read_from_register(unsigned char reg[REG_SIZE]);
 void					vm_store_in_register(unsigned char (*reg)[REG_SIZE],
 						int value);
+
+char 					*vm_get_player_name(t_vm *vm, int player_nb);
 
 void					vm_error_exit(t_vm *vm, char *message);
 
