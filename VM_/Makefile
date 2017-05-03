@@ -16,6 +16,7 @@ SRC_FILES =	test.c \
 			vm_fill_memory_vm.c \
 			vm_read_file_champ.c \
 			vm_parse_line_command.c \
+			vm_null_op.c \
 			vm_live.c \
 			vm_zjmp.c
 
