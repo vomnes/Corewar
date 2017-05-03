@@ -23,7 +23,7 @@ void			vm_decode_parameter_byte(t_process *process, t_vm *vm)
 {
 	unsigned char	byte;
 
-	byte = vm->memory[MOD(vm_read_from_register(process->pc) + 1)];
+	byte = vm->memory[MOD(vm_read_register(process->pc) + 1)];
 	vm_decode_two_bits(byte, &process->instruction.first_type);
 	byte = byte << 2;
 	vm_decode_two_bits(byte, &process->instruction.second_type);
