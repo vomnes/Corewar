@@ -1,6 +1,6 @@
 #include "vm.h"
 
-char 	*vm_get_player_name(t_vm *vm, int player_nb)
+t_player 	*vm_get_player(t_vm *vm, int player_nb)
 {
 	int i;
 
@@ -8,7 +8,7 @@ char 	*vm_get_player_name(t_vm *vm, int player_nb)
 	while (i <= vm->nb_players)
 	{
 		if ((vm->players[i]).number == player_nb)
-			return ((vm->players[i]).name);
+			return (&vm->players[i]);
 		i++;
 	}
 	return (NULL);

@@ -69,7 +69,7 @@ int						vm_read_register(unsigned char reg[REG_SIZE]);
 void					vm_store_in_register(unsigned char (*reg)[REG_SIZE],
 						int value);
 
-char 					*vm_get_player_name(t_vm *vm, int player_nb);
+t_player 				*vm_get_player(t_vm *vm, int player_nb);
 
 void					vm_error_exit(t_vm *vm, char *message);
 
@@ -80,5 +80,8 @@ char					**vm_read_file_champ(char **av, t_vm *vm, int n_player);
 char					**vm_parse_line_command(char **av, int *dump, t_vm *vm);
 
 void					print_memory_dump(t_vm vm);
+
+void					vm_live(t_process *process, t_vm *vm);
+
 
 #endif
