@@ -82,6 +82,7 @@ char					**vm_parse_line_command(char **av, int *dump, t_vm *vm);
 void					print_memory_dump(t_vm vm);
 
 void					vm_live(t_process *process, t_vm *vm);
+void					vm_zjmp(t_process *process, t_vm *vm);
 
 
 #endif
