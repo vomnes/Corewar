@@ -1,6 +1,6 @@
 #include "vm.h"
 
-unsigned int		vm_live(t_process *process, t_vm *vm)
+void		vm_live(t_process *process, t_vm *vm)
 {
 	unsigned int	pc;
 	unsigned int	player_nb;

@@ -33,7 +33,7 @@ typedef struct			s_vm
 typedef struct			s_instruction
 {
 	unsigned char		opcode;
-	unsigned int		(*op)(t_process *, t_vm *);
+	void				(*op)(t_process *, t_vm *);
 	unsigned int		cycles_to_execution;
 	t_arg_type			first_type;
 	t_arg_type			second_type;
@@ -59,7 +59,7 @@ t_process				*vm_create_process(t_vm *vm);
 void					vm_decode_parameter_byte(t_process *process, t_vm *vm);
 
 unsigned int			vm_n_bytes_to_uint(unsigned char *ptr, size_t n);
-unsigned int			vm_read_from_register(unsigned char reg[REG_SIZE]);
+int						vm_read_register(unsigned char reg[REG_SIZE]);
 void					vm_store_in_register(unsigned char (*reg)[REG_SIZE],
 						int value);
 
