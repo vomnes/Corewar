@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/04/26 15:21:01 by atrudel           #+#    #+#              #
-#    Updated: 2017/05/02 15:29:47 by atrudel          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = corewar
 
 LIB_PATH = ../libft
@@ -23,6 +11,11 @@ SRC_FILES =	test.c \
 			vm_error.c \
 			vm_register_utils.c \
 			vm_player_utils.c
+			vm_utils.c \
+			vm_parse_header.c\
+			vm_fill_memory_vm.c\
+			vm_read_file_champ.c\
+			vm_parse_line_command.c
 
 INC_FILES = vm.h
 

@@ -67,4 +67,10 @@ char 					*vm_get_player_name(t_vm *vm, int player_nb);
 
 void					vm_error_exit(t_vm *vm, char *message);
 
+void					vm_parse_header(size_t size, unsigned char buf[size], \
+						t_vm *vm, int nb);
+void					vm_fill_memory_vm(t_vm *vm);
+char					**vm_read_file_champ(char **av, t_vm *vm, int n_player);
+char					**vm_parse_line_command(char **av, int *dump, t_vm *vm);
+
 #endif

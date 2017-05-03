@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 16:12:25 by atrudel           #+#    #+#             */
-/*   Updated: 2017/04/27 19:38:34 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/03 11:14:10 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,6 @@ int					ft_charindex(const char *s, char c);
 int					ft_nb_occ(const char *str, char c);
 int 				ft_isstr_ctype(const char *str, int (*c_type)());
 int					ft_isstrn_ctype(const char *str, int (*c_type)(), size_t n);
+int					ft_isspace(int c);
 
 #endif
