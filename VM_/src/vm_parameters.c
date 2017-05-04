@@ -15,8 +15,6 @@ static void		vm_decode_two_bits(unsigned char byte, t_arg_type *type)
 		*type = T_REG;
 	else if ((byte & mask_dir) == mask_dir)
 		*type = T_DIR;
-	else
-		*type = T_LAB;
 }
 
 void			vm_decode_parameter_byte(t_process *process, t_vm *vm)
@@ -25,8 +23,11 @@ void			vm_decode_parameter_byte(t_process *process, t_vm *vm)
 
 	byte = vm->memory[MOD(vm_read_register(process->pc) + 1)];
 	vm_decode_two_bits(byte, &process->instruction.first_type);
+	process->instruction.args[0] = process->instruction.first_type;
 	byte = byte << 2;
 	vm_decode_two_bits(byte, &process->instruction.second_type);
+	process->instruction.args[1] = process->instruction.second_type;
 	byte = byte << 2;
 	vm_decode_two_bits(byte, &process->instruction.third_type);
+	process->instruction.args[2] = process->instruction.third_type;
 }
