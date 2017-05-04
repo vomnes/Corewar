@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/03 19:04:36 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/04 15:17:33 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "../../libft/includes/libftprintf.h"
 # include "../../libft/includes/get_next_line.h"
 # include "../../shared_files/op.h"
-
 
 typedef struct              s_instructions
 {
@@ -83,8 +82,14 @@ char	*ft_strtrim_comment(char *s, char comment_char);
 int parse_name_comment(t_parsing *parsing);
 int parse_labels(t_parsing *parsing);
 
+int				add_new_instruction(t_instructions **lst_head, \
+t_parsing *collect);
+
 int generate_binary_code(t_data *data);
 
 void write_header(int fd, header_t header);
+
+void print_instructions_list(t_instructions *lst);
+void delete_lst_instructions(t_instructions *lst);
 
 #endif

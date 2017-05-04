@@ -8,7 +8,9 @@ SRC =	./src/main.c \
 			./src/parsing.c \
 			./src/ft_strtrim_comment.c \
 			./src/parse_name_comment.c \
-			./src/parse_labels.c
+			./src/parse_labels.c \
+			./src/add_new_instruction.c \
+			./src/list_tools.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -18,7 +20,9 @@ OBJ =	./obj/main.o \
 			./obj/parsing.o \
 			./obj/ft_strtrim_comment.o \
 			./obj/parse_name_comment.o \
-			./obj/parse_labels.o
+			./obj/parse_labels.o \
+			./obj/add_new_instruction.o \
+			./obj/list_tools.o
 
 MAKE = make
 
