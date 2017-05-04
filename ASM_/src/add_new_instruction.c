@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 12:19:06 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/04 14:51:50 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/04 16:50:41 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void init_link(t_instructions **instruction)
 	(*instruction)->line_label = NULL;
 	(*instruction)->label_name = NULL;
 	(*instruction)->line_opcode = NULL;
+	(*instruction)->opcode = -1;
     (*instruction)->line_args = NULL;
 }
 
@@ -39,7 +40,7 @@ static t_instructions	*instruction_add_elem(t_parsing *collect)
         if (!(new_instruction->label_name = ft_strdup(collect->label_name)))
             return (NULL);
     }
-    if (collect->line_opcode != NULL)
+    if (collect->line_opcode != NULL && *collect->line_opcode != '\0')
         if (!(new_instruction->line_opcode = ft_strdup(collect->line_opcode)))
             return (NULL);
 	return (new_instruction);

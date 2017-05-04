@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 16:58:00 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/04 15:16:41 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/04 19:05:06 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,14 @@ static void clean_struct_parsing(t_parsing *parsing)
 	ft_strdel(&parsing->line_label);
 	ft_strdel(&parsing->line_opcode);
 }
-//
-// static void clean_list_parsing(t_parsing *parsing)
-// {
-//
-// }
 
 int parsing_input(t_data *data)
 {
     char *line;
+	char *opcode_name;
 
 	line = NULL;
+	opcode_name = NULL;
 	init_struct_parsing(&data->parsing);
 	while (get_next_line(data->input.fd, &line) > 0)
 	{
@@ -81,7 +78,6 @@ int parsing_input(t_data *data)
 		if (parse_content(&(data->parsing)) == -1)
 		{
 			clean_struct_parsing(&(data->parsing));
-			// sleep(42);
 			return (-1);
 		}
 		parse_name_comment(&(data->parsing));
@@ -91,12 +87,25 @@ int parsing_input(t_data *data)
 		// ft_printf("parsing->line_nb = %d\n", data->parsing.line_nb);
 		// ft_printf("parsing->line_label = %s\n", data->parsing.line_label);
 		// ft_printf("parsing->label_name = %s\n", data->parsing.label_name);
-		// ft_printf("parsing->line_opcode = %s\n", data->parsing.line_opcode);
+		// ft_printf("parsing->line_opcode = $%s$\n", data->parsing.line_opcode);
 		// ft_printf("------------[O]-----------\n");
 		clean_struct_parsing(&(data->parsing));
     }
+	if (parse_opcode(&data->parsing.lst) == -1)
+		return (-1);
 	print_instructions_list(data->parsing.lst);
-	// clean_struct_parsing(&(data->parsing));
-	// delete_lst_instructions(data->parsing.lst);
     return (0);
 }
+
+
+// ft_printf("------------[I]------------\n");
+// ft_printf("parsing->line_nb = %d\n", data->parsing.line_nb);
+// ft_printf("parsing->line_label = %s\n", data->parsing.line_label);
+// ft_printf("parsing->label_name = %s\n", data->parsing.label_name);
+// ft_printf("parsing->line_opcode = %s\n", data->parsing.line_opcode);
+// ft_printf("------------[O]-----------\n");
+
+// clean_struct_parsing(&(data->parsing));
+// delete_lst_instructions(data->parsing.lst);
+
+// sleep(42);
