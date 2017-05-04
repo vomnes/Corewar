@@ -40,15 +40,18 @@ void			vm_advance_processes_one_cycle(t_vm *vm)
 		process = process->next;
 	while (process)
 	{
-		pc = vm_read_from_register(process->pc);
-		if (!process->instruction)
-			process->instruction = vm_read_opcode(vm, pc);
-		process->instruction.cycles_to_execution -= 1;
-		if (process->instruction.cycles_to_execution == 0)
+		if (process->alive)
 		{
-			vm_decode_parameter_byte(process, vm);
-			process->instruction.op(process, vm);
-			ft_bzero(&process->instruction, sizeof(t_instruction));
+			pc = vm_read_from_register(process->pc);
+			if (!process->instruction)
+				process->instruction = vm_read_opcode(vm, pc);
+			process->instruction.cycles_to_execution -= 1;
+			if (process->instruction.cycles_to_execution == 0)
+			{
+				vm_decode_parameter_byte(process, vm);
+				process->instruction.op(process, vm);
+				ft_bzero(&process->instruction, sizeof(t_instruction));
+			}
 		}
 		process = process->prev;
 	}
