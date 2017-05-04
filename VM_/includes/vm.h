@@ -38,7 +38,7 @@ typedef struct			s_instruction
 	t_arg_type			first_type;
 	t_arg_type			second_type;
 	t_arg_type			third_type;
-
+	t_arg_type			args[MAX_ARGS_NUMBER];
 }						t_instruction;
 
 struct					s_process
@@ -90,5 +90,7 @@ void					vm_null_op(t_process *process, t_vm *vm);
 void					vm_live(t_process *process, t_vm *vm);
 void					vm_zjmp(t_process *process, t_vm *vm);
 void					vm_fork(t_process *process, t_vm *vm);
+
+void					vm_lfork(t_process *process, t_vm *vm);
 
 #endif
