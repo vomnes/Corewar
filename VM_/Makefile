@@ -18,10 +18,13 @@ SRC_FILES =	test.c \
 			vm_parse_line_command.c \
 			vm_null_op.c \
 			vm_live.c \
+			vm_ld.c\
+			vm_st.c\
+			vm_add.c\
 			vm_zjmp.c \
 			vm_fork.c \
 			vm_lfork.c
-
+		
 INC_FILES = vm.h
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
