@@ -18,7 +18,9 @@ SRC_FILES =	test.c \
 			vm_parse_line_command.c \
 			vm_null_op.c \
 			vm_live.c \
-			vm_zjmp.c
+			vm_zjmp.c \
+			vm_fork.c \
+			vm_lfork.c
 
 INC_FILES = vm.h
 
