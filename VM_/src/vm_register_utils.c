@@ -30,3 +30,20 @@ void	vm_store_in_register(unsigned char (*reg)[REG_SIZE], int value)
 		i--;
 	}
 }
+
+void	vm_print_register(unsigned char reg[REG_SIZE])
+{
+	int i;
+	int started;
+
+	i = 0;
+	started = 0;
+	while (i < REG_SIZE)
+	{
+		if (started)
+			ft_printf(" ");
+		started = 1;
+		ft_printf("%.2hhx", reg[i]);
+		i++;
+	}
+}
