@@ -32,5 +32,49 @@ t_process	*vm_create_process(t_vm *vm)
 		new_process->prev = process_list;
 	}
 	new_process->no = count;
+	new_process->alive = 1;
 	return (new_process);
+}
+
+void 		vm_copy_process(t_process *parent, t_process *child)
+{
+	int i;
+
+	i = 1;
+	while (i <= REG_NUMBER)
+	{
+		vm_store_in_register(&child->registers[i],
+			vm_read_register(parent->registers[i]));
+		i++;
+	}
+	child->player_no = parent->player_no;
+	child->alive = parent->alive;
+	child->carry = parent->carry;
+}
+
+void		vm_print_process(t_process *process)
+{
+	int i;
+
+	ft_printf("Process no %d\n", process->no);
+	ft_printf("Belongs to player no %d\n", process->player_no);
+	if (process->alive)
+		ft_printf("This process is alive\n");
+	else
+		ft_printf("This process is dead\n");
+	ft_printf("Carry: %d\n", process->carry);
+	ft_printf("PC : ");
+	vm_print_register(process->pc);
+	ft_printf("\n");
+	ft_printf("Registers:\n");
+	i = 1;
+	while (i <= REG_NUMBER)
+	{
+		ft_printf("\tRegister %d: ", i);
+		vm_print_register(process->registers[i]);
+		ft_printf("\n");
+		i++;
+	}
+
+	ft_printf("Instruction: %hhd\n", process->instruction.opcode);
 }

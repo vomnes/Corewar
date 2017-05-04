@@ -38,7 +38,7 @@ typedef struct			s_instruction
 	t_arg_type			first_type;
 	t_arg_type			second_type;
 	t_arg_type			third_type;
-
+	t_arg_type			args[MAX_ARGS_NUMBER];
 }						t_instruction;
 
 struct					s_process
@@ -55,6 +55,9 @@ struct					s_process
 };
 
 t_process				*vm_create_process(t_vm *vm);
+void 					vm_copy_process(t_process *parent, t_process *child);
+void					vm_print_process(t_process *process);
+
 
 void					vm_decode_parameter_byte(t_process *process, t_vm *vm);
 
@@ -68,6 +71,8 @@ void					vm_store_in_memory_short(t_vm *vm, int index,
 int						vm_read_register(unsigned char reg[REG_SIZE]);
 void					vm_store_in_register(unsigned char (*reg)[REG_SIZE],
 						int value);
+void					vm_print_register(unsigned char reg[REG_SIZE]);
+
 
 t_player 				*vm_get_player(t_vm *vm, int player_nb);
 
@@ -82,11 +87,14 @@ char					**vm_parse_line_command(char **av, int *dump, t_vm *vm);
 void					print_memory_dump(t_vm vm);
 int						move_pc(t_process *process, int pc);
 
+void					vm_null_op(t_process *process, t_vm *vm);
 void					vm_live(t_process *process, t_vm *vm);
 void					vm_ld(t_process *process, t_vm *vm);
 void					vm_st(t_process *process, t_vm *vm);
 void					vm_add(t_process *process, t_vm *vm);
 void					vm_zjmp(t_process *process, t_vm *vm);
+void					vm_fork(t_process *process, t_vm *vm);
 
+void					vm_lfork(t_process *process, t_vm *vm);
 
 #endif
