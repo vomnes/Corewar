@@ -93,9 +93,19 @@ void					vm_live(t_process *process, t_vm *vm);
 void					vm_ld(t_process *process, t_vm *vm);
 void					vm_st(t_process *process, t_vm *vm);
 void					vm_add(t_process *process, t_vm *vm);
+void					vm_sub(t_process *process, t_vm *vm);
+void					vm_and(t_process *process, t_vm *vm);
+void					vm_or(t_process *process, t_vm *vm);
+void					vm_xor(t_process *process, t_vm *vm);
 void					vm_zjmp(t_process *process, t_vm *vm);
+void					vm_ldi(t_process *process, t_vm *vm);
+void					vm_sti(t_process *process, t_vm *vm);
 void					vm_fork(t_process *process, t_vm *vm);
-
+void					vm_lld(t_process *process, t_vm *vm);
+void					vm_lldi(t_process *process, t_vm *vm);
 void					vm_lfork(t_process *process, t_vm *vm);
+void					vm_aff(t_process *process, t_vm *vm);
+
+t_instruction			vm_read_opcode(t_vm *vm, unsigned int pc);
 
 #endif
