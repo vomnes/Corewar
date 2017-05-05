@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 12:19:06 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/04 16:50:41 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/05 13:53:58 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ t_parsing *collect)
 	{
 		if (!(*lst_head = instruction_add_elem(collect)))
 			return (-1);
+		(*lst_head)->next = NULL;
 	}
 	else
 	{

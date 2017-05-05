@@ -12,7 +12,9 @@ SRC =	./src/main.c \
 			./src/add_new_instruction.c \
 			./src/list_tools.c \
 			./src/parse_opcode.c \
-			./src/op.c
+			./src/op.c \
+			./src/parse_args.c \
+			./src/add_arg.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -26,7 +28,9 @@ OBJ =	./obj/main.o \
 			./obj/add_new_instruction.o \
 			./obj/list_tools.o \
 			./obj/parse_opcode.o \
-			./obj/op.o
+			./obj/op.o \
+			./obj/parse_args.o \
+			./obj/add_arg.o
 
 MAKE = make
 

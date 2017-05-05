@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:12:00 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/04 15:07:31 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/05 14:25:24 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ static int is_label(t_parsing *parsing, char *content)
 		ft_strdel(&content);
 		return (-1);
 	}
-	if (ft_strchr(LINE, ':') != NULL)
-		clean = ft_strchr(LINE, ':') + 1;
+	if (ft_strchr(LINE, LABEL_CHAR) != NULL)
+		clean = ft_strchr(LINE, LABEL_CHAR) + 1;
 	if (!(parsing->line_label = ft_strdup(LINE)))
 		return (-1);
 	ft_strdel(&LINE);
@@ -72,9 +72,9 @@ int parse_labels(t_parsing *parsing)
     ret = 0;
 	while (LINE[i] != '\0')
 	{
-		if (LINE[i] == ':')
+		if (LINE[i] == LABEL_CHAR)
 		{
-			if (!(content = ft_strndup(LINE, ft_charindex(LINE, ':'))))
+			if (!(content = ft_strndup(LINE, ft_charindex(LINE, LABEL_CHAR))))
 				return (-1);
 			break ;
 		}

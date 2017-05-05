@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 15:16:44 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/04 18:31:52 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/05 14:19:10 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void print_instructions_list(t_instructions *lst)
 		ft_printf("label_name = %s\n", current->label_name);
 		ft_printf(B_GREEN"line_label = %s\n"DEF, current->line_label);
 		ft_printf(B_YELLOW"line_opcode = %s\n"DEF, current->line_opcode);
-		ft_printf("opcode = %d\n", current->opcode);
+		if (current->opcode > 0)
+			ft_printf("opcode = %d [%s]\n", current->opcode, g_op_tab[current->opcode].name);
+		else
+			ft_printf("opcode = %d\n", current->opcode);
 		ft_printf(B_BLUE"line_args = %s\n"DEF, current->line_args);
 		current = current->next;
 	}

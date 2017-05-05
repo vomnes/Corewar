@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/04 18:58:50 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/05 15:30:43 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,15 @@
 
 extern t_op g_op_tab[17];
 
+typedef struct              s_args
+{
+    char                    *content;
+    char                    type;
+    int                     value;
+    char                    *label;
+    struct s_args           *next;
+}                           t_args;
+
 typedef struct              s_instructions
 {
     unsigned int            num_line;
@@ -30,6 +39,7 @@ typedef struct              s_instructions
     char                    *line_opcode;
     signed char             opcode;
     char                    *line_args;
+    t_args                  *arg;
     struct s_instructions   *next;
 }                           t_instructions;
 
@@ -50,13 +60,6 @@ typedef struct      s_parsing
 //t_label
 // liste d'occurrences (numero du byte a modifier)
 // position absolue
-
-// t_operation
-
-// t_arg arg1;
-// t_arg arg2;
-// t_arg arg3;
-// char* output_bytes
 
 typedef struct s_input
 {
@@ -85,9 +88,11 @@ char	*ft_strtrim_comment(char *s, char comment_char);
 int parse_name_comment(t_parsing *parsing);
 int parse_labels(t_parsing *parsing);
 int parse_opcode(t_instructions **lst);
+int parse_args(t_instructions **lst);
 
 int				add_new_instruction(t_instructions **lst_head, \
 t_parsing *collect);
+int             parse_args(t_instructions **lst);
 
 int generate_binary_code(t_data *data);
 

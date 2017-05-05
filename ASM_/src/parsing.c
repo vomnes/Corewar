@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 16:58:00 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/04 19:05:06 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/05 14:20:11 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,9 @@ int parsing_input(t_data *data)
     }
 	if (parse_opcode(&data->parsing.lst) == -1)
 		return (-1);
-	print_instructions_list(data->parsing.lst);
+	if (parse_args(&data->parsing.lst) == -1)
+		return (-1);
+	// print_instructions_list(data->parsing.lst);
     return (0);
 }
 
