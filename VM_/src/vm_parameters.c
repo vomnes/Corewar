@@ -31,3 +31,17 @@ void			vm_decode_parameter_byte(t_process *process, t_vm *vm)
 	vm_decode_two_bits(byte, &process->instruction.third_type);
 	process->instruction.args[2] = process->instruction.third_type;
 }
+
+int				vm_check_parameter_types(t_instruction instruction, t_op op)
+{
+	int i;
+
+	i = 0;
+	while (i < op.nb_args)
+	{
+		if ((instruction.args[i] & op.arg_types[i]) == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
