@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/07 16:46:26 by atrudel           #+#    #+#             */
-/*   Updated: 2016/11/09 14:47:26 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/05 19:19:51 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char		**ft_strsplit(char const *s, char c)
 	if (s)
 	{
 		nb_strings = count_strings(s, c);
-		output = (char **)malloc((nb_strings + 1) * sizeof(*output));
+		output = (char **)ft_memalloc((nb_strings + 1) * sizeof(*output));
 		if (output)
 		{
 			i = 0;
