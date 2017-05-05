@@ -6,21 +6,26 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 15:23:26 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/04 19:03:56 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/05 14:03:46 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int pick_up_area(char **content, char *line, char to_analyse, char char_to_check)
+static int pick_up_area(char **content, char *line, char to_analyse, int (*type)())
 {
-    if (to_analyse == char_to_check)
+    if ((*type)(to_analyse) == 1)
     {
-        if (!(*content = ft_strndup(line, ft_charindex(line, char_to_check))))
+        if (!(*content = ft_strndup(line, ft_charindex(line, to_analyse))))
             return (-1);
         return (1);
     }
     return (0);
+}
+
+static int ft_isdirectchar(int c)
+{
+    return (c == DIRECT_CHAR);
 }
 
 static int pick_up_area_all(char *to_analyse, char **content, int *i)
@@ -28,11 +33,13 @@ static int pick_up_area_all(char *to_analyse, char **content, int *i)
     int ret;
 
     ret = 0;
-    if ((ret = pick_up_area(&(*content), to_analyse, to_analyse[*i], ' ')) == -1)
+    if ((ret = pick_up_area(&(*content), to_analyse, to_analyse[*i], \
+                            ft_isspace)) == -1)
         return (-1);
     if (ret == 1)
         return (1);
-    if ((ret = pick_up_area(&(*content), to_analyse, to_analyse[*i], DIRECT_CHAR)) == -1)
+    if ((ret = pick_up_area(&(*content), to_analyse, to_analyse[*i], \
+                            ft_isdirectchar)) == -1)
         return (-1);
     if (ret == 1)
         return (1);
