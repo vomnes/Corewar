@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 12:19:06 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/05 13:53:58 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/05 16:56:30 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void init_link(t_instructions **instruction)
 	(*instruction)->label_name = NULL;
 	(*instruction)->line_opcode = NULL;
 	(*instruction)->opcode = -1;
+	(*instruction)->arg = NULL;
     (*instruction)->line_args = NULL;
 }
 

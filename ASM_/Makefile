@@ -35,7 +35,7 @@ OBJ =	./obj/main.o \
 MAKE = make
 
 GCC = gcc
-FLAGS = -Wall -Werror -Wextra
+FLAGS = #-Wall -Werror -Wextra
 
 INC = ./includes
 LIB = ../libft
