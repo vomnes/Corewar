@@ -37,5 +37,5 @@ void		vm_st(t_process *process, t_vm *vm)
 	if (process->instruction.first_type == T_REG)
 		get_second_parameter(process, vm, pc);
 	else
-	vm_store_in_register(&process->pc, move_pc(process, pc));
+	vm_advance_pc(process);
 }

@@ -60,5 +60,5 @@ void				vm_ld(t_process *process, t_vm *vm)
 		get_parameters(vm, process, pc, 4);
 	else
 		process->carry = 0;
-	vm_store_in_register(&process->pc, move_pc(process, pc));
+	vm_advance_pc(process);
 }
