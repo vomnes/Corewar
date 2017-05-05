@@ -58,9 +58,10 @@ struct					s_process
 t_process				*vm_create_process(t_vm *vm);
 void 					vm_copy_process(t_process *parent, t_process *child);
 void					vm_print_process(t_process *process);
-
+int						vm_advance_pc(t_process *process);
 
 void					vm_decode_parameter_byte(t_process *process, t_vm *vm);
+int						vm_check_parameter_types(t_instruction instruction);
 
 unsigned int			vm_n_bytes_to_uint(unsigned char *ptr, size_t n);
 int						vm_read_memory_int(t_vm *vm, int index);
@@ -86,7 +87,6 @@ char					**vm_read_file_champ(char **av, t_vm *vm, int n_player);
 char					**vm_parse_line_command(char **av, int *dump, t_vm *vm);
 
 void					print_memory_dump(t_vm vm);
-int						move_pc(t_process *process, int pc);
 
 void					vm_null_op(t_process *process, t_vm *vm);
 void					vm_live(t_process *process, t_vm *vm);

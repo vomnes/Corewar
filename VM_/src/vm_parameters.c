@@ -32,10 +32,12 @@ void			vm_decode_parameter_byte(t_process *process, t_vm *vm)
 	process->instruction.args[2] = process->instruction.third_type;
 }
 
-int				vm_check_parameter_types(t_instruction instruction, t_op op)
+int				vm_check_parameter_types(t_instruction instruction)
 {
-	int i;
+	int		i;
+	t_op	op;
 
+	op = g_op_tab[instruction.opcode];
 	i = 0;
 	while (i < op.nb_args)
 	{
