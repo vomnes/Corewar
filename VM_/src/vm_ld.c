@@ -1,32 +1,5 @@
 #include "vm.h"
 
-int					move_pc(t_process *process, int pc)
-{
-	int				count;
-
-	count = 2;
-	if (process->instruction.first_type == T_DIR)
-		count += 4;
-	else if (process->instruction.first_type == T_IND)
-		count += 2;
-	else if (process->instruction.first_type == T_REG)
-		count += 1;
-	if (process->instruction.second_type == T_DIR)
-		count += 4;
-	else if (process->instruction.second_type == T_IND)
-		count += 2;
-	else if (process->instruction.second_type == T_REG)
-		count += 1;
-	if (process->instruction.third_type == T_DIR)
-		count += 4;
-	else if (process->instruction.third_type == T_IND)
-		count += 2;
-	else if (process->instruction.third_type == T_REG)
-		count += 1;
-	pc += count;
-	return (pc);
-}
-
 void				get_parameters(t_vm *vm, t_process *process, int pc, int i)
 {
 	int				first_param;
@@ -35,11 +8,15 @@ void				get_parameters(t_vm *vm, t_process *process, int pc, int i)
 
 	tmp = 0;
 	first_param = 0;
-	second_param = 0;
-	first_param = vm_read_memory_short(vm, pc + 2);
 	second_param = vm->memory[MOD(pc + i)];
-	if (second_param > 0 && second_param < REG_NUMBER)
+	if (i == 6 && second_param > 0 && second_param <= REG_NUMBER)
 	{
+		first_param = vm_read_memory_int(vm, pc + 2);
+		vm_store_in_register(&process->registers[second_param], first_param);
+	}
+	else if (i == 4 && second_param > 0 && second_param <= REG_NUMBER)
+	{
+		first_param = vm_read_memory_short(vm, pc + 2);
 		tmp = vm_read_memory_int(vm, (pc + (first_param % IDX_MOD)));
 		vm_store_in_register(&process->registers[second_param], tmp);
 		process->carry = 1;
