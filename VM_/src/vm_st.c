@@ -36,6 +36,5 @@ void		vm_st(t_process *process, t_vm *vm)
 	vm_decode_parameter_byte(process, vm);
 	if (process->instruction.first_type == T_REG)
 		get_second_parameter(process, vm, pc);
-	else
 	vm_advance_pc(process);
 }

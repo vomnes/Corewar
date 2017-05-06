@@ -32,5 +32,5 @@ void		vm_add(t_process *process, t_vm *vm)
 			process->instruction.second_type == T_REG &&
 				process->instruction.third_type == T_REG)
 		add_register(process, vm, pc);
-	vm_store_in_register(&process->pc, move_pc(process, pc));
+	vm_advance_pc(process);
 }

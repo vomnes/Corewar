@@ -64,5 +64,5 @@ void		vm_and(t_process *process, t_vm *vm)
 	}
 	else
 		process->carry = 0;
-	vm_store_in_register(&process->pc, move_pc(process, real_pc));
+	vm_advance_pc(process);
 }
