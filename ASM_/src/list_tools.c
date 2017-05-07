@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 15:16:44 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/07 11:14:12 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/07 19:13:02 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,19 @@ void		delete_lst_instructions(t_instructions *lst)
 		tmp = tmp->next;
 	}
 	// lst = NULL;
+}
+
+void print(t_args *lst)
+{
+	t_args *current;
+
+	current = lst;
+	while(current != NULL)
+	{
+		ft_printf(B_GREEN"---> arg = %s\n"DEF, current->content);
+        ft_printf("          Type = %d\n", current->type);
+        ft_printf("          Value = %d >> [%x]\n", current->value, current->value);
+        ft_printf("          Label = %s\n", current->label);
+		current = current->next;
+	}
 }
