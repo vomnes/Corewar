@@ -17,7 +17,8 @@ SRC =	./src/main.c \
 			./src/add_arg.c \
 			./src/get_args.c \
 			./src/ft_isnumber_syntax.c \
-			./src/arg_dir_ind_parse.c
+			./src/arg_dir_ind_parse.c \
+			./src/validate_arguments.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -36,7 +37,8 @@ OBJ =	./obj/main.o \
 			./obj/add_arg.o \
 			./obj/get_args.o \
 			./obj/ft_isnumber_syntax.o \
-			./obj/arg_dir_ind_parse.o
+			./obj/arg_dir_ind_parse.o \
+			./obj/validate_arguments.o
 
 MAKE = make
 

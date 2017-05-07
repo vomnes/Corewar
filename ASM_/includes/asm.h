@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/05 20:13:05 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/07 21:00:32 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,17 @@
 # include "../../libft/includes/get_next_line.h"
 # include "../../shared_files/op.h"
 
+#define REG 0b01
+#define DIR 0b10
+#define IND 0b11
+
 extern t_op g_op_tab[17];
 
 typedef struct              s_args
 {
     char                    *content;
     char                    type;
+    char                    t_arg;
     int                     value;
     char                    *label;
     struct s_args           *next;
@@ -88,7 +93,13 @@ char	*ft_strtrim_comment(char *s, char comment_char);
 int parse_name_comment(t_parsing *parsing);
 int parse_labels(t_parsing *parsing);
 int parse_opcode(t_instructions **lst);
+int get_args(t_instructions **lst);
 int parse_args(t_instructions **lst);
+int ft_isnumber_syntax(char *str, char sign);
+int validate_arguments(t_instructions **lst);
+
+int arg_dir_ind_parse(t_args *current, char num_arg, int num_line, \
+t_instructions *check_label);
 
 int				add_new_instruction(t_instructions **lst_head, \
 t_parsing *collect);
@@ -100,5 +111,6 @@ void write_header(int fd, header_t header);
 
 void print_instructions_list(t_instructions *lst);
 void delete_lst_instructions(t_instructions *lst);
+void print(t_args *lst);
 
 #endif

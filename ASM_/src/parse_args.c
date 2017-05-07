@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:36:54 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/07 19:22:06 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/07 21:41:26 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,20 @@ static int arg_reg_parse(t_args *current, char num_arg, int num_line)
 static int arg_type(t_args *current, char num_arg, int num_line)
 {
     if (*current->content == 'r')
-        current->type = REG;
+	{
+		current->type = REG;
+		current->t_arg = T_REG;
+	}
     else if (*current->content == DIRECT_CHAR)
-        current->type = DIR;
+	{
+		current->type = DIR;
+		current->t_arg = T_DIR;
+	}
     else if (ft_isindirect(*current->content) == 1)
-        current->type = IND;
+	{
+		current->type = IND;
+		current->t_arg = T_DIR;
+	}
     else
     {
         ft_printf("Invalid syntax [arg %d] - Line %d\n", num_arg, num_line);

@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 16:58:00 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/07 12:05:31 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/07 21:34:55 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ int parsing_input(t_data *data)
 		return (-1);
 	if (parse_args(&data->parsing.lst) == -1)
 		return (-1);
+	if (validate_arguments(&data->parsing.lst) == -1)
+		return (-1);
  	clean_struct_parsing(&(data->parsing));
 	// print_instructions_list(data->parsing.lst);
     return (0);
@@ -105,6 +107,8 @@ int parsing_input(t_data *data)
 // ft_printf("parsing->label_name = %s\n", data->parsing.label_name);
 // ft_printf("parsing->line_opcode = $%s$\n", data->parsing.line_opcode);
 // ft_printf("------------[O]-----------\n");
+
+// st	r1, :ld1
 
 // clean_struct_parsing(&(data->parsing));
 // delete_lst_instructions(data->parsing.lst);
