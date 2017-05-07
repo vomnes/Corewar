@@ -6,40 +6,19 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:36:54 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/05 20:01:04 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/07 12:49:42 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int check_nb_args(char **tab, int opcode, char num_line)
+#define REG 0b01
+#define DIR 0b10
+#define IND 0b11
+
+int		ft_isindirect(int c)
 {
-    int nb_args;
-
-    nb_args = 0;
-    while (tab[nb_args] != NULL)
-        nb_args++;
-    if (nb_args != g_op_tab[opcode].nb_args)
-    {
-        ft_printf("Invalid parameter number for the instruction '%s' - Need only %d argument(s) - Line %d\n",\
-        g_op_tab[opcode].name, g_op_tab[opcode].nb_args, num_line);
-        return (-1);
-    }
-    return (0);
-}
-
-int push_arg_on(t_args **lst, char **tab)
-{
-    int index;
-
-    index = 0;
-    while (tab[index] != NULL)
-    {
-        if (add_arg(&(*lst), tab[index]) == -1)
-            return (-1);
-        index++;
-    }
-    return (0);
+	return ((c >= '0' && c <= '9') || c == '-' || c == ':');
 }
 
 void print(t_args *lst)
@@ -50,30 +29,80 @@ void print(t_args *lst)
 	while(current != NULL)
 	{
 		ft_printf(B_GREEN"---> arg = %s\n"DEF, current->content);
+        ft_printf("          Type = %d\n", current->type);
+        ft_printf("          Value = %d >> [%x]\n", current->value, current->value);
+        ft_printf("          Label = %s\n", current->label);
 		current = current->next;
 	}
+}
+
+int arg_reg_parse()
+{
+    if (type == REG)
+    {
+        
+    }
+    return (0);
+}
+// int arg_dir_parse()
+// {
+//
+// }
+// int arg_ind_parse()
+// {
+//
+// }
+
+int check_each_arg(t_args *lst, int num_line, t_instructions *check_label)
+{
+	t_args *current;
+    char *content;
+    char num_arg;
+
+	current = lst;
+    content = NULL;
+    num_arg = 0;
+	while(current != NULL)
+	{
+        num_arg++;
+        if (*current->content == 'r')
+            current->type = REG;
+        else if (*current->content == DIRECT_CHAR)
+            current->type = DIR;
+        else if (ft_isnumeric(*current->content) == 1)
+            current->type = IND;
+        else
+        {
+            ft_printf("Invalid syntax for argument number %d  - Line %d\n",\
+            num_arg, num_line);
+            return (-1);
+        }
+        if (current->type < 3)
+            content = current->content + 1;
+        else
+            content = current->content;
+        ft_printf(B_GREEN"---> arg = %s\n"DEF, current->content);
+        ft_printf("          Type = %d\n", current->type);
+        ft_printf("          Content = %s\n"DEF, content);
+		current = current->next;
+	}
+    return (0);
 }
 
 int parse_args(t_instructions **lst)
 {
 	t_instructions *current;
-    char **arg_tab;
+    t_instructions *check_label;
 
 	current = *lst;
 	while(current != NULL)
 	{
         if (current->line_args)
         {
-            ft_printf("a[%02d] >> %s\n", current->num_line, current->line_args);
-            if (!(arg_tab = ft_strsplit(current->line_args, SEPARATOR_CHAR)))
+            ft_printf(B_BLUE"[%02d] >> %s\n"DEF, current->num_line, current->line_args);
+            if (check_each_arg(current->arg, current->num_line, check_label) == -1)
                 return (-1);
-            if (check_nb_args(arg_tab, current->opcode, current->num_line)\
-                == -1)
-                return (-1);
-            if (push_arg_on(&(current->arg), arg_tab) == -1)
-                return (-1);
-            ft_strtab_free(arg_tab);
-            print(current->arg);
+            // print(current->arg);
         }
 		current = current->next;
 	}

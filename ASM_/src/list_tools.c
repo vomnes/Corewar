@@ -6,11 +6,23 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 15:16:44 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/05 14:19:10 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/07 11:14:12 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+void print_arg_list(t_args *lst)
+{
+	t_args *current;
+
+	current = lst;
+	while(current != NULL)
+	{
+		ft_printf(B_GREEN"---> arg = %s\n"DEF, current->content);
+		current = current->next;
+	}
+}
 
 void print_instructions_list(t_instructions *lst)
 {
@@ -29,8 +41,23 @@ void print_instructions_list(t_instructions *lst)
 		else
 			ft_printf("opcode = %d\n", current->opcode);
 		ft_printf(B_BLUE"line_args = %s\n"DEF, current->line_args);
+		if (current->arg != NULL)
+			print_arg_list(current->arg);
 		current = current->next;
 	}
+}
+
+void delete_lst_args(t_args **lst)
+{
+	t_args *current;
+
+	current = *lst;
+	while(current != NULL)
+	{
+		ft_strdel(&current->content);
+		current = current->next;
+	}
+	*lst = NULL;
 }
 
 void		delete_lst_instructions(t_instructions *lst)
@@ -46,7 +73,8 @@ void		delete_lst_instructions(t_instructions *lst)
 		ft_strdel(&tmp->label_name);
 		ft_strdel(&tmp->line_opcode);
 		ft_strdel(&tmp->line_args);
+		// delete_lst_args(&tmp->arg);
 		tmp = tmp->next;
 	}
-	tmp = NULL;
+	// lst = NULL;
 }

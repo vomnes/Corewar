@@ -14,7 +14,8 @@ SRC =	./src/main.c \
 			./src/parse_opcode.c \
 			./src/op.c \
 			./src/parse_args.c \
-			./src/add_arg.c
+			./src/add_arg.c \
+			./src/get_args.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -30,12 +31,13 @@ OBJ =	./obj/main.o \
 			./obj/parse_opcode.o \
 			./obj/op.o \
 			./obj/parse_args.o \
-			./obj/add_arg.o
+			./obj/add_arg.o \
+			./obj/get_args.o
 
 MAKE = make
 
 GCC = gcc
-FLAGS = #-Wall -Werror -Wextra
+FLAGS = -g -Wall -Werror -Wextra
 
 INC = ./includes
 LIB = ../libft
