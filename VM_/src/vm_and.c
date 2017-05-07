@@ -1,18 +1,5 @@
 #include "vm.h"
 
-int			check_parameters_xorand(t_process *process)
-{
-	if ((process->instruction.first_type == T_REG ||
-		process->instruction.first_type == T_IND ||
-		process->instruction.first_type == T_DIR) &&
-		(process->instruction.second_type == T_REG ||
-		process->instruction.second_type == T_DIR ||
-		process->instruction.second_type == T_IND) &&
-		(process->instruction.third_type == T_REG))
-		return (1);
-	return (0);
-}
-
 int			get_parameters_xorand(t_process *process, t_vm *vm, char type, int *pc)
 {
 	int		parameter;
@@ -23,7 +10,8 @@ int			get_parameters_xorand(t_process *process, t_vm *vm, char type, int *pc)
 	if (type == T_REG)
 	{
 		no_register = vm->memory[MOD(*pc + 2)];
-		parameter = vm_read_register(process->registers[no_register]);
+		if (no_register > 0 && no_register <= REG_NUMBER)
+			parameter = vm_read_register(process->registers[no_register]);
 		*pc += 3;
 	}
 	else if (type == T_IND)
@@ -42,16 +30,14 @@ int			get_parameters_xorand(t_process *process, t_vm *vm, char type, int *pc)
 void		vm_and(t_process *process, t_vm *vm)
 {
 	int		pc;
-	int		real_pc;
 	int		first_param;
 	int		second_param;
 	int		third_param;
 
 
 	pc = vm_read_register(process->pc);
-	real_pc = pc;
 	vm_decode_parameter_byte(process, vm);
-	if (check_parameters_xorand(process))
+	if (vm_check_parameter_types(process->instruction) == 1)
 	{
 		first_param = get_parameters_xorand(process, vm,
 		process->instruction.first_type, &pc);

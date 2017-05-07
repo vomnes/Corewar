@@ -28,9 +28,7 @@ void		vm_add(t_process *process, t_vm *vm)
 
 	pc = vm_read_register(process->pc);
 	vm_decode_parameter_byte(process, vm);
-	if (process->instruction.first_type == T_REG &&
-			process->instruction.second_type == T_REG &&
-				process->instruction.third_type == T_REG)
+	if (vm_check_parameter_types(process->instruction) == 1)
 		add_register(process, vm, pc);
 	vm_advance_pc(process);
 }
