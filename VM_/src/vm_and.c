@@ -1,6 +1,7 @@
 #include "vm.h"
 
-int			get_parameters_xorand(t_process *process, t_vm *vm, char type, int *pc)
+int			vm_get_parameters_xorand(t_process *process, t_vm *vm, char type,\
+									int *pc)
 {
 	int		parameter;
 	int		no_register;
@@ -12,6 +13,8 @@ int			get_parameters_xorand(t_process *process, t_vm *vm, char type, int *pc)
 		no_register = vm->memory[MOD(*pc + 2)];
 		if (no_register > 0 && no_register <= REG_NUMBER)
 			parameter = vm_read_register(process->registers[no_register]);
+		else
+			process->carry = 0;
 		*pc += 3;
 	}
 	else if (type == T_IND)
@@ -39,9 +42,9 @@ void		vm_and(t_process *process, t_vm *vm)
 	vm_decode_parameter_byte(process, vm);
 	if (vm_check_parameter_types(process->instruction) == 1)
 	{
-		first_param = get_parameters_xorand(process, vm,
+		first_param = vm_get_parameters_xorand(process, vm,
 		process->instruction.first_type, &pc);
-		second_param = get_parameters_xorand(process, vm,
+		second_param = vm_get_parameters_xorand(process, vm,
 		process->instruction.second_type, &pc);
 		third_param = vm->memory[MOD(pc)];
 		if (third_param > 0 && third_param <= REG_NUMBER)
