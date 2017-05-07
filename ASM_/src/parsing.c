@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 16:58:00 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/05 20:13:53 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/07 11:48:05 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int parsing_input(t_data *data)
 		if (*data->parsing.clean_line == '\0')
 		{
 			ft_strdel(&data->parsing.clean_line); // Free line
+			ft_strdel(&line);
 			continue ;
 		}
 		if (parse_content(&(data->parsing)) == -1)
@@ -84,13 +85,14 @@ int parsing_input(t_data *data)
 		if (add_new_instruction(&(data->parsing.lst), &data->parsing) == -1)
 			return (-1);
 		clean_struct_parsing(&(data->parsing));
+		ft_strdel(&line);
     }
+	ft_strdel(&line);
 	if (parse_opcode(&data->parsing.lst) == -1)
 		return (-1);
 	if (parse_args(&data->parsing.lst) == -1)
 		return (-1);
- // 	clean_struct_parsing(&(data->parsing));
- // 	delete_lst_instructions(data->parsing.lst);
+ 	clean_struct_parsing(&(data->parsing));
 	// print_instructions_list(data->parsing.lst);
     return (0);
 }
