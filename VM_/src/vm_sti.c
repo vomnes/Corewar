@@ -30,7 +30,10 @@ static void		store_register(t_process *process, t_vm *vm, int pc)
 	{
 		value = vm_read_register(process->registers[no_register]);
 		first_index = get_parameter(process, vm, pc, 3);
-		second_index = get_parameter(process, vm, pc, 5);
+		if (process->instruction.second_type == T_REG)
+			second_index = get_parameter(process, vm, pc, 4);
+		else
+			second_index = get_parameter(process, vm, pc, 5);
 		vm_store_in_memory_int(vm, pc + (first_index + second_index), value);
 	}
 }
@@ -41,7 +44,9 @@ void			vm_sti(t_process *process, t_vm *vm)
 
 	pc = vm_read_register(process->pc);
 	vm_decode_parameter_byte(process, vm);
-	if (vm_check_parameter_types(process->instruction) == 1)
+	if (vm_check_parameter_types(process->instruction) == 0)
 		store_register(process, vm, pc);
+	else
+		ft_putendl("Not good parameters");
 	vm_advance_pc(process);
 }
