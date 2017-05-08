@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 19:02:58 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 10:37:55 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 11:43:08 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,6 @@ static int ft_label_exist(t_instructions *lst, char *label_to_check)
     return (0);
 }
 
-static void check_label_content(t_args *current, char *content)
-{
-    current->value = ft_atoi(content);
-    if (*content == '-' && ft_strlen(content + 1) > 19)
-        current->value = 0;
-    else if (ft_strlen(content) > 20)
-        current->value = -1;
-}
-
 int arg_dir_ind_parse(t_args *current, char num_arg, int num_line, \
 t_instructions *check_label)
 {
@@ -57,7 +48,7 @@ t_instructions *check_label)
             current->label = content + 1;
         }
         else if (ft_isnumber_syntax(content, 1) == 1)
-            check_label_content(current, content);
+            current->value = ft_lltoi(content);
         else
         {
             ft_printf("Undefined syntax [arg %d] - Line %d\n", \
