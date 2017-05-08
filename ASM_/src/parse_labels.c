@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:12:00 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/05 14:25:24 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 10:50:15 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,20 @@ static int is_label(t_parsing *parsing, char *content)
 	return (1);
 }
 
+static int ft_is_sperator_label(int c)
+{
+    if (c == DIRECT_CHAR || c == '-')
+        return (1);
+	if (ft_isspace(c))
+        return (1);
+    return (0);
+}
+
 static int check_label_line(t_parsing *parsing, char *content)
 {
 	if (content != NULL)
 	{
-		if (!(ft_isstr_ctype(content, ft_isspace)))
+		if (!(ft_isstr_ctype(content, ft_is_sperator_label)))
 		{
 			if (ft_isstr_ctype(content, ft_is_label_chars) != 1)
 				return (is_label(parsing, content));

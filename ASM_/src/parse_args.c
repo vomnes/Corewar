@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:36:54 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/07 21:41:26 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 10:26:51 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int arg_reg_parse(t_args *current, char num_arg, int num_line)
     char *content;
 
     content = (current->type < 3) ? current->content + 1 : current->content;
-    if (current->type == REG)
+    if (current->type == REG_CODE)
     {
         if (ft_isnumber_syntax(content, 0) == -1)
         {
@@ -45,18 +45,18 @@ static int arg_type(t_args *current, char num_arg, int num_line)
 {
     if (*current->content == 'r')
 	{
-		current->type = REG;
+		current->type = REG_CODE;
 		current->t_arg = T_REG;
 	}
     else if (*current->content == DIRECT_CHAR)
 	{
-		current->type = DIR;
+		current->type = DIR_CODE;
 		current->t_arg = T_DIR;
 	}
     else if (ft_isindirect(*current->content) == 1)
 	{
-		current->type = IND;
-		current->t_arg = T_DIR;
+		current->type = IND_CODE;
+		current->t_arg = T_IND;
 	}
     else
     {
@@ -70,12 +70,18 @@ static int check_each_arg(t_instructions *lst, t_instructions *check_label)
 {
 	t_args *current;
     char num_arg;
+	char *tmp_content;
 
 	current = lst->arg;
     num_arg = 0;
 	while(current != NULL)
 	{
         num_arg++;
+		if (!(tmp_content = ft_strdup(current->content)))
+			return (-1);
+		if (!(current->content = ft_strtrim(tmp_content)))
+			return (-1);
+		ft_strdel(&tmp_content);
         if (arg_type(current, num_arg, lst->num_line) == -1)
             return (-1);
         if (arg_reg_parse(current, num_arg, lst->num_line) == -1)

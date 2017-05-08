@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 15:23:26 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/05 19:59:41 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 10:54:32 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,15 @@ static int pick_up_area(char **content, char *line, char to_analyse, int (*type)
     return (0);
 }
 
-static int ft_isdirectchar(int c)
+static int ft_is_sperator_char(int c)
 {
-    return (c == DIRECT_CHAR);
+    if (c == DIRECT_CHAR || c == '-')
+        return (1);
+    else if (ft_isdigit(c))
+        return (1);
+    else if (ft_isspace(c))
+        return (1);
+    return (0);
 }
 
 static int pick_up_area_all(char *to_analyse, char **content, int *i)
@@ -34,22 +40,10 @@ static int pick_up_area_all(char *to_analyse, char **content, int *i)
 
     ret = 0;
     if ((ret = pick_up_area(&(*content), to_analyse, to_analyse[*i], \
-                            ft_isspace)) == -1)
+                            ft_is_sperator_char)) == -1)
         return (-1);
     if (ret == 1)
         return (1);
-    if ((ret = pick_up_area(&(*content), to_analyse, to_analyse[*i], \
-                            ft_isdirectchar)) == -1)
-        return (-1);
-    if (ret == 1)
-        return (1);
-    if (ft_isdigit(to_analyse[*i]))
-    {
-        if (!(*content = ft_strndup(to_analyse, \
-                        ft_charindex(to_analyse, to_analyse[*i]))))
-            return (-1);
-        return (1);
-    }
     return (0);
 }
 
@@ -58,16 +52,15 @@ static int get_code(char *elem)
     int index;
 
     index = 1;
+    ft_putendl(elem);
     if (!elem)
-        return (0);
+        return (-10);
     while (ft_strcmp(g_op_tab[index].name, elem) != 0)
     {
         index++;
         if (index > 16)
             return (-10);
     }
-    if (index > 17)
-        return (-1);
     return (index);
 }
 

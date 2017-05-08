@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 19:02:58 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/07 21:38:21 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 10:37:55 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_instructions *check_label)
     char *content;
 
     content = (current->type < 3) ? current->content + 1 : current->content;
-    if (current->type == DIR || current->type == IND)
+    if (current->type == DIR_CODE || current->type == IND_CODE)
     {
         if (*content == LABEL_CHAR)
         {
