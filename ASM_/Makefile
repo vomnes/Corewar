@@ -20,7 +20,7 @@ SRC =	./src/main.c \
 			./src/arg_dir_ind_parse.c \
 			./src/validate_arguments.c \
 			./src/get_opcode.c \
-			./src/create_binary_file.c
+			./src/create_param_byte.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -42,7 +42,7 @@ OBJ =	./obj/main.o \
 			./obj/arg_dir_ind_parse.o \
 			./obj/validate_arguments.o \
 			./obj/get_opcode.o \
-			./obj/create_index_bit.o
+			./obj/create_param_bit.o
 
 MAKE = make
 

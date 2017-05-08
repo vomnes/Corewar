@@ -6,13 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 13:03:12 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 13:39:15 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 13:55:06 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int check_each_arg(t_instructions *lst)
+static void check_each_arg(t_instructions *lst)
 {
 	t_args  *current;
     int     byte_offset;
@@ -25,17 +25,16 @@ static int check_each_arg(t_instructions *lst)
 		current = current->next;
         byte_offset -= 2;
 	}
-    return (0);
 }
 
-int create_index_bit(t_instructions **lst)
+int create_param_byte(t_instructions **lst)
 {
     t_instructions *current;
 
 	current = *lst;
 	while(current != NULL)
 	{
-        if (current->line_args)
+        if (g_op_tab[current->opcode].param_byte == 1)
             check_each_arg(current);
 		current = current->next;
 	}
