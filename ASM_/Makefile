@@ -23,7 +23,8 @@ SRC =	./src/main.c \
 			./src/create_param_byte.c \
 			./src/ft_write_byte.c \
 			./src/check_header_content.c \
-			./src/ft_isprint_nospace.c
+			./src/ft_isprint_nospace.c \
+			./src/get_prog_data.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -48,7 +49,8 @@ OBJ =	./obj/main.o \
 			./obj/create_param_byte.o \
 			./obj/ft_write_byte.o \
 			./obj/check_header_content.o \
-			./obj/ft_isprint_nospace.o
+			./obj/ft_isprint_nospace.o \
+			./obj/get_prog_data.o
 
 MAKE = make
 

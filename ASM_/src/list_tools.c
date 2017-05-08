@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 15:16:44 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 13:38:24 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 18:06:30 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void print_instructions_list(t_instructions *lst)
 		ft_printf(B_BLUE"line_args = %s\n"DEF, current->line_args);
 		if (current->arg != NULL)
 			print_arg_list(current->arg);
-		ft_printf("index_bit = 0b%.8b -> %#x\n", current->index_bit, current->index_bit);
+		ft_printf("param_byte = 0b%.8b -> %#x\n", current->param_byte, current->param_byte);
+		ft_printf("index_octet = %#x\n", current->index_octet, current->index_octet);
 		current = current->next;
 	}
 }
