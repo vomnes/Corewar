@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:36:54 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 11:57:53 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 17:19:35 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ static int check_each_arg(t_instructions *lst, t_instructions *check_label)
         num_arg++;
 		if (!(tmp_content = ft_strdup(current->content)))
 			return (-1);
+		ft_strdel(&current->content);
 		if (!(current->content = ft_strtrim(tmp_content)))
 			return (-1);
 		ft_strdel(&tmp_content);
@@ -87,7 +88,8 @@ static int check_each_arg(t_instructions *lst, t_instructions *check_label)
             return (-1);
         if (arg_reg_parse(current, num_arg, lst->num_line) == -1)
             return (-1);
-        if (arg_dir_ind_parse(current, num_arg, lst->num_line, check_label) == -1)
+        if (arg_dir_ind_parse(current, num_arg, lst->num_line, \
+		check_label) == -1)
             return (-1);
 		current = current->next;
 	}

@@ -20,7 +20,10 @@ SRC =	./src/main.c \
 			./src/arg_dir_ind_parse.c \
 			./src/validate_arguments.c \
 			./src/get_opcode.c \
-			./src/create_param_byte.c
+			./src/create_param_byte.c \
+			./src/ft_write_byte.c \
+			./src/check_header_content.c \
+			./src/ft_isprint_nospace.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -42,7 +45,10 @@ OBJ =	./obj/main.o \
 			./obj/arg_dir_ind_parse.o \
 			./obj/validate_arguments.o \
 			./obj/get_opcode.o \
-			./obj/create_param_bit.o
+			./obj/create_param_byte.o \
+			./obj/ft_write_byte.o \
+			./obj/check_header_content.o \
+			./obj/ft_isprint_nospace.o
 
 MAKE = make
 

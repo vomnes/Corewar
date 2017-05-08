@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 16:58:00 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 13:39:32 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 15:41:58 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int parsing_input(t_data *data)
 			clean_struct_parsing(&(data->parsing));
 			return (-1);
 		}
-		parse_name_comment(&(data->parsing));
+		parse_name_comment(&(data->parsing), &(data->header));
 		if (add_new_instruction(&(data->parsing.lst), &data->parsing) == -1)
 			return (-1);
 		clean_struct_parsing(&(data->parsing));
@@ -96,7 +96,7 @@ int parsing_input(t_data *data)
 		return (-1);
 	if (validate_arguments(&data->parsing.lst) == -1)
 		return (-1);
-	if (create_index_bit(&data->parsing.lst) == -1)
+	if (create_param_byte(&data->parsing.lst) == -1)
 		return (-1);
  	clean_struct_parsing(&(data->parsing));
 	print_instructions_list(data->parsing.lst);

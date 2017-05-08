@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 13:15:05 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 17:17:56 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ int create_binary_file(t_input input);
 
 int parsing_input(t_data *data);
 char	*ft_strtrim_comment(char *s, char comment_char);
-int parse_name_comment(t_parsing *parsing);
+int		ft_isprint_nospace(int c);
+void check_header_content(const char *cmd_string, unsigned int content_len,
+t_parsing *parsing, header_t *header);
+int parse_name_comment(t_parsing *parsing, header_t *header);
 int parse_labels(t_parsing *parsing);
 int get_opcode(char *to_analyse, char **opcode_name);
 int parse_opcode(t_instructions **lst);
@@ -95,7 +98,7 @@ int get_args(t_instructions **lst);
 int parse_args(t_instructions **lst);
 int ft_isnumber_syntax(char *str, char sign);
 int validate_arguments(t_instructions **lst);
-int create_index_bit(t_instructions **lst);
+int create_param_byte(t_instructions **lst);
 
 int arg_dir_ind_parse(t_args *current, char num_arg, int num_line, \
 t_instructions *check_label);
@@ -106,6 +109,7 @@ int				add_arg(t_args **lst_head, char *content);
 
 int generate_binary_code(t_data *data);
 
+void ft_write_byte(int fd, unsigned int value, char nb_octet);
 void write_header(int fd, header_t header);
 
 void print_instructions_list(t_instructions *lst);
