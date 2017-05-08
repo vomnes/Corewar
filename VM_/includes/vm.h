@@ -22,13 +22,21 @@ typedef	struct			s_player
 	int					nb_lives;
 }						t_player;
 
+typedef struct			s_live
+{
+	int					player_no;
+	struct s_live		*next;
+}						t_live;
+
 typedef struct			s_vm
 {
 	unsigned char		memory[MEM_SIZE];
 	t_player			players[MAX_PLAYERS + 1];
 	int					nb_players;
 	t_process			*processes;
+	t_live				*lives;
 	int					cycle_nbr;
+	int					cycle_to_die;
 }						t_vm;
 
 typedef struct			s_instruction
@@ -47,6 +55,7 @@ struct					s_process
 	int					no;
 	int					player_no;
 	int					alive;
+	int					cycle_delta_alive;
 	unsigned char		registers[REG_NUMBER + 1][REG_SIZE];
 	unsigned char		pc[REG_SIZE];
 	int					carry;
