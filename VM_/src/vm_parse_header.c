@@ -5,7 +5,7 @@ void				vm_pick_size_player(unsigned char *buf, t_player *player)
 	player->size_player = vm_n_bytes_to_uint(buf, 4);
 	if (player->size_player > CHAMP_MAX_SIZE)
 	{
-		dprintf(2, "Error: champ %s has too large code (%d bytes > %d bytes)\n",
+		ft_dprintf(2, "Error: champ %s has too large code (%d bytes > %d bytes)\n",
 				player->name, player->size_player, CHAMP_MAX_SIZE);
 		exit(-1);
 	}
@@ -50,7 +50,7 @@ void				vm_parse_header(size_t size, unsigned char buf[size], \
 	if (nb > MAX_PLAYERS)
 		vm_error_exit(vm, "Error: too many players");
 	if (nb && vm->players[nb].number != 0)
-		vm_error_exit(vm, "Error: Number of player already taken");
+		vm_error_exit(vm, "Error: Player number already taken");
 	vm->players[nb].number = nb;
 	vm_pick_info(size, buf, &vm->players[nb]);
 }

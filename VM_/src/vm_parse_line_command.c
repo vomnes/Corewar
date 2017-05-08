@@ -10,7 +10,7 @@ char		**vm_parse_line_command(char **av, int *dumps, t_vm *vm)
 		*dumps = ft_atoi(av[1]);
 		av = av + 2;
 	}
-	while (*av)
+	while (*av)             // faire avec un conteur, ac
 	{
 		av = vm_read_file_champ(av, vm, count_champs);
 		count_champs++;
