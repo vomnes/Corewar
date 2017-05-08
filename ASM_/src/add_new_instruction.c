@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 12:19:06 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 13:10:33 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 18:12:18 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void init_link(t_instructions **instruction)
 	(*instruction)->opcode = -1;
 	(*instruction)->arg = NULL;
     (*instruction)->line_args = NULL;
-	(*instruction)->index_bit = 0;
+	(*instruction)->param_byte = 0;
+	(*instruction)->index_octet = 0;
 }
 
 static t_instructions	*instruction_add_elem(t_parsing *collect)

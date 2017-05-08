@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 17:17:56 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 18:08:04 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ typedef struct              s_instructions
     char                    *line_opcode;
     signed char             opcode;
     char                    *line_args;
-    int                     index_bit;
+    int                     param_byte;
+    int                     index_octet;
     t_args                  *arg;
     struct s_instructions   *next;
 }                           t_instructions;
@@ -98,7 +99,6 @@ int get_args(t_instructions **lst);
 int parse_args(t_instructions **lst);
 int ft_isnumber_syntax(char *str, char sign);
 int validate_arguments(t_instructions **lst);
-int create_param_byte(t_instructions **lst);
 
 int arg_dir_ind_parse(t_args *current, char num_arg, int num_line, \
 t_instructions *check_label);
@@ -106,6 +106,9 @@ t_instructions *check_label);
 int				add_new_instruction(t_instructions **lst_head, \
 t_parsing *collect);
 int				add_arg(t_args **lst_head, char *content);
+
+int get_prog_data(t_instructions **lst, header_t *header);
+int create_param_byte(t_instructions **lst);
 
 int generate_binary_code(t_data *data);
 

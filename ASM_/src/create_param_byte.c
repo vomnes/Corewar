@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_index_bit.c                                 :+:      :+:    :+:   */
+/*   create_param_byte.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 13:03:12 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 13:55:06 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 18:05:49 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void check_each_arg(t_instructions *lst)
     byte_offset = 6;
 	while(current != NULL)
 	{
-        lst->index_bit = (current->type << byte_offset) | lst->index_bit;
+        lst->param_byte = (current->type << byte_offset) | lst->param_byte;
 		current = current->next;
         byte_offset -= 2;
 	}
