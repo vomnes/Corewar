@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 19:25:35 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 11:05:26 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/08 11:20:46 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ static int check_each_arg(t_instructions *lst, int opcode, int num_line)
     code = 0;
 	while(current != NULL)
 	{
-        if ((code = (g_op_tab[opcode].arg_types[num_arg] & current->t_arg)) == 0)
+        if ((code = (g_op_tab[opcode].arg_types[num_arg] & \
+			current->t_arg)) == 0)
             return (print_arg_error(current, opcode, num_line, num_arg));
 		current = current->next;
         num_arg++;
@@ -56,8 +57,8 @@ int validate_arguments(t_instructions **lst)
 	{
         if (current->line_args)
         {
-            ft_printf(B_GREEN"[%02d] >> %s\n"DEF, current->num_line, g_op_tab[current->opcode].name);
-            if (check_each_arg(current, current->opcode, current->num_line) == -1)
+            if (check_each_arg(current, current->opcode, \
+				current->num_line) == -1)
                 return (-1);
         }
 		current = current->next;
