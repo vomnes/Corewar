@@ -32,6 +32,11 @@ void			vm_decode_parameter_byte(t_process *process, t_vm *vm)
 	process->instruction.args[2] = process->instruction.third_type;
 }
 
+/*
+**	This function returns 1 if all parameters types correspond to the types
+**	specified in op_tab. Returns 0 if at least one parameter type is incorrect.
+*/
+
 int				vm_check_parameter_types(t_instruction instruction)
 {
 	int		i;
