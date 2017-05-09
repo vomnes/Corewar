@@ -10,6 +10,9 @@ static short		get_parameter(t_process *process, t_vm *vm, int pc, int i)
 		(i == 5 && process->instruction.third_type == T_REG))
 	{
 		no_register = vm->memory[MOD(pc + i)];
+
+		//	tester ce qui se passe si no_register ne repond pas a ces conditions
+		// 	Est-ce que l'index vaut 0 ou bien l'instruction n'est pas effectuee?
 		if (no_register > 0 && no_register <= REG_NUMBER)
 			parameter = vm_read_register(process->registers[no_register]);
 	}
@@ -43,10 +46,9 @@ void			vm_sti(t_process *process, t_vm *vm)
 	int		pc;
 
 	pc = vm_read_register(process->pc);
-	vm_decode_parameter_byte(process, vm);
-	if (vm_check_parameter_types(process->instruction) == 0)
+	if (vm_check_parameter_types(process->instruction) == 1)
 		store_register(process, vm, pc);
 	else
-		ft_putendl("Not good parameters");
+		ft_putendl("Not good parameters"); //  A enlever
 	vm_advance_pc(process);
 }
