@@ -33,6 +33,7 @@ char				**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 		perror(0);
 		exit(-1);
 	}
+	vm->nb_players += 1;
 	read(fd, buf, size);
 	vm_parse_header(size, buf, vm, no_player);
 	size = vm->players[no_player].size_player + 16;
