@@ -7,6 +7,7 @@ INC_PATH = ./includes
 
 SRC_FILES =	corewar.c \
 			vm_init.c \
+			vm_cycles.c \
 			vm_process.c \
 			vm_advance_pc.c \
 			vm_parameters.c \
@@ -18,12 +19,22 @@ SRC_FILES =	corewar.c \
 			vm_fill_memory_vm.c \
 			vm_read_file_champ.c \
 			vm_parse_line_command.c \
+			vm_opcode.c \
 			vm_null_op.c \
 			vm_live.c \
 			vm_ld.c\
-			vm_ldi.c \
+			vm_st.c \
+			vm_add.c \
+			vm_sub.c \
+			vm_and.c \
+			vm_or.c \
+			vm_xor.c \
 			vm_zjmp.c \
+			vm_ldi.c \
+			vm_sti.c \
 			vm_fork.c \
+			vm_lld.c \
+			vm_lldi.c \
 			vm_lfork.c \
 			vm_aff.c \
 

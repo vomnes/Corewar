@@ -1,6 +1,5 @@
 #include "vm.h"
 
-
 t_instruction	vm_read_opcode(t_vm *vm, unsigned int pc)
 {
 	static const t_instruction	op_tab[17] =
@@ -28,31 +27,4 @@ t_instruction	vm_read_opcode(t_vm *vm, unsigned int pc)
 		return (op_tab[0]);
 	else
 		return (op_tab[vm->memory[pc]]);
-}
-
-void			vm_advance_processes_one_cycle(t_vm *vm)
-{
-	unsigned int	pc;
-	t_process		*process;
-
-	process = vm->processes;
-	while (process && process->next)
-		process = process->next;
-	while (process)
-	{
-		if (process->alive)
-		{
-			pc = vm_read_register(process->pc);
-			if (!process->instruction.opcode)
-				process->instruction = vm_read_opcode(vm, pc);
-			process->instruction.cycles_to_execution -= 1;
-			if (process->instruction.cycles_to_execution == 0)
-			{
-				vm_decode_parameter_byte(process, vm);
-				process->instruction.op(process, vm);
-				ft_bzero(&process->instruction, sizeof(t_instruction));
-			}
-		}
-		process = process->prev;
-	}
 }

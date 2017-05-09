@@ -26,9 +26,16 @@ void		vm_sub(t_process *process, t_vm *vm)
 {
 	int		pc;
 
+	(void)process;
+	(void)vm;
+	(void)pc;
+	// A refaire
+
+/*
 	pc = vm_read_register(process->pc);
 	vm_decode_parameter_byte(process, vm);
-	if (check_parameter_types(process->instruction) == 1)
+	if (vm_check_parameter_types(process->instruction) == 1)
 		sub_registers(process, vm, pc);
 	vm_store_in_register(&process->pc, move_pc(process, pc));
+*/
 }

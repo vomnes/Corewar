@@ -55,6 +55,7 @@ struct					s_process
 {
 	int					no;
 	int					player_no;
+	int					nb_lives;
 	int					alive;
 	unsigned char		registers[REG_NUMBER + 1][REG_SIZE];
 	unsigned char		pc[REG_SIZE];
@@ -102,6 +103,7 @@ char					**vm_parse_line_command(char **av, t_vm *vm);
 
 void					print_memory_dump(t_vm vm);
 
+t_instruction			vm_read_opcode(t_vm *vm, unsigned int pc);
 void					vm_null_op(t_process *process, t_vm *vm);
 void					vm_live(t_process *process, t_vm *vm);
 void					vm_ld(t_process *process, t_vm *vm);
