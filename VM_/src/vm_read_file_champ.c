@@ -25,7 +25,8 @@ char				**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 	size = PROG_NAME_LENGTH + COMMENT_LENGTH;
 	if (*av && ft_strcmp(*av, "-n") == 0)
 	{
-		no_player = ft_atoi(av[1]); // check in number < 0 and overflow
+		if ((no_player = ft_lltoi(av[1])) <= 0)
+			vm_error_exit(vm, "Bad entry of number player");
 		av += 2;
 	}
 	if ((fd = open(*av, O_RDONLY)) < 0)

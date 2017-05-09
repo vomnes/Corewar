@@ -48,7 +48,5 @@ void			vm_sti(t_process *process, t_vm *vm)
 	pc = vm_read_register(process->pc);
 	if (vm_check_parameter_types(process->instruction) == 1)
 		store_register(process, vm, pc);
-	else
-		ft_putendl("Not good parameters"); //  A enlever
 	vm_advance_pc(process);
 }
