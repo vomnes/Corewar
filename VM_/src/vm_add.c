@@ -1,6 +1,6 @@
 #include "vm.h"
 
-void		add_register(t_process *process, t_vm *vm, int pc)
+static void	add_register(t_process *process, t_vm *vm, int pc)
 {
 	int		first_param;
 	int		second_param;
@@ -16,8 +16,11 @@ void		add_register(t_process *process, t_vm *vm, int pc)
 			second_param = vm_read_register(process->registers[second_param]);
 			third_param = vm->memory[MOD(pc + 4)];
 			if (third_param > 0 && third_param <= REG_NUMBER)
+			{
 				vm_store_in_register(&process->registers[third_param],
 						(first_param + second_param));
+				process->carry = 1;
+			}
 		}
 	}
 }
@@ -26,8 +29,8 @@ void		vm_add(t_process *process, t_vm *vm)
 {
 	int		pc;
 
+	process->carry = 0;
 	pc = vm_read_register(process->pc);
-	vm_decode_parameter_byte(process, vm);
 	if (vm_check_parameter_types(process->instruction) == 1)
 		add_register(process, vm, pc);
 	vm_advance_pc(process);
