@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:35:14 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 12:43:48 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 16:04:36 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ static void check_each_arg(t_instructions **lst, int fd)
 	while(current != NULL)
 	{
         if (current->type == REG_CODE)
-            ft_write_byte(fd, current->value, T_REG);
+            ft_write_byte(fd, current->value, REG_OCTET);
 		else if (current->type == DIR_CODE &&
 		(g_op_tab[(*lst)->opcode].has_index == 1))
-			ft_write_byte(fd, current->value, T_DIR);
+			ft_write_byte(fd, current->value, DIR_OCTET_INDEX);
         else if (current->type == DIR_CODE)
-			ft_write_byte(fd, current->value, T_IND);
+			ft_write_byte(fd, current->value, DIR_OCTET);
         else if (current->type == IND_CODE)
-			ft_write_byte(fd, current->value, T_DIR);
+			ft_write_byte(fd, current->value, IND_OCTET);
 		current = current->next;
 	}
 }

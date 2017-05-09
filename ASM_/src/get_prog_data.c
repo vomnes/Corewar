@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 17:41:31 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 12:56:14 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 16:03:35 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ static void check_each_arg(t_instructions **lst, header_t *header)
 	while(current != NULL)
 	{
         if (current->type == REG_CODE)
-			(header->prog_size) += T_REG;
+			(header->prog_size) += REG_OCTET;
 		else if (current->type == DIR_CODE &&
 		(g_op_tab[(*lst)->opcode].has_index == 1))
-			(header->prog_size) += T_DIR;
+			(header->prog_size) += DIR_OCTET_INDEX;
         else if (current->type == DIR_CODE)
-			(header->prog_size) += T_IND;
+			(header->prog_size) += DIR_OCTET;
         else if (current->type == IND_CODE)
-			(header->prog_size) += T_DIR;
+			(header->prog_size) += IND_OCTET;
 		current = current->next;
 	}
 }
