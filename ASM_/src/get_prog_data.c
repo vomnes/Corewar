@@ -6,39 +6,34 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 17:41:31 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 19:14:10 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 12:26:17 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void check_each_arg(t_instructions **lst, unsigned int *prog_size)
+static void check_each_arg(t_instructions **lst, header_t *header)
 {
 	t_args  *current;
 
 	current = (*lst)->arg;
+	header->prog_size += 1;
     if (g_op_tab[(*lst)->opcode].param_byte == 1)
-        (*prog_size) += 1;
+        (header->prog_size) += 1;
 	while(current != NULL)
 	{
         if (current->type == REG_CODE)
-            (*prog_size) += T_REG;
+			(header->prog_size) += T_REG;
+		else if (current->type == DIR_CODE &&
+		(g_op_tab[(*lst)->opcode].has_index == 1))
+			(header->prog_size) += T_DIR;
         else if (current->type == DIR_CODE)
-            (*prog_size) += T_DIR;
+			(header->prog_size) += T_IND;
         else if (current->type == IND_CODE)
-            (*prog_size) += T_IND;
+			(header->prog_size) += T_DIR;
 		current = current->next;
 	}
 }
-
-// else if (current->type == DIR_CODE && g_op_tab[(*lst)->opcode].has_index == 1)
-    // header->prog_size += T_DIR;
-
-    // if ((*lst)->label_name != NULL)
-    //     (*lst)->index_octet = prog_size;
-/*
-** get_prog_data -> Length program and position labels
-*/
 
 int get_prog_data(t_instructions **lst, header_t *header)
 {
@@ -50,12 +45,14 @@ int get_prog_data(t_instructions **lst, header_t *header)
     prog_size = 0;
     while(current != NULL)
     {
-        if (current->line_label != NULL || current->line_opcode != NULL)
-            prog_size += 1;
-        check_each_arg(&current, &prog_size);
-        ft_printf("%d |-> octet = %x\n", current->num_line, current->index_octet);
+		current->index_octet = header->prog_size;
+        if (current->opcode > 0)
+		{
+			check_each_arg(&current, header);
+			// ft_printf("%s%d%s|-> octet = %d\n", RED, current->num_line, DEF, current->index_octet);
+		}
         current = current->next;
     }
-    ft_printf("prog_size = %#x | %d |>> %d\n", prog_size, prog_size, 0x2f);
+    ft_printf("prog_size = %#x | %d |>> %d\n", header->prog_size, header->prog_size);
     return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 18:08:04 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 12:14:51 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ t_parsing *collect);
 int				add_arg(t_args **lst_head, char *content);
 
 int get_prog_data(t_instructions **lst, header_t *header);
+int set_label_value(t_instructions **lst);
 int create_param_byte(t_instructions **lst);
 
 int generate_binary_code(t_data *data);
