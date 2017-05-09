@@ -6,13 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 15:23:17 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/07 20:57:13 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 18:03:38 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "asm.h"
+#include "asm.h"
 
-static void init_arg(t_args **arg)
+static void		init_arg(t_args **arg)
 {
 	(*arg)->content = NULL;
 	(*arg)->type = 0;
@@ -29,11 +29,11 @@ static t_args	*arg_add_elem(char *content)
 	if (!(new_arg = (t_args*)malloc(sizeof(t_args))))
 		return (NULL);
 	init_arg(&new_arg);
-    if (content != NULL && *content != '\0')
-    {
-        if (!(new_arg->content = ft_strdup(content)))
-            return (NULL);
-    }
+	if (content != NULL && *content != '\0')
+	{
+		if (!(new_arg->content = ft_strdup(content)))
+			return (NULL);
+	}
 	return (new_arg);
 }
 
@@ -54,7 +54,7 @@ int				add_arg(t_args **lst_head, char *content)
 			new_node = new_node->next;
 		if (!(new_node->next = arg_add_elem(content)))
 			return (-1);
-        new_node->next->next = NULL;
+		new_node->next->next = NULL;
 	}
 	return (1);
 }

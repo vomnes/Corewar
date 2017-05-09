@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:12:00 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 10:50:15 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 19:18:18 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int		ft_is_label_chars(int c)
 		return (1);
 }
 
-static int is_label(t_parsing *parsing, char *content)
+static int		is_label(t_parsing *parsing, char *content)
 {
 	char *clean;
 
@@ -42,16 +42,16 @@ static int is_label(t_parsing *parsing, char *content)
 	return (1);
 }
 
-static int ft_is_sperator_label(int c)
+static int		ft_is_sperator_label(int c)
 {
-    if (c == DIRECT_CHAR || c == '-')
-        return (1);
+	if (c == DIRECT_CHAR || c == '-')
+		return (1);
 	if (ft_isspace(c))
-        return (1);
-    return (0);
+		return (1);
+	return (0);
 }
 
-static int check_label_line(t_parsing *parsing, char *content)
+static int		check_label_line(t_parsing *parsing, char *content)
 {
 	if (content != NULL)
 	{
@@ -61,8 +61,8 @@ static int check_label_line(t_parsing *parsing, char *content)
 				return (is_label(parsing, content));
 			else if (ft_isstr_ctype(content, ft_is_label_chars) == 1)
 			{
-				ft_printf("Unauthorised character(s) in label : '%s' - Line %d\n", \
-				content, parsing->line_nb);
+				ft_printf("Unauthorised character(s) in label :");
+				ft_printf("'%s' - Line %d\n", content, parsing->line_nb);
 				return (-1);
 			}
 		}
@@ -70,15 +70,15 @@ static int check_label_line(t_parsing *parsing, char *content)
 	return (0);
 }
 
-int parse_labels(t_parsing *parsing)
+int				parse_labels(t_parsing *parsing)
 {
-	int i;
-	char *content;
-    int ret;
+	int		i;
+	char	*content;
+	int		ret;
 
 	i = 0;
 	content = NULL;
-    ret = 0;
+	ret = 0;
 	while (LINE[i] != '\0')
 	{
 		if (LINE[i] == LABEL_CHAR)
@@ -90,6 +90,6 @@ int parse_labels(t_parsing *parsing)
 		i++;
 	}
 	ret = check_label_line(parsing, content);
-    ft_strdel(&content);
+	ft_strdel(&content);
 	return (ret);
 }

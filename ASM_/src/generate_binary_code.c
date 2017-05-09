@@ -6,13 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 11:56:22 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 12:42:40 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 18:23:23 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int generate_binary_code(t_data *data)
+int	generate_binary_code(t_data *data)
 {
 	if (create_param_byte(&data->parsing.lst) == -1)
 		return (-1);

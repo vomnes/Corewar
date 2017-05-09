@@ -6,13 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 13:59:02 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 17:13:32 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 18:44:02 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void name_comment_checked(t_parsing *parsing, char flag_type)
+static void	name_comment_checked(t_parsing *parsing, char flag_type)
 {
 	if (ft_strncmp(parsing->clean_line, NAME_CMD_STRING, \
 		ft_strlen(NAME_CMD_STRING)) == 0 && flag_type == 1)
@@ -23,7 +23,7 @@ static void name_comment_checked(t_parsing *parsing, char flag_type)
 		{
 			ft_dprintf(2, "Champion name already defined - Line %d\n", \
 			parsing->line_nb);
-			exit (-1);
+			exit(-1);
 		}
 	}
 	else if (ft_strncmp(parsing->clean_line, COMMENT_CMD_STRING, \
@@ -35,31 +35,31 @@ static void name_comment_checked(t_parsing *parsing, char flag_type)
 		{
 			ft_dprintf(2, "Champion comment already defined - Line %d\n", \
 			parsing->line_nb);
-			exit (-1);
+			exit(-1);
 		}
 	}
 }
 
-void parse_undefined_name_comment(t_parsing *parsing)
+void		parse_undefined_name_comment(t_parsing *parsing)
 {
 	if (parsing->name_stocked == 0 && parsing->comment_stocked == 0)
 	{
 		ft_putendl_fd("Name and Comment undefined", 2);
-		exit (-1);
+		exit(-1);
 	}
 	else if (parsing->comment_stocked == 0)
 	{
 		ft_putendl_fd("Champion comment undefined", 2);
-		exit (-1);
+		exit(-1);
 	}
 	else if (parsing->name_stocked == 0)
 	{
 		ft_putendl_fd("Champion name undefined", 2);
-		exit (-1);
+		exit(-1);
 	}
 }
 
-int parse_name_comment(t_parsing *parsing, header_t *header)
+int			parse_name_comment(t_parsing *parsing, header_t *header)
 {
 	check_header_content(NAME_CMD_STRING, PROG_NAME_LENGTH, parsing, header);
 	name_comment_checked(parsing, 1);

@@ -6,18 +6,18 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 15:16:44 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 18:06:30 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 18:31:43 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void print_arg_list(t_args *lst)
+void		print_arg_list(t_args *lst)
 {
 	t_args *current;
 
 	current = lst;
-	while(current != NULL)
+	while (current != NULL)
 	{
 		ft_printf(B_GREEN"---> arg = %s\n"DEF, current->content);
 		ft_printf("          Type = %d\n", current->type);
@@ -28,12 +28,12 @@ void print_arg_list(t_args *lst)
 	}
 }
 
-void print_instructions_list(t_instructions *lst)
+void		print_instructions_list(t_instructions *lst)
 {
 	t_instructions *current;
 
 	current = lst;
-	while(current != NULL)
+	while (current != NULL)
 	{
 		ft_printf("=========[%d]======\n", current->num_line);
 		ft_printf("is_label = %d\n", current->is_label);
@@ -53,12 +53,12 @@ void print_instructions_list(t_instructions *lst)
 	}
 }
 
-void delete_lst_args(t_args **lst)
+void		delete_lst_args(t_args **lst)
 {
 	t_args *current;
 
 	current = *lst;
-	while(current != NULL)
+	while (current != NULL)
 	{
 		ft_strdel(&current->content);
 		current = current->next;
@@ -85,17 +85,17 @@ void		delete_lst_instructions(t_instructions *lst)
 	// lst = NULL;
 }
 
-void print(t_args *lst)
+void		print(t_args *lst)
 {
 	t_args *current;
 
 	current = lst;
-	while(current != NULL)
+	while (current != NULL)
 	{
 		ft_printf(B_GREEN"---> arg = %s\n"DEF, current->content);
-        ft_printf("          Type = %d\n", current->type);
-        ft_printf("          Value = %d >> [%x]\n", current->value, current->value);
-        ft_printf("          Label = %s\n", current->label);
+		ft_printf("          Type = %d\n", current->type);
+		ft_printf("          Value = %d >> [%x]\n", current->value, current->value);
+		ft_printf("          Label = %s\n", current->label);
 		current = current->next;
 	}
 }
