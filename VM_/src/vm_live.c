@@ -51,25 +51,6 @@ static void	vm_cycle_delta(t_vm *vm)
 	}
 }
 
-static void	vm_add_live(t_vm *vm, int player_no)
-{
-	t_live	*new_live;
-	t_live	*live_lst;
-
-	if (!(new_live = (t_live *)ft_memalloc(sizeof(*new_live))))
-		vm_error_exit(vm, "Malloc failed while creating a live struct");
-	if (!vm->lives)
-		vm->lives = new_live;
-	else
-	{
-		live_lst = vm->lives;
-		while (live_lst->next)
-			live_lst = live_lst->next;
-		live_lst->next = new_live;
-	}
-	new_live->player_no = player_no;
-}
-
 void		vm_live(t_process *process, t_vm *vm)
 {
 	int			pc;
@@ -84,7 +65,7 @@ void		vm_live(t_process *process, t_vm *vm)
 		ft_printf("un processus dit que le joueur %d(%s) est en vie\n",
 		player_nb, player->name);
 		player->nb_lives += 1;
-		vm_add_live(vm, player_nb);
+		vm->last_live_player_no = player_nb;
 		vm_cycle_delta(vm);
 	}
 	vm_store_in_register(&process->pc, MOD(pc + 5));

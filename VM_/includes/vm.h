@@ -34,7 +34,7 @@ typedef struct			s_vm
 	t_player			players[MAX_PLAYERS + 1];
 	int					nb_players;
 	t_process			*processes;
-	t_live				*lives;
+	int					last_live_player_no;
 	int					cycle_nbr;
 	int					cycle_to_die;
 }						t_vm;
