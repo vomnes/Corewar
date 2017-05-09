@@ -52,6 +52,35 @@ void 		vm_copy_process(t_process *parent, t_process *child)
 	child->carry = parent->carry;
 }
 
+/*
+**	Returns a pointer to the t_process that corresponds to the number specified
+**	as a parameter. If there are less than "no" processes in the VM, an ERROR
+**	message is written and a NULL pointer is returned.
+*/
+
+t_process	*vm_get_process(t_vm *vm, int no)
+{
+	int			i;
+	t_process	*current;
+
+	i = 0;
+	if (no >= 1)
+	{
+		if ((current = vm->processes))
+			i = 1;
+		while (current && current->next && i < no)
+		{
+			current = current->next;
+			i++;
+		}
+		if (i == no)
+			return (current);
+	}
+	ft_dprintf(2, "ERROR: Unable to reach process no %d\n", no);
+	return (NULL);
+}
+
+// A enlever
 void		vm_print_process(t_process *process)
 {
 	int i;
@@ -77,33 +106,4 @@ void		vm_print_process(t_process *process)
 	}
 
 	ft_printf("Instruction: %hhd\n", process->instruction.opcode);
-}
-
-int			vm_advance_pc(t_process *process)
-{
-	int				pc;
-	int				i;
-
-	pc = vm_read_register(process->pc) + 1;
-	if (g_op_tab[process->instruction.opcode].param_byte)
-		pc += 1;
-	i = g_op_tab[process->instruction.opcode].nb_args - 1;
-	while (i >= 0)
-	{
-		if (process->instruction.args[i] == T_DIR)
-		{
-			if (g_op_tab[process->instruction.opcode].has_index)
-				pc += 2;
-			else
-				pc += 4;
-		}
-		else if (process->instruction.args[i] == T_IND)
-			pc += 2;
-		else if (process->instruction.args[i] == T_REG)
-			pc += 1;
-		i--;
-	}
-	pc = MOD(pc);
-	vm_store_in_register(&process->pc, pc);
-	return (pc);
 }
