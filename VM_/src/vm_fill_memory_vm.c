@@ -1,5 +1,23 @@
 #include "vm.h"
 
+
+
+int			check_pos_pc(t_vm vm, int i)
+{
+	t_process *process;
+	int			value;
+
+	process = vm.processes;
+	while (process)
+	{
+		value = vm_read_register(process->pc);
+		if (value == i && value != 0)
+			return (1);
+		process = process->next;
+	}
+	return (0);
+}
+
 void			print_memory_dump(t_vm vm)
 {
 	size_t		i;
@@ -11,7 +29,12 @@ void			print_memory_dump(t_vm vm)
 		j = -1;
 		ft_printf("0x%04x : ", i);
 		while (++j < 64)
-			ft_printf("%02x ", vm.memory[i++]);
+		{
+			if (check_pos_pc(vm, i))
+				ft_printf("%s%02x %s", RED, vm.memory[i++], DEF);
+			else
+				ft_printf("%02x ", vm.memory[i++]);
+		}
 		ft_putchar('\n');
 	}
 }

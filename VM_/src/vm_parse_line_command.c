@@ -10,12 +10,13 @@ char		**vm_parse_line_command(char **av, t_vm *vm)
 	if (*av && ft_strcmp(*av, "-d") == 0)
 	{
 		if (av[1])
-			tmp = ft_atoi(*av);
+			tmp = ft_atoi(av[1]);
 		if (tmp <= 0)
 			vm_error_exit(vm, "Bad entry for option -d");
-		av = av+ 2;
+		vm->dumps = tmp;
+		av = av + 2;
 	}
-	while (*av)             // faire avec un conteur, ac
+	while (*av)
 	{
 		av = vm_read_file_champ(av, vm, count_champs);
 		count_champs++;
