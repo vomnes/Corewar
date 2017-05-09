@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:36:54 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:40:32 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 19:44:56 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	arg_reg_parse(t_args *current, char num_arg, int num_line)
 	{
 		if (ft_isnumber_syntax(content, 0) == -1)
 		{
-			ft_printf("Invalid number for register type [arg %d]  - Line %d\n",\
+			ft_dprintf(2, "Invalid number for register type [arg %d]  - Line %d\n",\
 			num_arg, num_line);
 			return (-1);
 		}
@@ -34,7 +34,7 @@ static int	arg_reg_parse(t_args *current, char num_arg, int num_line)
 		if (current->value > REG_NUMBER || \
 		ft_strlen(content) > ft_intlen(REG_NUMBER))
 		{
-			ft_printf("Only %d register(s) available [arg %d] - Line %d\n",\
+			ft_dprintf(2, "Only %d register(s) available [arg %d] - Line %d\n",\
 			REG_NUMBER, num_arg, num_line);
 			return (-1);
 		}
@@ -61,7 +61,7 @@ static int	arg_type(t_args *current, char num_arg, int num_line)
 	}
 	else
 	{
-		ft_printf("Invalid syntax [arg %d] - Line %d\n", num_arg, num_line);
+		ft_dprintf(2, "Invalid syntax [arg %d] - Line %d\n", num_arg, num_line);
 		return (-1);
 	}
 	return (0);

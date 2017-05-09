@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 19:02:58 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:08:28 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 19:44:59 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_instructions *check_label)
 		{
 			if (ft_label_exist(check_label, content + 1) == 0)
 			{
-				ft_printf("Undefined label [arg %d] - Line %d\n", \
+				ft_dprintf(2, "Undefined label [arg %d] - Line %d\n", \
 				num_arg, num_line);
 				return (-1);
 			}
@@ -51,7 +51,7 @@ t_instructions *check_label)
 			current->value = ft_lltoi(content);
 		else
 		{
-			ft_printf("Undefined syntax [arg %d] - Line %d\n", \
+			ft_dprintf(2, "Undefined syntax [arg %d] - Line %d\n", \
 			num_arg, num_line);
 			return (-1);
 		}

@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 15:23:26 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:47:56 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 19:44:55 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static int	undefined_opcode(t_instructions *current, char **opcode_name)
 	if (current->opcode == -10)
 	{
 		if (*opcode_name != NULL && *opcode_name[0] != '\0')
-			ft_printf("Unknown instruction : '%s' - Line %d\n", \
+			ft_dprintf(2, "Unknown instruction : '%s' - Line %d\n", \
 			*opcode_name, current->num_line);
 		else
-			ft_printf("Undefined instruction - Line %d\n", current->num_line);
+			ft_dprintf(2, "Undefined instruction - Line %d\n", current->num_line);
 		ft_strdel(&(*opcode_name));
 		return (-1);
 	}

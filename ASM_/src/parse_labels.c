@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:12:00 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 19:18:18 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 19:44:21 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ static int		check_label_line(t_parsing *parsing, char *content)
 				return (is_label(parsing, content));
 			else if (ft_isstr_ctype(content, ft_is_label_chars) == 1)
 			{
-				ft_printf("Unauthorised character(s) in label :");
-				ft_printf("'%s' - Line %d\n", content, parsing->line_nb);
+				ft_dprintf(2, "Unauthorised character(s) in label :");
+				ft_dprintf(2, "'%s' - Line %d\n", content, parsing->line_nb);
 				return (-1);
 			}
 		}

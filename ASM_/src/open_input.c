@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 12:51:51 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:35:09 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 19:44:05 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,22 @@ static int	open_input_error(char *file_name, int *fd)
 
 	if (open(file_name, O_DIRECTORY) > 0)
 	{
-		ft_printf("Input can't be a directory\n");
+		ft_dprintf(2, "Input can't be a directory\n");
 		return (-1);
 	}
 	if ((*fd = open(file_name, O_RDONLY)) < 0)
 	{
-		ft_printf("Can't read source file %s\n", file_name);
+		ft_dprintf(2, "Can't read source file %s\n", file_name);
 		return (-1);
 	}
 	if (ft_strlen(file_name) > 128)
 	{
-		ft_printf("File name too long (> 128 char) %s\n", file_name);
+		ft_dprintf(2, "File name too long (> 128 char) %s\n", file_name);
 		return (-1);
 	}
 	if ((term = ft_strstr(file_name, ".s")) == NULL || ft_strlen(term) > 2)
 	{
-		ft_putstr("Wrong file name - [.s]\n");
+		ft_putendl_fd("Wrong file name - [.s]", 2);
 		return (-1);
 	}
 	return (0);
