@@ -19,7 +19,6 @@ typedef	struct			s_player
 	unsigned char		memory[CHAMP_MAX_SIZE];
 	unsigned int		size_player;
 	int					number;
-	int					nb_lives;
 }						t_player;
 
 typedef struct			s_live
@@ -34,6 +33,7 @@ typedef struct			s_vm
 	t_player			players[MAX_PLAYERS + 1];
 	int					nb_players;
 	t_process			*processes;
+	int					nb_lives_since_last_check;
 	int					last_live_player_no;
 	int					dumps;
 	int					cycle_nbr;
@@ -56,7 +56,6 @@ struct					s_process
 	int					no;
 	int					player_no;
 	int					alive;
-	int					cycle_delta_alive;
 	unsigned char		registers[REG_NUMBER + 1][REG_SIZE];
 	unsigned char		pc[REG_SIZE];
 	int					carry;
@@ -64,6 +63,8 @@ struct					s_process
 	struct s_process	*next;
 	struct s_process	*prev;
 };
+
+void					vm_init(t_vm *vm);
 
 t_process				*vm_create_process(t_vm *vm);
 void 					vm_copy_process(t_process *parent, t_process *child);
