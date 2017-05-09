@@ -38,6 +38,8 @@ void				vm_fill_memory(t_vm *vm, int no_player, size_t pos)
 		vm->memory[pos++] = vm->players[no_player].memory[i++];
 }
 
+
+//AJOUTER la mise a jour du PC du processus de chaque joueur
 void				vm_fill_memory_vm(t_vm *vm)
 {
 	int				number_players;

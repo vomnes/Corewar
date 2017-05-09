@@ -6,7 +6,9 @@ SRC_PATH = ./src
 INC_PATH = ./includes
 
 SRC_FILES =	test.c \
+			vm_init.c \
 			vm_process.c \
+			vm_advance_pc.c \
 			vm_parameters.c \
 			vm_error.c \
 			vm_register_utils.c \
@@ -19,12 +21,12 @@ SRC_FILES =	test.c \
 			vm_null_op.c \
 			vm_live.c \
 			vm_ld.c\
-			vm_st.c\
-			vm_add.c\
+			vm_ldi.c \
 			vm_zjmp.c \
 			vm_fork.c \
-			vm_lfork.c
-		
+			vm_lfork.c \
+			vm_aff.c \
+
 INC_FILES = vm.h
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))

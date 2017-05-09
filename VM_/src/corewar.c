@@ -17,6 +17,7 @@ int main(int ac, char **av)
 		return (print_usage());
 	av++;
 	av = vm_parse_line_command(av, &dumps, &vm);
+	vm_init(&vm);
 	vm_fill_memory_vm(&vm);
 	return (0);
 }
