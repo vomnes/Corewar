@@ -61,5 +61,4 @@ void				vm_fill_memory_vm(t_vm *vm)
 		}
 		no_player++;
 	}
-	print_memory_dump(*vm);
 }
