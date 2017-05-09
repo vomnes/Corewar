@@ -75,9 +75,11 @@ int			vm_do_one_cycle(t_vm *vm)
 			return (1);
 		current = current->next;
 	}
-	// DUMP THE MEMORY IF OPTION IS SELECTED
 	if (vm->dumps && vm->dumps == vm->cycle_nbr)
+	{
 		print_memory_dump(*vm);
-	// if all processe are dead, end game
+		// delete DATA
+		exit(0);
+	}
 	return (0);
 }

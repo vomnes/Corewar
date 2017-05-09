@@ -7,7 +7,7 @@ char		**vm_parse_line_command(char **av, t_vm *vm)
 
 	count_champs = 1;
 	tmp = 0;
-	if (*av && ft_strcmp(*av, "-d") == 0)
+	if (*av && ft_strcmp(*av, "-dump") == 0)
 	{
 		if (av[1])
 			tmp = ft_atoi(av[1]);

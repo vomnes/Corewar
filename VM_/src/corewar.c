@@ -30,7 +30,6 @@ int main(int ac, char **av)
 	}
 //	print_memory_dump(vm);
 //	vm_print_process(vm_get_process(&vm, 1));
-
 	if ((winner = vm_get_player(&vm, vm.last_live_player_no)))
 		ft_printf("le joueur %d(%s) a gagne\n", winner->number, winner->name);
 	else
