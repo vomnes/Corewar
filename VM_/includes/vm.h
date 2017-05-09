@@ -35,6 +35,7 @@ typedef struct			s_vm
 	int					nb_players;
 	t_process			*processes;
 	int					last_live_player_no;
+	int					dumps;
 	int					cycle_nbr;
 	int					cycle_to_die;
 }						t_vm;
@@ -96,7 +97,7 @@ void					vm_parse_header(size_t size, unsigned char buf[size], \
 						t_vm *vm, int nb);
 void					vm_fill_memory_vm(t_vm *vm);
 char					**vm_read_file_champ(char **av, t_vm *vm, int n_player);
-char					**vm_parse_line_command(char **av, int *dump, t_vm *vm);
+char					**vm_parse_line_command(char **av, t_vm *vm);
 
 void					print_memory_dump(t_vm vm);
 
