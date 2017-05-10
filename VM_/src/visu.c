@@ -30,7 +30,7 @@ void print_memory(t_vm vm, WINDOW *window)
 	wmove(window, 1, 1);
 	while (i < MEM_SIZE)
 	{
-		if (check_pos_pc(vm, i))
+		/*if (check_pos_pc(vm, i))
 		{
 			attron(COLOR_PAIR(1));
 			attrset(COLOR_PAIR(1));
@@ -38,7 +38,7 @@ void print_memory(t_vm vm, WINDOW *window)
 			wprintw(window, "%02x",vm.memory[i]);
 			refresh();
 		}
-		else
+		else*/
 			wprintw(window, "%.2x", vm.memory[i]);
 		if ((i + 1) % 48 == 0)								// a changer pour % 64
 		{
