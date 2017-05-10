@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 17:41:31 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:29:12 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 17:13:59 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ static void	check_each_arg(t_instructions **lst, header_t *header)
 		current = current->next;
 	}
 }
+
+/*
+** get_opcode : Set the value of index_octet of each element of t_instructions,
+** get the program size. The octet index is determined by incrementing
+** prog_size (header).
+*/
 
 int			get_prog_data(t_instructions **lst, header_t *header)
 {

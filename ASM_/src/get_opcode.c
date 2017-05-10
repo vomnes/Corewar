@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 11:17:33 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 19:35:49 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 17:11:16 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ static int	get_code(char *elem)
 	}
 	return (index);
 }
+
+/*
+** get_opcode : Check the validity and return the value of the opcode
+** from line_args (t_instructions).
+*/
 
 int			get_opcode(char *to_analyse, char **opcode_name)
 {

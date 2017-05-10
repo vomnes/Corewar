@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 13:04:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:22:09 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 17:02:41 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@ size_t *len, char comment_char)
 		i++;
 	}
 }
+
+/*
+** ft_strtrim_comment : Return a char* with the content paramter s without
+** space at the start and the end of the string, with the comment deleted.
+** Example:
+** ft_strtrim_comment("		Hello 		World#my new comment	", '#');
+** -->|Hello 		World|
+*/
 
 char		*ft_strtrim_comment(char *s, char comment_char)
 {

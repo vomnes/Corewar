@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:36:54 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 19:44:56 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 17:17:28 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,11 @@ static int	check_each_arg(t_instructions *lst, t_instructions *check_label)
 // ft_printf("          Type = %d\n", current->type);
 // ft_printf("          Value = %#x | %d\n", current->value, current->value);
 // ft_printf("          Label = %s\n", current->label);
+
+/*
+** parse_args : Check the validity of each argument (t_args) and set the
+** argument type (0b01 - 0b10 - 0b11) for each instruction (t_instructions).
+*/
 
 int			parse_args(t_instructions **lst)
 {

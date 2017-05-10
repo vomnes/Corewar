@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 12:04:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 19:44:57 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 17:08:36 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ static int	push_arg_on(t_args **lst, char **tab)
 	}
 	return (0);
 }
+
+/*
+** get_args : Check and add the argument(s) of the line_args (t_instructions)
+** in the linked list t_arg (t_instructions) for each instruction.
+*/
 
 int			get_args(t_instructions **lst)
 {

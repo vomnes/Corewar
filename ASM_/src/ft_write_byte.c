@@ -6,11 +6,15 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 16:46:42 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:22:56 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 17:06:16 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+/*
+** ft_write_byte : Write an unsigned int in a file descriptor on n octet(s).
+*/
 
 void	ft_write_byte(int fd, unsigned int value, char nb_octet)
 {

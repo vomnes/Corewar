@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 10:11:54 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 14:58:10 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 16:30:01 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void     ft_print_char(char str[100], int i, int len)
         ft_putchar(str[i]);
         i++;
         if (count % 2 - less == 0 && str[i])
-            ft_putchar(' ');
+            ft_putstr(" 0x");
     }
 }
 
@@ -65,12 +65,19 @@ static void     ft_print_zeroes_hex(char str[100], int nb_octet)
             if (i >= -1 && *str == '\0')
                 ;
             else
-                ft_putchar(' ');
+                ft_putstr(" 0x");
         }
         i++;
     }
     ft_print_char(str, i, len);
 }
+
+/*
+** ft_display_hex_octet : Write on the standard output an unsigned long long int
+** according to the model of hexdump. The function takes in parameter a number
+** and the number of octet(s) to print.
+** e.g  ft_display_hex_octet(42, 4); -> 0x00 0x00 0x00 0x2a
+*/
 
 void		ft_display_hex_octet(unsigned long long int nb, int nb_octet)
 {
@@ -82,6 +89,7 @@ void		ft_display_hex_octet(unsigned long long int nb, int nb_octet)
 	if (len > 100)
 		;
 	len--;
+	ft_putstr("0x");
 	while (nb != 0)
 	{
 		if (nb % 16 <= 9)

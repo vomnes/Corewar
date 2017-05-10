@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 15:23:17 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:03:38 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 16:46:06 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ static t_args	*arg_add_elem(char *content)
 	}
 	return (new_arg);
 }
+
+/*
+** add_arg : Add at the end of the linked list t_args
+** an argument.
+*/
 
 int				add_arg(t_args **lst_head, char *content)
 {

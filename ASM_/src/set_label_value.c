@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:05:01 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 19:09:40 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 17:31:21 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ static void	check_each_arg(t_instructions **lst, t_instructions *instructions)
 	}
 }
 
-// ft_printf("%s : %d = %d - %d\n", current->label, current->value, get_label_octet_index(instructions, \
-// current->label), (*lst)->index_octet);
+/*
+** set_label_value : Set the value of each argument using label (result between
+** current index octet and label's index octet).
+*/
 
 int			set_label_value(t_instructions **lst)
 {

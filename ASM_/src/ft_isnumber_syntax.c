@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 14:00:19 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:19:14 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 16:57:17 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ static int	ft_isstr_type(const char *str, int (*c_type)())
 	}
 	return (1);
 }
+
+/*
+** ft_isnumber_syntax : Check the syntax of a string, if the string has the
+** number syntax (all caracter digit) return 1 else return 0.
+** If the flag sign is at 1 the number is signed else the number is unsigned.
+*/
 
 int			ft_isnumber_syntax(char *str, char sign)
 {

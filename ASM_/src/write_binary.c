@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:35:14 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 19:14:29 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 15:54:48 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ static void	check_each_arg(t_instructions **lst, int fd)
 		current = current->next;
 	}
 }
+
+/*
+** write_binary : Run linked list with the input data in order to write this
+** data in the memory output file .cor.
+*/
 
 int			write_binary(t_instructions **lst, t_output *binary_file)
 {
