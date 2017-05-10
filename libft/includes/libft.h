@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 16:12:25 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/08 11:44:10 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 10:42:51 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,12 @@
 # define CYAN "\x1b[36m"
 # define B_CYAN "\x1b[1;36m"
 # define WHITE "\x1b[37m"
+
+# define GOLD "\x1b[38;5;214m"
+# define BOLD "\x1b[1;m"
+# define ITALIC "\x1b[3;m"
+# define UNDERLINE "\x1b[4;m"
+# define CLEAN "\033[H\033[2J"
 
 typedef struct		s_list
 {

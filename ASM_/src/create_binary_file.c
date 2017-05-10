@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 15:14:15 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:16:18 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/09 19:57:19 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,3 @@ int	create_binary_file(t_input input)
 	ft_strdel(&name_dot_cor);
 	return (binary_fd);
 }
-//Check if file exist

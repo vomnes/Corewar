@@ -26,7 +26,9 @@ SRC =	./src/main.c \
 			./src/ft_isprint_nospace.c \
 			./src/get_prog_data.c \
 			./src/set_label_value.c \
-			./src/write_binary.c
+			./src/write_binary.c \
+			./src/ft_display_hex_octet.c \
+			./src/details_compilation.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -54,7 +56,9 @@ OBJ =	./obj/main.o \
 			./obj/ft_isprint_nospace.o \
 			./obj/get_prog_data.o \
 			./obj/set_label_value.o \
-			./obj/write_binary.o
+			./obj/write_binary.o \
+			./obj/ft_display_hex_octet.o \
+			./obj/details_compilation.o
 
 MAKE = make
 
