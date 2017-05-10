@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 12:02:24 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 15:42:46 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # include "../../libft/includes/libftprintf.h"
 # include "../../libft/includes/get_next_line.h"
 # include "../../shared_files/op.h"
+
+#define FILE argc - 1
+#define OPTION argc - 2
 
 # define REG_OCTET 1
 # define IND_OCTET 2
@@ -113,6 +116,7 @@ int							create_param_byte(t_instructions **lst);
 int							set_label_value(t_instructions **lst);
 int							get_prog_data(t_instructions **lst, \
 header_t *header);
+int							program_data(t_data *data);
 
 void						ft_write_byte(int fd, unsigned int value, \
 char nb_octet);

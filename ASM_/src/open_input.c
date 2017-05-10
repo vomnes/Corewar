@@ -6,16 +6,14 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 12:51:51 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 19:44:05 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 15:50:57 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-#define FILE argc - 1
-#define OPTION argc - 2
-#define USAGE "Usage: ./asm [-a] <sourcefile.s>\n"
-#define OPT "       -a : Instead of creating a .cor file, outputs a stripped"
+#define USAGE "Usage: ./asm [-d | -details] <sourcefile.s>\n"
+#define OPT "       -d : Instead of creating a .cor file, outputs a stripped"
 #define OPT_2 " and annotated version of the code to the standard output\n"
 
 static int	open_input_error(char *file_name, int *fd)
@@ -65,9 +63,5 @@ int			open_input(int argc, char **argv, t_input *input_data)
 	if (open_input_error(argv[FILE], &input_data->fd) == -1)
 		return (-1);
 	ft_strcat(input_data->file_name, argv[FILE]);
-	if (ft_strcmp(argv[OPTION], "-a") == 0)
-	{
-		ft_putstr("Option [on]\n");
-	}
 	return (0);
 }

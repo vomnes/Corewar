@@ -28,7 +28,8 @@ SRC =	./src/main.c \
 			./src/set_label_value.c \
 			./src/write_binary.c \
 			./src/ft_display_hex_octet.c \
-			./src/details_compilation.c
+			./src/details_compilation.c \
+			./src/program_data.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -58,7 +59,8 @@ OBJ =	./obj/main.o \
 			./obj/set_label_value.o \
 			./obj/write_binary.o \
 			./obj/ft_display_hex_octet.o \
-			./obj/details_compilation.o
+			./obj/details_compilation.o \
+			./obj/program_data.o
 
 MAKE = make
 

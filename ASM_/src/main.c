@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 18:34:38 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 09:06:32 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 15:47:12 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,18 @@ int	main(int argc, char **argv)
 		return (-1);
 	if (parsing_input(&data) == -1)
 		return (-1);
-	if ((data.binary_file.fd = create_binary_file(data.input)) == -1)
+	if (program_data(&data) == -1)
 		return (-1);
-	if (generate_binary_code(&data) == -1)
-		return (-1);
+	if (ft_strcmp(argv[OPTION], "-d") == 0 || ft_strcmp(argv[OPTION], \
+		"-details") == 0)
+		details_compilation(data.parsing.lst, data.header);
+	else
+	{
+		if ((data.binary_file.fd = create_binary_file(data.input)) == -1)
+			return (-1);
+		if (generate_binary_code(&data) == -1)
+			return (-1);
+	}
 	// print_instructions_list(data.parsing.lst);
 	// delete_lst_instructions(data.parsing.lst);
 	return (0);
