@@ -1,6 +1,6 @@
 #include "vm.h"
 
-static void	add_register(t_process *process, t_vm *vm, int pc)
+static void	add_registers(t_process *process, t_vm *vm, int pc)
 {
 	int		first_param;
 	int		second_param;
@@ -32,6 +32,6 @@ void		vm_add(t_process *process, t_vm *vm)
 	process->carry = 0;
 	pc = vm_read_register(process->pc);
 	if (vm_check_parameter_types(process->instruction) == 1)
-		add_register(process, vm, pc);
+		add_registers(process, vm, pc);
 	vm_advance_pc(process);
 }

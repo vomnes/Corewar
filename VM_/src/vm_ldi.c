@@ -25,8 +25,7 @@ static short	get_param(t_process *process, t_vm *vm, int *index,
 		if (reg_number > 0 && reg_number <= REG_NUMBER)
 		// !!! This will cast an int to a short!! Should we do that??
 			return (vm_read_register(process->registers[reg_number]));
-		else
-			process->carry = 0;
+		*index = -1;
 		return (0);
 	}
 }
@@ -39,24 +38,21 @@ void			vm_ldi(t_process *process, t_vm *vm)
 	unsigned char	reg_number;
 
 	index = vm_read_register(process->pc) + 2;
-	process->carry = 1;
 	if (vm_check_parameter_types(process->instruction))
 	{
 		param1 = get_param(process, vm, &index, process->instruction.args[0]);
-		param2 = get_param(process, vm, &index, process->instruction.args[1]);
-		if (process->carry)
+		if (index > 0)
+			param2 = get_param(process, vm, &index,
+								process->instruction.args[1]);
+		if (index > 0)
 		{
 			reg_number = vm->memory[MOD(index)];
 			if (reg_number > 0 && reg_number <= REG_NUMBER)
 				vm_store_in_register(&process->registers[reg_number],
 						vm_read_memory_int(vm,
 							MOD((param1 + param2) % IDX_MOD)));
-			else
-				process->carry = 0;
 		}
 	}
-	else
-		process->carry = 0;
 	vm_advance_pc(process);
 }
 

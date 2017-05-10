@@ -1,6 +1,6 @@
 #include "vm.h"
 
-static void		get_second_parameter(t_process *process, t_vm *vm, int pc)
+static void		get_parameters(t_process *process, t_vm *vm, int pc)
 {
 	int			first_param;
 	int			second_param;
@@ -32,8 +32,7 @@ void			vm_st(t_process *process, t_vm *vm)
 	int			pc;
 
 	pc = vm_read_register(process->pc);
-	vm_decode_parameter_byte(process, vm);
 	if (process->instruction.first_type == T_REG)
-		get_second_parameter(process, vm, pc);
+		get_parameters(process, vm, pc);
 	vm_advance_pc(process);
 }

@@ -15,6 +15,7 @@ SRC_FILES =	corewar.c \
 			vm_register_utils.c \
 			vm_player_utils.c \
 			vm_memory_rw.c \
+			vm_index.c \
 			vm_parse_header.c \
 			vm_fill_memory_vm.c \
 			vm_read_file_champ.c \

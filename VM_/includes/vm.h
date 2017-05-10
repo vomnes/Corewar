@@ -6,6 +6,7 @@
 # include <stdio.h>
 # include "libft.h"
 # include "op.h"
+# include "nc.h"
 
 # define MOD(x) (x % MEM_SIZE)
 
@@ -85,6 +86,7 @@ short					vm_read_memory_short(t_vm *vm, int index);
 void					vm_store_in_memory_int(t_vm *vm, int index, int value);
 void					vm_store_in_memory_short(t_vm *vm, int index,
 						short value);
+int						vm_decode_index(t_vm *vm, t_process *process, int head);
 
 int						vm_read_register(unsigned char reg[REG_SIZE]);
 void					vm_store_in_register(unsigned char (*reg)[REG_SIZE],
