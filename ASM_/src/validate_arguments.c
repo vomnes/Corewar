@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 19:25:35 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 19:42:54 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 17:31:18 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,15 @@ static int	check_each_arg(t_instructions *lst, int opcode, int num_line)
 	}
 	return (0);
 }
+
+/*
+** validate_arguments : Check if the arguments for an opcode used are allowed.
+** Example :
+** code = g_op_tab[opcode].arg_types[num_arg] & current->t_arg
+** ---> code = (T_REG | T_DIR) & T_IND;
+** If the result is NULL the argument used is unauthorised
+** else it is authorised.
+*/
 
 int			validate_arguments(t_instructions **lst)
 {

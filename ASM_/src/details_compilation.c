@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 09:09:16 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 14:10:17 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 16:30:48 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ static void	check_each_arg(t_instructions *lst)
 	}
     ft_putchar('\n');
 }
+
+/*
+** details_compilation : Print on the standard output the details of the
+** compilation.
+*/
 
 void		details_compilation(t_instructions *lst, header_t header)
 {

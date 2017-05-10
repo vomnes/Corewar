@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 17:09:41 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:12:53 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 16:40:47 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,13 @@ int content_len)
 		exit(-1);
 	}
 }
+
+/*
+** check_header_content : Check if the header is well formated and then
+** put the name and the comment in the structure header else return an error.
+** .name "my_name"
+** .comment "my_comment"
+*/
 
 void		check_header_content(const char *cmd_string, \
 unsigned int content_len, t_parsing *parsing, header_t *header)

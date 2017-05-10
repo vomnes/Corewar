@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 19:02:58 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 19:44:59 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 16:42:06 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,10 @@ static int	ft_label_exist(t_instructions *lst, char *label_to_check)
 	}
 	return (0);
 }
+
+/*
+** arg_dir_ind_parse : Check if arguments Direct and Indirect are correct. 
+*/
 
 int			arg_dir_ind_parse(t_args *current, char num_arg, int num_line, \
 t_instructions *check_label)

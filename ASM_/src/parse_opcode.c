@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 15:23:26 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 19:44:55 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 17:23:16 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ static int	undefined_opcode(t_instructions *current, char **opcode_name)
 	}
 	return (0);
 }
+
+/*
+** parse_opcode : Parse each line_opcode to check the validity of the opcode
+** and stock the opcode in t_instructions.
+*/
 
 int			parse_opcode(t_instructions **lst)
 {

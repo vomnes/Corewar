@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:12:00 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 19:44:21 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 17:20:07 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@ static int		check_label_line(t_parsing *parsing, char *content)
 	}
 	return (0);
 }
+
+/*
+** parse_labels : Check the validity (exist?) of an label (argument in t_args)
+** and set the label_name, line_label in parsing structure.
+*/
 
 int				parse_labels(t_parsing *parsing)
 {

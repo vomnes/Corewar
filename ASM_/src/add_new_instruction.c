@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/04 12:19:06 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:06:08 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 16:45:17 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ static t_instructions	*instruction_add_elem(t_parsing *collect)
 			return (NULL);
 	return (new_instruction);
 }
+
+/*
+** add_new_instruction : Add at the end of the linked list t_instructions
+** an instruction (line) with the line, the line label, the label and
+** the line_opcode content.
+*/
 
 int						add_new_instruction(t_instructions **lst_head, \
 t_parsing *collect)

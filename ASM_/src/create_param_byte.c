@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 13:03:12 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:17:53 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 16:38:16 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,16 @@ static void	check_each_arg(t_instructions *lst)
 		byte_offset -= 2;
 	}
 }
+
+/*
+** create_param_byte : Build and put in the elements param_byte of the linked
+** list t_instructions the binary value create with the type of each argument.
+**  Example :
+** 		>> r2  --> 0b01 |
+**		>> 23  --> 0b11 |--> Binary value --> 0b01111000 --> 0x78
+**		>> %34 --> 0b10 |
+**
+*/
 
 int			create_param_byte(t_instructions **lst)
 {

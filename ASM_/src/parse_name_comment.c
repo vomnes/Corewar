@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 13:59:02 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 18:44:02 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/10 17:21:27 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ void		parse_undefined_name_comment(t_parsing *parsing)
 		exit(-1);
 	}
 }
+
+/*
+** parse_name_comment : Check if the header is well formated.
+** .name "my_name"
+** .comment "my_comment"
+*/
 
 int			parse_name_comment(t_parsing *parsing, header_t *header)
 {
