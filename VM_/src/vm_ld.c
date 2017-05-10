@@ -1,6 +1,6 @@
 #include "vm.h"
 
-void				get_parameters(t_vm *vm, t_process *process, int pc, int i)
+static void			get_parameters(t_vm *vm, t_process *process, int pc, int i)
 {
 	int				first_param;
 	int				second_param;
