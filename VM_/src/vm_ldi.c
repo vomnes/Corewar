@@ -55,36 +55,3 @@ void			vm_ldi(t_process *process, t_vm *vm)
 	}
 	vm_advance_pc(process);
 }
-
-
-/*
-static short	get_param(t_process *process, t_vm *vm, int *index,
-						t_arg_type type)
-{
-	short			indirection;
-	unsigned char	reg_number;
-	short			result;
-
-	if (type == T_DIR)
-	{
-		result = vm_read_memory_short(vm, *index);
-		*index = MOD(*index + 2);
-	}
-	else if (type == T_IND)
-	{
-		indirection = vm_read_memory_short(vm, *index) % IDX_MOD;
-		result = vm_read_memory_short(vm, MOD(process->pc + indirection));
-		*index = MOD(*index + 2);
-	}
-	else
-	{
-		reg_number = vm->memory[MOD(*index)];
-		if (reg_number > 0 && reg_number <= REG_NUMBER)
-			result = vm_read_register(process->registers[reg_number]);
-		else
-			process->carry = 0;
-		*index = MOD(*index + 1);
-	}
-	return (result);
-}
-*/
