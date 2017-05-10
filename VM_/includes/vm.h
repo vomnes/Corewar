@@ -4,9 +4,9 @@
 
 # include <fcntl.h>
 # include <stdio.h>
+# include <curses.h>
 # include "libft.h"
 # include "op.h"
-# include "nc.h"
 
 # define MOD(x) (x % MEM_SIZE)
 
@@ -65,6 +65,9 @@ struct					s_process
 	struct s_process	*next;
 	struct s_process	*prev;
 };
+
+void					init_windows(WINDOW **window);
+void					display_all_windows(t_vm vm, WINDOW *window);
 
 void					vm_init(t_vm *vm);
 

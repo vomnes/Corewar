@@ -5,6 +5,7 @@ OBJ_PATH = ./obj
 SRC_PATH = ./src
 INC_PATH = ./includes
 
+ 
 SRC_FILES =	corewar.c \
 			vm_init.c \
 			vm_cycles.c \
@@ -39,6 +40,9 @@ SRC_FILES =	corewar.c \
 			vm_lfork.c \
 			vm_aff.c \
 
+
+VISU_FILE =	visu.c \
+
 INC_FILES = vm.h
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
@@ -51,8 +55,8 @@ FLAGS = -Wall -Wextra -Werror -g
 
 all : $(NAME)
 
-$(NAME): $(OBJ) ../shared_files/op.o $(INC) $(LIB_PATH)/libft.a $(LIB_PATH)/includes/libft.h
-	gcc -o $(NAME) $(OBJ) ../shared_files/op.o $(FLAGS) -L $(LIB_PATH) -lft -I . -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files
+$(NAME): $(OBJ) ../shared_files/op.o $(INC) $(LIB_PATH)/libft.a $(LIB_PATH)/includes/libft.h ./visu.o
+	gcc -o $(NAME) $(OBJ) ../shared_files/op.o ./visu.o -lncurses $(FLAGS) -L $(LIB_PATH) -lft -I . -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) $(LIB_PATH)/includes/libft.h
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
@@ -64,6 +68,10 @@ $(LIB_PATH)/libft.a: $(LIB_PATH)/Makefile $(LIB_PATH)/includes/libft.h
 
 ../shared_files/op.o: ../shared_files/op.c $(INC) $(LIB_PATH)/includes/libft.h
 	gcc -o $@ -c $< $(FLAGS) -I ../shared_files
+
+./visu.o: ./src/visu.c $(INC) $(LIB_PATH)/includes/libft.h
+	gcc -o $@ -c $< $(FLAGS) -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files/
+
 
 clean:
 	rm -Rf $(OBJ_PATH)
