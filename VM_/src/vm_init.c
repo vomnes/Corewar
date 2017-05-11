@@ -10,6 +10,8 @@ void	vm_init(t_vm *vm)
 	t_process	*process;
 
 	i = 1;
+	if (vm->nb_players < 1 || vm->nb_players > 4)
+		vm_error_exit(vm, "You must load between 1 and 4 players");
 	while (i <= vm->nb_players)
 	{
 		vm_create_process(vm);
