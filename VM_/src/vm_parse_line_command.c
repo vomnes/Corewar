@@ -2,25 +2,29 @@
 
 char		**vm_parse_line_command(char **av, t_vm *vm)
 {
-	int		count_champs;
-	int		tmp;
+	static int	count_champs = 1;
+	int			tmp;
 
-	count_champs = 1;
-	tmp = 0;
 	if (*av && ft_strcmp(*av, "-dump") == 0)
 	{
-		if (av[1])
-			tmp = ft_atoi(av[1]);
-		if (tmp <= 0)
-			vm_error_exit(vm, "Bad entry for option -d");
-		vm->dumps = tmp;
+		if (av[1] && ft_atoi_error(av[1], &tmp) && tmp >= 0)
+			vm->dumps = tmp;
+		else
+			vm_error_exit(vm, "Bad entry for option -dump");
 		av = av + 2;
 	}
-	while (*av)
+	else if (*av && ft_strcmp(*av, "-vis") == 0)
+	{
+		vm->vis = 1;
+		av++;
+	}
+	else if (*av)
 	{
 		av = vm_read_file_champ(av, vm, count_champs);
 		count_champs++;
 		++av;
 	}
-	return (av);
+	else
+		return (av);
+	return (vm_parse_line_command(av, vm));
 }
