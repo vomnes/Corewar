@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 19:02:58 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 16:42:06 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/11 10:33:18 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	ft_label_exist(t_instructions *lst, char *label_to_check)
 }
 
 /*
-** arg_dir_ind_parse : Check if arguments Direct and Indirect are correct. 
+** arg_dir_ind_parse : Check if arguments Direct and Indirect are correct.
 */
 
 int			arg_dir_ind_parse(t_args *current, char num_arg, int num_line, \
@@ -41,6 +41,12 @@ t_instructions *check_label)
 	content = (current->type < 3) ? current->content + 1 : current->content;
 	if (current->type == DIR_CODE || current->type == IND_CODE)
 	{
+		if (*content == '\0')
+		{
+			ft_dprintf(2, "Syntax error [arg %d] - Line %d\n", \
+			num_arg, num_line);
+			return (-1);
+		}
 		if (*content == LABEL_CHAR)
 		{
 			if (ft_label_exist(check_label, content + 1) == 0)

@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:36:54 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 17:17:28 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/11 10:31:09 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	arg_reg_parse(t_args *current, char num_arg, int num_line)
 	content = (current->type < 3) ? current->content + 1 : current->content;
 	if (current->type == REG_CODE)
 	{
-		if (ft_isnumber_syntax(content, 0) == -1)
+		if (ft_isnumber_syntax(content, 0) == -1 || *content == '\0')
 		{
 			ft_dprintf(2, "Invalid number for register type [arg %d]  - Line %d\n",\
 			num_arg, num_line);

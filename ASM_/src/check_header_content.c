@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 17:09:41 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 16:40:47 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/11 09:02:23 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int content_len)
 	if (index_close > (int)content_len)
 	{
 		ft_dprintf(2, "Champion %s too long, %d character(s) over the \
-	limit (Max length %d)\n",\
+limit (Max length %d)\n",\
 		cmd_string, index_close - content_len, content_len);
 		exit(-1);
 	}
