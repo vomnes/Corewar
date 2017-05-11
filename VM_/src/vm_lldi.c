@@ -1,22 +1,22 @@
 #include "vm.h"
 
-static short	get_param(t_process *process, t_vm *vm, int *index,
+static long long			get_param(t_process *process, t_vm *vm, long long *index,
 						t_arg_type type)
 {
-	short			indirection;
+	int				indirection;
 	unsigned char	reg_number;
 
 	if (type == T_DIR)
 	{
 		*index = MOD(*index + 2);
-		return (vm_read_memory_short(vm, *index - 2));
+		return (vm_read_memory_int(vm, *index - 2, 2));
 	}
 	else if (type == T_IND)
 	{
-		indirection = vm_read_memory_short(vm, *index) % IDX_MOD;
+		indirection = vm_read_memory_int(vm, *index, 2) % IDX_MOD;
 		*index = MOD(*index + 2);
-		return (vm_read_memory_short(vm,
-				MOD(vm_read_register(process->pc) + indirection)));
+		return (vm_read_memory_int(vm,
+				MOD(vm_read_register(process->pc) + indirection), 2));
 	}
 	else
 	{
@@ -31,9 +31,9 @@ static short	get_param(t_process *process, t_vm *vm, int *index,
 
 void			vm_lldi(t_process *process, t_vm *vm)
 {
-	int				index;
-	short			param1;
-	short			param2;
+	long long		index;
+	long long		param1;
+	long long		param2;
 	unsigned char	reg_number;
 
 	index = vm_read_register(process->pc) + 2;
@@ -47,7 +47,7 @@ void			vm_lldi(t_process *process, t_vm *vm)
 			reg_number = vm->memory[MOD(index)];
 			if (reg_number > 0 && reg_number <= REG_NUMBER)
 				vm_store_in_register(&process->registers[reg_number],
-						vm_read_memory_int(vm, MOD(param1 + param2)));
+						vm_read_memory_int(vm, MOD(param1 + param2), 4));
 			else
 				process->carry = 0;
 		}

@@ -60,12 +60,6 @@ int			vm_do_one_cycle(t_vm *vm)
 	static int	cycles_since_last_check = 0;
 	t_process	*current;
 
-	if (vm->dumps > -1 && vm->dumps == vm->cycle_nbr)
-	{
-		print_memory_dump(*vm);
-		// delete DATA
-		exit(0);
-	}
 	vm->cycle_nbr += 1;
 	cycles_since_last_check += 1;
 	vm_advance_processes_one_cycle(vm);
@@ -81,5 +75,12 @@ int			vm_do_one_cycle(t_vm *vm)
 			return (1);
 		current = current->next;
 	}
+	if (vm->dumps > -1 && vm->dumps == vm->cycle_nbr)
+	{
+		print_memory_dump(*vm);
+		// delete DATA
+		exit(0);
+	}
+
 	return (0);
 }

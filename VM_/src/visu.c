@@ -23,23 +23,18 @@ void print_memory(t_vm vm, WINDOW *window)
 	int j;
 	start_color();
 	init_pair(1, COLOR_RED, COLOR_BLUE);
-	init_pair(2, COLOR_BLUE, COLOR_RED);
 
 	i = 0;
-	j = 0;
+	j = 1;
 	wmove(window, 1, 1);
 	while (i < MEM_SIZE)
 	{
-		/*if (check_pos_pc(vm, i))
+		if (check_pos_pc(vm, i))
 		{
-			attron(COLOR_PAIR(1));
-			attrset(COLOR_PAIR(1));
-			move((i - (j * 48) - 1),j);
 			wprintw(window, "%02x",vm.memory[i]);
-			refresh();
 		}
-		else*/
-			wprintw(window, "%.2x", vm.memory[i]);
+		else
+			wprintw(window, "%02x", vm.memory[i]);
 		if ((i + 1) % 48 == 0)								// a changer pour % 64
 		{
 			wprintw(window, "\n ");
@@ -55,7 +50,7 @@ void print_memory(t_vm vm, WINDOW *window)
 }
 
 
-void			init_windows(WINDOW **window)
+void			init_windows(WINDOW **window) // <<-- a remplacer par une structure WINDOW du nombre de fenetres qu'il faut
 {
 	initscr();
 	start_color();
@@ -66,7 +61,7 @@ void			init_windows(WINDOW **window)
 	*window = newwin(66, 193, 0, 0);
 }
 
-void			display_all_windows(t_vm vm, WINDOW *window)
+void			display_all_windows(t_vm vm, WINDOW *window)  // <<-- a remplacer par une structure WINDOW du nombre de fenetres qu'il faut
 {
 	print_memory(vm, window);
 }

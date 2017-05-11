@@ -39,6 +39,7 @@ typedef struct			s_vm
 	int					dumps;
 	int					cycle_nbr;
 	int					cycle_to_die;
+	int					vis;
 }						t_vm;
 
 typedef struct			s_instruction
@@ -80,20 +81,21 @@ int						vm_do_one_cycle(t_vm *vm);
 
 void					vm_decode_parameter_byte(t_process *process, t_vm *vm);
 int						vm_check_parameter_types(t_instruction instruction);
-int						vm_get_parameters_xorand(t_process *process, t_vm *vm,
+long long				vm_get_parameters_xorand(t_process *process, t_vm *vm,
 						char type, int *pc);
 
 unsigned int			vm_n_bytes_to_uint(unsigned char *ptr, size_t n);
-int						vm_read_memory_int(t_vm *vm, int index);
+long long 				vm_read_memory_int(t_vm *vm, int index, int size);
 short					vm_read_memory_short(t_vm *vm, int index);
-void					vm_store_in_memory_int(t_vm *vm, int index, int value);
+void					vm_store_in_memory_int(t_vm *vm, int index, long long 
+																		value);
 void					vm_store_in_memory_short(t_vm *vm, int index,
 						short value);
-int						vm_decode_index(t_vm *vm, t_process *process, int head);
+long long				vm_decode_index(t_vm *vm, t_process *process, int head);
 
-int						vm_read_register(unsigned char reg[REG_SIZE]);
+long long				vm_read_register(unsigned char reg[REG_SIZE]);
 void					vm_store_in_register(unsigned char (*reg)[REG_SIZE],
-						int value);
+						long long value);
 void					vm_print_register(unsigned char reg[REG_SIZE]);
 
 
