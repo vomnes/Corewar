@@ -1,0 +1,235 @@
+echo "======================================================================="
+echo "\033[1;34m>\033[0m> compil des tests particuliers"
+echo "======================================================================="
+echo
+echo "\033[1;34m==> Mauvais caractere dans label \033[0m"
+./asm test/error_bad_char_label.s
+./asm_42 test/error_bad_char_label.s
+echo
+echo "\033[1;34m==> Plus de params dans une instruction\033[0m"
+./asm test/error_inst_more_param.s
+./asm_42 test/error_inst_more_param.s
+echo
+echo "\033[1;34m==> Instruction inconnue\033[0m"
+./asm test/error_inst_unknown.s
+./asm_42 test/error_inst_unknown.s
+echo
+echo "\033[1;34m==> Label inconnu\033[0m"
+./asm test/error_lab_unknown.s
+./asm_42 test/error_lab_unknown.s
+echo
+echo "\033[1;34m==> Moins de params dans une instruction\033[0m"
+./asm test/error_less_param.s
+./asm_42 test/error_less_param.s
+echo
+echo "\033[1;34m==> Instruction sans param\033[0m"
+./asm test/error_no_param.s
+./asm_42 test/error_no_param.s
+echo
+echo "\033[1;34m==> test1: error espace entre un label et un label_char\033[0m"
+./asm test/test1\(espace\ entre\ un\ label\ et\ un\ label_char\).s
+./asm_42 test/test1\(espace\ entre\ un\ label\ et\ un\ label_char\).s
+echo
+echo "\033[1;34m==> test2: error erreur de param indirect\033[0m"
+./asm test/test2\(erreur\ de\ param\ indirect\).s
+./asm_42 test/test2\(erreur\ de\ param\ indirect\).s
+echo
+echo "\033[1;34m==> test3: error commentaire qui ne finit pas\033[0m"
+./asm test/test3\(commentaire\ qui\ ne\ finit\ pas\).s
+./asm_42 test/test3\(commentaire\ qui\ ne\ finit\ pas\).s
+echo
+echo "\033[1;34m==> test4: error que des commentaires\033[0m"
+./asm test/test4\(que\ des\ commentaires\).s
+./asm_42 test/test4\(que\ des\ commentaires\).s
+echo
+echo "\033[1;34m==> test5: fichier vide avec juste une ligne vide\033[0m"
+./asm test/test5\(fichier\ avec\ une\ ligne\ vide\).s
+./asm_42 test/test5\(fichier\ avec\ une\ ligne\ vide\).s
+echo
+echo "\033[1;34m==> test6: fichier vide\033[0m"
+./asm test/test6\(fichier\ vide\).s
+./asm_42 test/test6\(fichier\ vide\).s
+echo
+echo "\033[1;34m==> test7: instruction meme ligne que commentaire\033[0m"
+./asm test/test7\(instruction\ meme\ ligne\ que\ commentaire\).s
+./asm_42 test/test7\(instruction\ meme\ ligne\ que\ commentaire\).s
+echo
+echo "\033[1;34m==> test8: label inconnu\033[0m"
+./asm test/test8\(appel\ d\'un\ label\ qui\ n\'existe\ pas\).s
+./asm_42 test/test8\(appel\ d\'un\ label\ qui\ n\'existe\ pas\).s
+echo
+echo "\033[1;34m==> test9: inst sans param\033[0m"
+./asm test/test9\(instruction\ sans\ parametre\).s
+./asm_42 test/test9\(instruction\ sans\ parametre\).s
+echo
+echo "\033[1;34m==> test10: inst avec un param en moins\033[0m"
+./asm test/test10\(instruction\ avec\ un\ param\ en\ moins\).s
+./asm_42 test/test10\(instruction\ avec\ un\ param\ en\ moins\).s
+echo
+echo "\033[1;34m==> test11: nom du champion trop long\033[0m"
+./asm test/test11\(nom\ de\ champion\ trop\ long\(130\)\).s
+./asm_42 test/test11\(nom\ de\ champion\ trop\ long\(130\)\).s
+echo
+echo "\033[1;34m==> test12: commentaire trop long\033[0m"
+./asm test/test12\(commentaire\ trop\ long\ \(2100\)\).s
+./asm_42 test/test12\(commentaire\ trop\ long\ \(2100\)\).s
+echo
+echo "\033[1;34m==> test13: instruction suivi d'un label sur la meme ligne\033[0m"
+./asm test/test13\(instruction\ et\ label\ sur\ la\ meme\ ligne\).s
+./asm_42 test/test13\(instruction\ et\ label\ sur\ la\ meme\ ligne\).s
+echo
+echo "\033[1;34m==> test14: 2 inst sur la meme ligne\033[0m"
+./asm test/test14\(deux\ instructions\ sur\ la\ meme\ ligne\).s
+./asm_42 test/test14\(deux\ instructions\ sur\ la\ meme\ ligne\).s
+echo
+echo "\033[1;34m==> test15: inst avec un mauvais param\033[0m"
+./asm test/test15\(instruction\ avec\ un\ mauvais\ param\).s
+./asm_42 test/test15\(instruction\ avec\ un\ mauvais\ param\).s
+echo
+echo "\033[1;34m==> test16: commentaire (;) apres le comment\033[0m"
+./asm test/test16\(commentaire\ apres\ comment\).s
+./asm_42 test/test16\(commentaire\ apres\ comment\).s
+echo
+echo "\033[1;34m==> test17: .comment avant .name\033[0m"
+./asm test/test17\(commentaire\ avant\ name\).s
+./asm_42 test/test17\(commentaire\ avant\ name\).s
+echo
+echo "\033[1;34m==> test18: commentaire(;) apres name\033[0m"
+./asm test/test18\(multiligne,\ comm\ apres\ name\).s
+./asm_42 test/test18\(multiligne,\ comm\ apres\ name\).s
+echo
+echo "\033[1;34m==> fichier valide avec extension .txt\033[0m"
+./asm test/valid_extension.txt
+./asm_42 test/valid_extension.txt
+echo
+echo "\033[1;34m==> fichier valide sans extension\033[0m"
+./asm test/valid_sans_extension
+./asm_42 test/valid_sans_extension
+echo
+echo "\033[1;34m==> test00\033[0m"
+./asm Archive/test00.s
+./asm_42 Archive/test00.s
+echo
+echo "\033[1;34m==> test01\033[0m"
+./asm Archive/test01.s
+./asm_42 Archive/test01.s
+echo
+echo "\033[1;34m==> test02\033[0m"
+./asm Archive/test02.s
+./asm_42 Archive/test02.s
+echo
+echo "\033[1;34m==> test03\033[0m"
+./asm Archive/test03.s
+./asm_42 Archive/test03.s
+echo
+echo "\033[1;34m==> test04\033[0m"
+./asm Archive/test04.s
+./asm_42 Archive/test04.s
+echo
+echo "\033[1;34m==> test05\033[0m"
+./asm Archive/test05.s
+./asm_42 Archive/test05.s
+echo
+echo "\033[1;34m==> test06\033[0m"
+./asm Archive/test06.s
+./asm_42 Archive/test06.s
+echo
+echo "\033[1;34m==> test07\033[0m"
+./asm Archive/test07.s
+./asm_42 Archive/test07.s
+echo
+echo "\033[1;34m==> test08\033[0m"
+./asm Archive/test08.s
+./asm_42 Archive/test08.s
+echo
+echo "\033[1;34m==> test09\033[0m"
+./asm Archive/test09.s
+./asm_42 Archive/test09.s
+echo
+echo "\033[1;34m==> test10\033[0m"
+./asm Archive/test10.s
+./asm_42 Archive/test10.s
+echo
+echo "\033[1;34m==> test11\033[0m"
+./asm Archive/test11.s
+./asm_42 Archive/test11.s
+echo
+echo "\033[1;34m==> test12\033[0m"
+./asm Archive/test12.s
+./asm_42 Archive/test12.s
+echo
+echo "\033[1;34m==> test13\033[0m"
+./asm Archive/test13.s
+./asm_42 Archive/test13.s
+echo
+echo "\033[1;34m==> test14\033[0m"
+./asm Archive/test14.s
+./asm_42 Archive/test14.s
+echo
+echo "\033[1;34m==> test15\033[0m"
+./asm Archive/test15.s
+./asm_42 Archive/test15.s
+echo
+echo "\033[1;34m==> test16\033[0m"
+./asm Archive/test16.s
+./asm_42 Archive/test16.s
+echo
+echo "\033[1;34m==> test17\033[0m"
+./asm Archive/test17.s
+./asm_42 Archive/test17.s
+echo
+echo "\033[1;34m==> test18\033[0m"
+./asm Archive/test18.s
+./asm_42 Archive/test18.s
+echo
+echo "\033[1;34m==> test19\033[0m"
+./asm Archive/test19.s
+./asm_42 Archive/test19.s
+echo
+echo "\033[1;34m==> test20\033[0m"
+./asm Archive/test20.s
+./asm_42 Archive/test20.s
+echo
+echo "\033[1;34m==> test21\033[0m"
+./asm Archive/test21.s
+./asm_42 Archive/test21.s
+echo
+echo "\033[1;34m==> test22\033[0m"
+./asm Archive/test22.s
+./asm_42 Archive/test22.s
+echo
+echo "\033[1;34m==> test23\033[0m"
+./asm Archive/test23.s
+./asm_42 Archive/test23.s
+echo
+echo "\033[1;34m==> test24\033[0m"
+./asm Archive/test24.s
+./asm_42 Archive/test24.s
+echo
+echo "\033[1;34m==> test25\033[0m"
+./asm Archive/test25.s
+./asm_42 Archive/test25.s
+echo
+echo "\033[1;34m==> test26\033[0m"
+./asm Archive/test26.s
+./asm_42 Archive/test26.s
+echo
+echo "\033[1;34m==> test27\033[0m"
+./asm Archive/test27.s
+./asm_42 Archive/test27.s
+echo
+echo "\033[1;34m==> Archive/empty_file.s\033[0m"
+./asm Archive/empty_file.s
+./asm_42 Archive/empty_file.s
+echo
+echo "\033[1;34m==> Archive/not_.cor_file\033[0m"
+./asm Archive/not_.cor_file.s
+./asm_42 Archive/not_.cor_file.s
+echo
+echo "\033[1;34m==> Archive/not_.s_file\033[0m"
+./asm Archive/not_.s_file.s
+./asm_42 Archive/not_.s_file.s
+echo
+echo "======================================================================="
+echo "\033[1;34m>\033[0m fin de la compilation"
+echo "======================================================================="
