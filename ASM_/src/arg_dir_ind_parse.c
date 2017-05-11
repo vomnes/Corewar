@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 19:02:58 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/11 10:33:18 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/11 11:00:30 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_instructions *check_label)
 	{
 		if (*content == '\0')
 		{
-			ft_dprintf(2, "Syntax error [arg %d] - Line %d\n", \
+			ft_dprintf(2, "Syntax error - argument %d (null) - Line %d\n", \
 			num_arg, num_line);
 			return (-1);
 		}
