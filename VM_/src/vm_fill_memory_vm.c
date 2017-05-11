@@ -27,7 +27,7 @@ void			print_memory_dump(t_vm vm)
 	while (i < MEM_SIZE)
 	{
 		j = -1;
-	//	ft_printf("0x%04x : ", i);
+		ft_printf("0x%04x : ", i);
 		while (++j < 64)
 		{
 			if (check_pos_pc(vm, i))

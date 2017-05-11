@@ -27,7 +27,7 @@ int main(int ac, char **av)
 	while (ret == 1)
 	{
 		ret = vm_do_one_cycle(&vm);
-	(vm.vis == 1) ? display_all_windows(vm, window) : 1;
+		(vm.vis == 1) ? display_all_windows(vm, window) : 1;
 	}
 //	vm_print_process(vm_get_process(&vm, 1));
 	if ((winner = vm_get_player(&vm, vm.last_live_player_no)))

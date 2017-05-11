@@ -10,8 +10,8 @@ static int		check_pos_pc(t_vm vm, int i)
 	while (process)
 	{
 		value = vm_read_register(process->pc);
-		if (value == i && value != 0)
-			return (1);
+		if (value == i && value != 0 && process->alive == 1)
+			return (process->player_no);
 		process = process->next;
 	}
 	return (0);
@@ -20,26 +20,23 @@ static int		check_pos_pc(t_vm vm, int i)
 void print_memory(t_vm vm, WINDOW *window)
 {
 	int i;
-	int j;
-	start_color();
-	init_pair(1, COLOR_RED, COLOR_BLUE);
+	int color;
 
 	i = 0;
-	j = 1;
+	color = 0;
 	wmove(window, 1, 1);
 	while (i < MEM_SIZE)
 	{
-		if (check_pos_pc(vm, i))
+		if ((color = check_pos_pc(vm, i)))
 		{
+			wattron(window, COLOR_PAIR(color));
 			wprintw(window, "%02x",vm.memory[i]);
+			wattroff(window, COLOR_PAIR(color));
 		}
 		else
 			wprintw(window, "%02x", vm.memory[i]);
-		if ((i + 1) % 48 == 0)								// a changer pour % 64
-		{
+		if ((i + 1) % 60 == 0)								// a changer pour % 64
 			wprintw(window, "\n ");
-			j++;
-		}	
 		else
 			wprintw(window, " ");
 		i++;
@@ -54,8 +51,10 @@ void			init_windows(WINDOW **window) // <<-- a remplacer par une structure WINDO
 {
 	initscr();
 	start_color();
-	init_pair(1, COLOR_BLUE, COLOR_RED);
-	init_pair(2, COLOR_BLUE, COLOR_RED);
+	init_pair(1, COLOR_RED, COLOR_BLUE);
+	init_pair(2, COLOR_YELLOW, COLOR_RED);
+	init_pair(3, COLOR_BLUE, COLOR_RED);
+	init_pair(4, COLOR_BLUE, COLOR_RED);
 	keypad(stdscr, TRUE);
 
 	*window = newwin(66, 193, 0, 0);
@@ -65,40 +64,3 @@ void			display_all_windows(t_vm vm, WINDOW *window)  // <<-- a remplacer par une
 {
 	print_memory(vm, window);
 }
-/*
-   int main()
-   {
-   WINDOW	*win1;
-   WINDOW	*win2;
-   WINDOW	*win3;
-   unsigned char memory[MEM_SIZE];
-
-//	int 	x;
-//	int		y;
-
-initscr();
-//raw();
-//	noecho();
-//	cbreak();
-keypad(stdscr, TRUE);
-win1 = newwin(66, 193, 0, 0);
-win2 = newwin(33, 50, 0, 193);
-win3 = newwin(33, 50, 33, 193);
-//	box(win1, 0, 0);
-box(win2, 0, 0);
-box(win3, 0, 0);
-//	refresh();
-//wrefresh(win1);
-//efresh(win2);
-//	wrefresh(win3);
-
-print_memory(win1, memory);
-wrefresh(win1);
-
-getch();
-mvwprintw(win2, 1, 1, "hello");
-wrefresh(win2);
-getch();
-endwin();
-return (0);
-}*/
