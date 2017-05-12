@@ -6,14 +6,18 @@ void		vm_live(t_process *process, t_vm *vm)
  	int			player_nb;
 	t_player	*player;
 
+	process->instruction.first_type = T_DIR;
+	process->instruction.args[0] = T_DIR;
 	pc = vm_read_register(process->pc);
 	player_nb = vm_read_memory_int(vm, pc + 1);
-	player= vm_get_player(vm, player_nb);
+	player= vm_get_player(vm, -player_nb);
+	if (vm_verbose_operations(vm))
+		ft_printf("P    %d | live %d\n", process->no, player_nb);
 	if (player)
 	{
 		if (vm_verbose_lives(vm))
 			ft_printf("Player %d (%s) is said to be alive\n",
-		player_nb, player->name);
+		-player_nb, player->name);
 		vm->last_live_player_no = player_nb;
 	}
 	vm->nb_lives_since_last_check += 1;
