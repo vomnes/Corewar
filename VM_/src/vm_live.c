@@ -7,7 +7,7 @@ void		vm_live(t_process *process, t_vm *vm)
 	t_player	*player;
 
 	pc = vm_read_register(process->pc);
-	player_nb = vm_read_memory_int(vm, pc + 1, 4);
+	player_nb = vm_read_memory_int(vm, pc + 1);
 	player= vm_get_player(vm, player_nb);
 	if (player)
 	{

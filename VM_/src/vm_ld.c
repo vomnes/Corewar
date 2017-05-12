@@ -2,23 +2,23 @@
 
 static void			get_parameters(t_vm *vm, t_process *process, int pc, int i)
 {
-	long long		first_param;
-	long long		second_param;
-	long long		tmp;
+	int				first_param;
+	int				second_param;
+	int				tmp;
 
 	tmp = 0;
 	first_param = 0;
 	second_param = vm->memory[MOD(pc + i)];
 	if (i == 6 && second_param > 0 && second_param <= REG_NUMBER)
 	{
-		first_param = vm_read_memory_int(vm, pc + 2, 4);
+		first_param = vm_read_memory_int(vm, pc + 2);
 		vm_store_in_register(&process->registers[second_param], first_param);
 		process->carry = 1;
 	}
 	else if (i == 4 && second_param > 0 && second_param <= REG_NUMBER)
 	{
-		first_param = vm_read_memory_int(vm, pc + 2, 2);
-		tmp = vm_read_memory_int(vm, (pc + (first_param % IDX_MOD)), 4);
+		first_param = vm_read_memory_short(vm, pc + 2);
+		tmp = vm_read_memory_int(vm, (pc + (first_param % IDX_MOD)));
 		vm_store_in_register(&process->registers[second_param], tmp);
 		process->carry = 1;
 	}

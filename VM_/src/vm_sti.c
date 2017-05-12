@@ -17,7 +17,7 @@ static int			get_parameter(t_process *process, t_vm *vm, int pc, int i)
 			parameter = vm_read_register(process->registers[no_register]);
 	}
 	else
-		parameter = vm_read_memory_int(vm, MOD(pc + i), 2);
+		parameter = vm_read_memory_short(vm, MOD(pc + i));
 	return (parameter);
 }
 

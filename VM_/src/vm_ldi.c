@@ -3,20 +3,20 @@
 static long long	get_param(t_process *process, t_vm *vm, int *index,
 						t_arg_type type)
 {
-	int			indirection;
+	short			indirection;
 	unsigned char	reg_number;
 
 	if (type == T_DIR)
 	{
 		*index = MOD(*index + 2);
-		return (vm_read_memory_int(vm, *index - 2, 2));
+		return (vm_read_memory_short(vm, *index - 2));
 	}
 	else if (type == T_IND)
 	{
-		indirection = vm_read_memory_int(vm, *index, 2) % IDX_MOD;
+		indirection = vm_read_memory_short(vm, *index) % IDX_MOD;
 		*index = MOD(*index + 2);
-		return (vm_read_memory_int(vm,
-				MOD(vm_read_register(process->pc) + indirection), 2));
+		return (vm_read_memory_short(vm,
+				MOD(vm_read_register(process->pc) + indirection)));
 	}
 	else
 	{
@@ -50,7 +50,7 @@ void			vm_ldi(t_process *process, t_vm *vm)
 			if (reg_number > 0 && reg_number <= REG_NUMBER)
 				vm_store_in_register(&process->registers[reg_number],
 						vm_read_memory_int(vm,
-							MOD((param1 + param2) % IDX_MOD), 4));
+							MOD((param1 + param2) % IDX_MOD)));
 		}
 	}
 	vm_advance_pc(process);

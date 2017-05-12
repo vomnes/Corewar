@@ -12,7 +12,7 @@ static void		get_parameters(t_process *process, t_vm *vm, int pc)
 		return ;
 	if (process->instruction.second_type == T_IND)
 	{
-		second_param = vm_read_memory_int(vm, pc + 3, 2);
+		second_param = vm_read_memory_short(vm, pc + 3);
 		second_param = MOD(second_param);
 		value = vm_read_register(process->registers[first_param]);
 		vm_store_in_memory_int(vm, pc + ((second_param % IDX_MOD)), value);// Check if second_param <= 0 ?

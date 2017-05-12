@@ -81,6 +81,7 @@ t_process	*vm_get_process(t_vm *vm, int no)
 }
 
 // A enlever
+
 void		vm_print_process(t_process *process)
 {
 	int i;

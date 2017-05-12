@@ -1,6 +1,5 @@
 #include "vm.h"
 
-
 static int		check_pos_pc(t_vm vm, int i)
 {
 	t_process *process;
@@ -35,7 +34,7 @@ void print_memory(t_vm vm, WINDOW *window)
 		}
 		else
 			wprintw(window, "%02x", vm.memory[i]);
-		if ((i + 1) % 60 == 0)								// a changer pour % 64
+		if ((i + 1) % 64 == 0)								// a changer pour % 64
 			wprintw(window, "\n ");
 		else
 			wprintw(window, " ");
@@ -63,4 +62,5 @@ void			init_windows(WINDOW **window) // <<-- a remplacer par une structure WINDO
 void			display_all_windows(t_vm vm, WINDOW *window)  // <<-- a remplacer par une structure WINDOW du nombre de fenetres qu'il faut
 {
 	print_memory(vm, window);
+	usleep(5000);
 }
