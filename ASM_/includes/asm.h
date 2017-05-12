@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/12 15:23:32 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/12 18:09:05 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include "../../libft/includes/libftprintf.h"
 # include "../../libft/includes/get_next_line.h"
 # include "../../shared_files/op.h"
+
+# include "reverse.h"
 
 # define FILE argc - 1
 # define OPTION argc - 2

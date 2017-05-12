@@ -30,7 +30,8 @@ SRC =	./src/main.c \
 			./src/details_compilation.c \
 			./src/program_data.c \
 			./src/init_struct_parsing.c \
-			./src/ft_exit_clean.c
+			./src/ft_exit_clean.c \
+			./src/rev_parse_header.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -62,7 +63,8 @@ OBJ =	./obj/main.o \
 			./obj/details_compilation.o \
 			./obj/program_data.o \
 			./obj/init_struct_parsing.o \
-			./obj/ft_exit_clean.o
+			./obj/ft_exit_clean.o \
+			./obj/rev_parse_header.o
 
 MAKE = make
 

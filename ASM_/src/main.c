@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 18:34:38 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/12 15:22:59 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/12 19:00:23 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,28 @@ int			main(int argc, char **argv)
 {
 	t_data data;
 
-	if (open_input(argc, argv, &data.input) == -1)
-		return (ft_exit_clean(&data.parsing.lst, FAILURE));
-	if (parsing_input(&data) == -1)
-		return (ft_exit_clean(&data.parsing.lst, FAILURE));
-	if (program_data(&data) == -1)
-		return (ft_exit_clean(&data.parsing.lst, FAILURE));
-	if (ft_strcmp(argv[OPTION], "-d") == 0 || ft_strcmp(argv[OPTION], \
-		"-details") == 0)
-		details_compilation(data.parsing.lst, data.header);
+	if (ft_strcmp(argv[OPTION], "-r") == 0 || ft_strcmp(argv[OPTION], \
+		"-rev") == 0)
+	{
+		rev_read_file_champ(argc, argv);
+	}
 	else
 	{
-		if (manage_binary(&data) == -1)
+		if (open_input(argc, argv, &data.input) == -1)
 			return (ft_exit_clean(&data.parsing.lst, FAILURE));
+		if (parsing_input(&data) == -1)
+			return (ft_exit_clean(&data.parsing.lst, FAILURE));
+		if (program_data(&data) == -1)
+			return (ft_exit_clean(&data.parsing.lst, FAILURE));
+		if (ft_strcmp(argv[OPTION], "-d") == 0 || ft_strcmp(argv[OPTION], \
+			"-details") == 0)
+			details_compilation(data.parsing.lst, data.header);
+		else
+		{
+			if (manage_binary(&data) == -1)
+				return (ft_exit_clean(&data.parsing.lst, FAILURE));
+		}
+		ft_exit_clean(&data.parsing.lst, SUCCESS);
 	}
-	ft_exit_clean(&data.parsing.lst, SUCCESS);
 	return (0);
 }
