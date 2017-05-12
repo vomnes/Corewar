@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 15:42:46 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/12 11:41:55 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "../../libft/includes/get_next_line.h"
 # include "../../shared_files/op.h"
 
-#define FILE argc - 1
-#define OPTION argc - 2
+# define FILE argc - 1
+# define OPTION argc - 2
 
 # define REG_OCTET 1
 # define IND_OCTET 2
@@ -92,6 +92,7 @@ t_input *input_data);
 int							create_binary_file(t_input input);
 
 int							parsing_input(t_data *data);
+void						init_struct_parsing(t_parsing *parsing);
 char						*ft_strtrim_comment(char *s, char comment_char);
 int							ft_isprint_nospace(int c);
 void						check_header_content(const char *cmd_string, \
@@ -125,8 +126,10 @@ int							write_binary(t_instructions **lst, \
 t_output *binary_file);
 int							generate_binary_code(t_data *data);
 
-void		ft_display_hex_octet(unsigned long long int nb, int nb_octet);
-void		details_compilation(t_instructions *lst, header_t header);
+void						ft_display_hex_octet(unsigned long long int nb, \
+int nb_octet);
+void						details_compilation(t_instructions *lst, \
+header_t header);
 
 void						print_instructions_list(t_instructions *lst);
 void						delete_lst_instructions(t_instructions *lst);

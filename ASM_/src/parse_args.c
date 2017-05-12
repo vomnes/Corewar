@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 13:36:54 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/11 10:31:09 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/12 11:06:23 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static int	arg_reg_parse(t_args *current, char num_arg, int num_line)
 	{
 		if (ft_isnumber_syntax(content, 0) == -1 || *content == '\0')
 		{
-			ft_dprintf(2, "Invalid number for register type [arg %d]  - Line %d\n",\
-			num_arg, num_line);
+			ft_dprintf(2, "Invalid number for register type [arg %d]  - \
+Line %d\n", num_arg, num_line);
 			return (-1);
 		}
 		current->value = ft_lltoi(content);
@@ -96,11 +96,6 @@ static int	check_each_arg(t_instructions *lst, t_instructions *check_label)
 	return (0);
 }
 
-// ft_printf(B_GREEN"---> arg = %s\n"DEF, current->content);
-// ft_printf("          Type = %d\n", current->type);
-// ft_printf("          Value = %#x | %d\n", current->value, current->value);
-// ft_printf("          Label = %s\n", current->label);
-
 /*
 ** parse_args : Check the validity of each argument (t_args) and set the
 ** argument type (0b01 - 0b10 - 0b11) for each instruction (t_instructions).
@@ -124,6 +119,3 @@ int			parse_args(t_instructions **lst)
 	}
 	return (0);
 }
-
-// ft_printf(B_BLUE"[%02d] >> %s\n"DEF, current->num_line, current->line_args);
-// print(current->arg);

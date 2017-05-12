@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 15:23:17 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 16:46:06 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/12 10:30:01 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ int				add_arg(t_args **lst_head, char *content)
 			return (-1);
 		new_node->next->next = NULL;
 	}
-	return (1);
+	return (0);
 }
