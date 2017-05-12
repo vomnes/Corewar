@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 13:03:12 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 16:38:16 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/12 11:19:04 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	check_each_arg(t_instructions *lst)
 ** 		>> r2  --> 0b01 |
 **		>> 23  --> 0b11 |--> Binary value --> 0b01111000 --> 0x78
 **		>> %34 --> 0b10 |
-**
 */
 
 int			create_param_byte(t_instructions **lst)

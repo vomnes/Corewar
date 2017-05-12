@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 17:09:41 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/11 15:28:00 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/12 11:22:10 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ limit (Max length %d)\n",\
 /*
 ** check_header_content : Check if the header is well formated and then
 ** put the name and the comment in the structure header else return an error.
-** .name "my_name"
-** .comment "my_comment" 
+** .name "my_name #my_name"
+** .comment "my_comment"
 */
 
 void		check_header_content(const char *cmd_string, \

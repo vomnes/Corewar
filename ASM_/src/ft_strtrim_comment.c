@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 13:04:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/11 16:09:15 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/12 11:21:34 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ char comment_char, char flg)
 static void	ft_delete_comment(char const *s, size_t index, \
 size_t *len, char comment_char)
 {
-	size_t i;
-	char inside_comment;
+	size_t	i;
+	char	inside_comment;
 
 	i = index;
 	inside_comment = 0;
