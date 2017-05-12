@@ -28,13 +28,19 @@ void print_memory(t_vm vm, WINDOW *window)
 	{
 		if ((color = check_pos_pc(vm, i)))
 		{
-			wattron(window, COLOR_PAIR(color));
+			wattron(window, COLOR_PAIR(color + 2));
 			wprintw(window, "%02x",vm.memory[i]);
-			wattroff(window, COLOR_PAIR(color));
+			wattroff(window, COLOR_PAIR(color + 2));
+		}
+		else if (vm.cells[i].player_no != 0)
+		{
+			wattron(window, COLOR_PAIR(vm.cells[i].player_no));
+			wprintw(window, "%02x",vm.memory[i]);
+			wattroff(window, COLOR_PAIR(vm.cells[i].player_no));
 		}
 		else
 			wprintw(window, "%02x", vm.memory[i]);
-		if ((i + 1) % 64 == 0)								// a changer pour % 64
+		if ((i + 1) % 64 == 0)
 			wprintw(window, "\n ");
 		else
 			wprintw(window, " ");
@@ -52,11 +58,11 @@ void			init_windows(WINDOW **window) // <<-- a remplacer par une structure WINDO
 	start_color();
 	init_pair(1, COLOR_RED, COLOR_BLUE);
 	init_pair(2, COLOR_YELLOW, COLOR_RED);
-	init_pair(3, COLOR_BLUE, COLOR_RED);
+	init_pair(3, COLOR_RED, COLOR_GREEN);
 	init_pair(4, COLOR_BLUE, COLOR_RED);
 	keypad(stdscr, TRUE);
 
-	*window = newwin(66, 193, 0, 0);
+	*window = newwin(64, 193, 0, 0);
 }
 
 void			display_all_windows(t_vm vm, WINDOW *window)  // <<-- a remplacer par une structure WINDOW du nombre de fenetres qu'il faut

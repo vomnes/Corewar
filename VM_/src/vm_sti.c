@@ -37,6 +37,7 @@ static void		store_register(t_process *process, t_vm *vm, int pc)
 			second_index = get_parameter(process, vm, pc, 4);
 		else
 			second_index = get_parameter(process, vm, pc, 5);
+		vm_fill_cells(vm, pc + (first_index + second_index), process->player_no);
 		vm_store_in_memory_int(vm, pc + (first_index + second_index), value);
 	}
 }

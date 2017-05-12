@@ -128,6 +128,7 @@ void					vm_fill_memory_vm(t_vm *vm);
 char					**vm_read_file_champ(char **av, t_vm *vm, int n_player);
 char					**vm_parse_line_command(char **av, t_vm *vm);
 
+void					vm_fill_cells(t_vm *vm, int pos, int player_no);
 void					print_memory_dump(t_vm vm);
 
 t_instruction			vm_read_opcode(t_vm *vm, unsigned int pc);
