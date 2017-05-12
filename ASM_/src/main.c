@@ -6,11 +6,14 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 18:34:38 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/12 11:38:51 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/12 15:22:59 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+#define SUCCESS 0
+#define FAILURE -1
 
 static int	manage_binary(t_data *data)
 {
@@ -35,20 +38,19 @@ int			main(int argc, char **argv)
 	t_data data;
 
 	if (open_input(argc, argv, &data.input) == -1)
-		return (-1);
+		return (ft_exit_clean(&data.parsing.lst, FAILURE));
 	if (parsing_input(&data) == -1)
-		return (-1);
+		return (ft_exit_clean(&data.parsing.lst, FAILURE));
 	if (program_data(&data) == -1)
-		return (-1);
+		return (ft_exit_clean(&data.parsing.lst, FAILURE));
 	if (ft_strcmp(argv[OPTION], "-d") == 0 || ft_strcmp(argv[OPTION], \
 		"-details") == 0)
 		details_compilation(data.parsing.lst, data.header);
 	else
 	{
 		if (manage_binary(&data) == -1)
-			return (-1);
+			return (ft_exit_clean(&data.parsing.lst, FAILURE));
 	}
-	// print_instructions_list(data.parsing.lst);
-	delete_lst_instructions(data.parsing.lst);
+	ft_exit_clean(&data.parsing.lst, SUCCESS);
 	return (0);
 }

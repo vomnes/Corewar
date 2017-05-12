@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/12 11:41:55 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/12 15:23:32 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,8 +131,6 @@ int nb_octet);
 void						details_compilation(t_instructions *lst, \
 header_t header);
 
-void						print_instructions_list(t_instructions *lst);
-void						delete_lst_instructions(t_instructions *lst);
-void						print(t_args *lst);
+int							ft_exit_clean(t_instructions **lst, int type);
 
 #endif
