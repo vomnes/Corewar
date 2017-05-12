@@ -10,7 +10,6 @@ SRC =	./src/main.c \
 			./src/parse_name_comment.c \
 			./src/parse_labels.c \
 			./src/add_new_instruction.c \
-			./src/list_tools.c \
 			./src/parse_opcode.c \
 			./src/op.c \
 			./src/parse_args.c \
@@ -30,7 +29,8 @@ SRC =	./src/main.c \
 			./src/ft_display_hex_octet.c \
 			./src/details_compilation.c \
 			./src/program_data.c \
-			./src/init_struct_parsing.c
+			./src/init_struct_parsing.c \
+			./src/ft_exit_clean.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -42,7 +42,6 @@ OBJ =	./obj/main.o \
 			./obj/parse_name_comment.o \
 			./obj/parse_labels.o \
 			./obj/add_new_instruction.o \
-			./obj/list_tools.o \
 			./obj/parse_opcode.o \
 			./obj/op.o \
 			./obj/parse_args.o \
@@ -62,7 +61,8 @@ OBJ =	./obj/main.o \
 			./obj/ft_display_hex_octet.o \
 			./obj/details_compilation.o \
 			./obj/program_data.o \
-			./obj/init_struct_parsing.o
+			./obj/init_struct_parsing.o \
+			./obj/ft_exit_clean.o
 
 MAKE = make
 

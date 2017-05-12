@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 12:04:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/12 10:07:03 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/12 15:00:46 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static int	check_nb_args(char **tab, int opcode, char num_line)
 		ft_dprintf(2, "Invalid parameter number for the instruction '%s' - \
 expected %d, have %d - Line %d\n",\
 		g_op_tab[opcode].name, g_op_tab[opcode].nb_args, nb_args, num_line);
+		ft_strtab_free(tab);
 		return (-1);
 	}
 	return (0);
@@ -37,7 +38,10 @@ static int	push_arg_on(t_args **lst, char **tab)
 	while (tab[index] != NULL)
 	{
 		if (add_arg(&(*lst), tab[index]) == -1)
+		{
+			ft_strtab_free(tab);
 			return (-1);
+		}
 		index++;
 	}
 	return (0);
