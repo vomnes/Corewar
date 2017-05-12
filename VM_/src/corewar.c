@@ -18,11 +18,12 @@ int main(int ac, char **av)
 	if (ac < 2)
 		return (print_usage());
 	av++;
+	vm.dumps = -1;
 	av = vm_parse_line_command(av, &vm);
 	(vm.vis == 1) ? init_windows(&window) : 1;
 	vm_init(&vm);
 	vm_fill_memory_vm(&vm);
-
+	vm_introduce_contestants(&vm);
 	ret = 1;
 	while (ret == 1)
 	{
@@ -31,9 +32,10 @@ int main(int ac, char **av)
 	}
 //	vm_print_process(vm_get_process(&vm, 1));
 	if ((winner = vm_get_player(&vm, vm.last_live_player_no)))
-		ft_printf("le joueur %d(%s) a gagne\n", winner->number, winner->name);
+		ft_printf("Contestant %d, \"%s\", has won !\n", winner->number,
+		winner->name);
 	else
-		ft_printf("Aucun joueur n'a gagne\n");
+		ft_printf("No player has won because no live was well performed\n");
 
 	// DELETE DATA
 	(vm.vis == 1) ? endwin() : 1;

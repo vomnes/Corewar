@@ -49,6 +49,20 @@ static void	vm_check_lives_and_kill(t_vm *vm)
 	vm->nb_lives_since_last_check = 0;
 }
 
+static int	vm_check_alive_processes(t_vm *vm)
+{
+	t_process	*current;
+
+	current = vm->processes;
+	while (current)
+	{
+		if (current->alive)
+			return (1);
+		current = current->next;
+	}
+	return (0);
+}
+
 /*
 **	Does one cycle in the game.
 **	Returns 1 if the game is still running after the cycle.
@@ -58,9 +72,11 @@ static void	vm_check_lives_and_kill(t_vm *vm)
 int			vm_do_one_cycle(t_vm *vm)
 {
 	static int	cycles_since_last_check = 0;
-	t_process	*current;
 
+	vm_dump_if_necessary(vm);
 	vm->cycle_nbr += 1;
+	if (vm_verbose_cycles(vm))
+		ft_printf("It is now cycle %d\n", vm->cycle_nbr);
 	cycles_since_last_check += 1;
 	vm_advance_processes_one_cycle(vm);
 	if (cycles_since_last_check >= vm->cycle_to_die)
@@ -68,19 +84,5 @@ int			vm_do_one_cycle(t_vm *vm)
 		vm_check_lives_and_kill(vm);
 		cycles_since_last_check = 0;
 	}
-	current = vm->processes;
-	while (current)
-	{
-		if (current->alive && !(vm->dumps && vm->dumps == vm->cycle_nbr))
-			return (1);
-		current = current->next;
-	}
-	if (vm->dumps > -1 && vm->dumps == vm->cycle_nbr)
-	{
-		print_memory_dump(*vm);
-		// delete DATA
-		exit(0);
-	}
-
-	return (0);
+	return (vm_check_alive_processes(vm));
 }

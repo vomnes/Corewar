@@ -5,9 +5,12 @@ OBJ_PATH = ./obj
 SRC_PATH = ./src
 INC_PATH = ./includes
 
- 
+
 SRC_FILES =	corewar.c \
 			vm_init.c \
+			vm_introduction.c \
+			vm_verbose.c \
+			vm_dump.c \
 			vm_cycles.c \
 			vm_process.c \
 			vm_advance_pc.c \

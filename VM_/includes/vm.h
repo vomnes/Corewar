@@ -28,6 +28,14 @@ typedef struct			s_live
 	struct s_live		*next;
 }						t_live;
 
+typedef struct			s_cell
+{
+	int					player_no;
+	int					present;
+	int					recent;
+	int					live;
+}						t_cell;
+
 typedef struct			s_vm
 {
 	unsigned char		memory[MEM_SIZE];
@@ -38,9 +46,10 @@ typedef struct			s_vm
 	int					last_live_player_no;
 	int					dumps;
 	int					vis;
+	int					verbose;
 	int					cycle_nbr;
 	int					cycle_to_die;
-	int					vis;
+	int					speed;
 }						t_vm;
 
 typedef struct			s_instruction
@@ -72,6 +81,15 @@ void					init_windows(WINDOW **window);
 void					display_all_windows(t_vm vm, WINDOW *window);
 
 void					vm_init(t_vm *vm);
+void					vm_introduce_contestants(t_vm *vm);
+
+int						vm_verbose_lives(t_vm *vm);
+int						vm_verbose_cycles(t_vm *vm);
+int						vm_verbose_operations(t_vm *vm);
+int						vm_verbose_deaths(t_vm *vm);
+int						vm_verbose_pc(t_vm *vm);
+
+void					vm_dump_if_necessary(t_vm *vm);
 
 t_process				*vm_create_process(t_vm *vm);
 void 					vm_copy_process(t_process *parent, t_process *child);
@@ -88,7 +106,7 @@ long long				vm_get_parameters_xorand(t_process *process, t_vm *vm,
 unsigned int			vm_n_bytes_to_uint(unsigned char *ptr, size_t n);
 long long 				vm_read_memory_int(t_vm *vm, int index, int size);
 short					vm_read_memory_short(t_vm *vm, int index);
-void					vm_store_in_memory_int(t_vm *vm, int index, long long 
+void					vm_store_in_memory_int(t_vm *vm, int index, long long
 																		value);
 void					vm_store_in_memory_short(t_vm *vm, int index,
 						short value);

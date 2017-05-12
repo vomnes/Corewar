@@ -11,8 +11,9 @@ void		vm_live(t_process *process, t_vm *vm)
 	player= vm_get_player(vm, player_nb);
 	if (player)
 	{
-	//	ft_printf("un processus dit que le joueur %d(%s) est en vie\n",
-//		player_nb, player->name);
+		if (vm_verbose_lives(vm))
+			ft_printf("Player %d (%s) is said to be alive\n",
+		player_nb, player->name);
 		vm->last_live_player_no = player_nb;
 	}
 	vm->nb_lives_since_last_check += 1;
