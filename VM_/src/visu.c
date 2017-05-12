@@ -1,6 +1,6 @@
 #include "vm.h"
 
-
+/*
 static int		check_pos_pc(t_vm vm, int i)
 {
 	t_process *process;
@@ -16,7 +16,7 @@ static int		check_pos_pc(t_vm vm, int i)
 	}
 	return (0);
 }
-
+*/
 void print_memory(t_vm vm, WINDOW *window)
 {
 	int i;
@@ -44,7 +44,7 @@ void print_memory(t_vm vm, WINDOW *window)
 		{
 			wprintw(window, "\n ");
 			j++;
-		}	
+		}
 		else
 			wprintw(window, " ");
 		i++;

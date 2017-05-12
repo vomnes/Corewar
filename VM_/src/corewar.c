@@ -16,6 +16,7 @@ int main(int ac, char **av)
 	if (ac < 2)
 		return (print_usage());
 	av++;
+	vm.dumps = -1;
 	av = vm_parse_line_command(av, &vm);
 	vm_init(&vm);
 	vm_fill_memory_vm(&vm);
@@ -24,9 +25,9 @@ int main(int ac, char **av)
 	while (ret == 1)
 	{
 		ret = vm_do_one_cycle(&vm);
-		// usleep(50000);
-		// ft_putstr("\033[H\033[2J");
-		// print_memory_dump(vm);
+		usleep(50000);
+		ft_putstr("\033[H\033[2J");
+		print_memory_dump(vm);
 	}
 //	print_memory_dump(vm);
 //	vm_print_process(vm_get_process(&vm, 1));
