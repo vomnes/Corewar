@@ -1,8 +1,8 @@
 #include "vm.h"
 
-static short		get_parameter(t_process *process, t_vm *vm, int pc, int i)
+static int			get_parameter(t_process *process, t_vm *vm, int pc, int i)
 {
-	short			parameter;
+	int				parameter;
 	int				no_register;
 
 	parameter = 0;
@@ -17,16 +17,16 @@ static short		get_parameter(t_process *process, t_vm *vm, int pc, int i)
 			parameter = vm_read_register(process->registers[no_register]);
 	}
 	else
-		parameter = vm_read_memory_short(vm, MOD(pc + i));
+		parameter = vm_read_memory_int(vm, MOD(pc + i), 2);
 	return (parameter);
 }
 
 static void		store_register(t_process *process, t_vm *vm, int pc)
 {
 	short		no_register;
-	short		first_index;
-	short		second_index;
-	int			value;
+	int		first_index;
+	int		second_index;
+	long long			value;
 
 	no_register = vm->memory[MOD(pc + 2)];
 	if (no_register > 0 && no_register <= REG_NUMBER)

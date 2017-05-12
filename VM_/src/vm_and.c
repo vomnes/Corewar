@@ -1,9 +1,9 @@
 #include "vm.h"
 
-int			vm_get_parameters_xorand(t_process *process, t_vm *vm, char type,\
+long long		vm_get_parameters_xorand(t_process *process, t_vm *vm, char type,\
 									int *pc)
 {
-	int		parameter;
+	long long	parameter;
 	int		no_register;
 
 	parameter = 0;
@@ -24,18 +24,18 @@ int			vm_get_parameters_xorand(t_process *process, t_vm *vm, char type,\
 	}
 	else if (type == T_DIR)
 	{
-		parameter = vm_read_memory_int(vm, *pc);
+		parameter = vm_read_memory_int(vm, *pc, 4);
 		*pc += 4;
 	}
 	return (parameter);
 }
 
-void		vm_and(t_process *process, t_vm *vm)
+void			vm_and(t_process *process, t_vm *vm)
 {
-	int		pc;
-	int		first_param;
-	int		second_param;
-	int		third_param;
+	int			pc;
+	long long	first_param;
+	long long	second_param;
+	long long	third_param;
 
 	process->carry = 1;
 	pc = vm_read_register(process->pc);

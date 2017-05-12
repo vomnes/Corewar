@@ -1,8 +1,8 @@
 #include "vm.h"
 
-int		vm_read_register(unsigned char reg[REG_SIZE])
+long long		vm_read_register(unsigned char reg[REG_SIZE])
 {
-	int	value;
+	long long	value;
 	int	mask;
 	int	i;
 
@@ -18,7 +18,7 @@ int		vm_read_register(unsigned char reg[REG_SIZE])
 	return (value);
 }
 
-void	vm_store_in_register(unsigned char (*reg)[REG_SIZE], int value)
+void	vm_store_in_register(unsigned char (*reg)[REG_SIZE], long long value)
 {
 	int				i;
 

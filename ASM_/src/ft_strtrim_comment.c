@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 13:04:32 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/11 15:29:10 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/11 16:09:15 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,5 @@ char		*ft_strtrim_comment(char *s, char comment_char)
 	(new_len <= 0) ? new_len = 0 : (void)new_len;
 	if (!(new_str = ft_strsub(s, index, new_len)))
 		return (NULL);
-	ft_putendl(new_str);
 	return (new_str);
 }

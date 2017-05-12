@@ -1,11 +1,11 @@
 #include "vm.h"
 
-void		vm_or(t_process *process, t_vm *vm)
+void			vm_or(t_process *process, t_vm *vm)
 {
-	int		pc;
-	int		first_param;
-	int		second_param;
-	int		third_param;
+	int			pc;
+	long long	first_param;
+	long long	second_param;
+	long long	third_param;
 
 	process->carry = 1;
 	pc = vm_read_register(process->pc);

@@ -1,12 +1,12 @@
 #include "vm.h"
 
-int			vm_decode_index(t_vm *vm, t_process *process, int head)
+long long			vm_decode_index(t_vm *vm, t_process *process, int head)
 {
-	short	address;
+	int		address;
 	int		pc;
 
-	address = vm_read_memory_short(vm, head);
+	address = vm_read_memory_int(vm, head, 2);
 	address = address % IDX_MOD;
 	pc = vm_read_register(process->pc);
-	return (vm_read_memory_int(vm, MOD(pc + address)));
+	return (vm_read_memory_int(vm, MOD(pc + address), 4));
 }
