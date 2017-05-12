@@ -2,9 +2,9 @@
 
 static void	sub_registers(t_process *process, t_vm *vm, int pc)
 {
-	long long	first_param;
-	long long	second_param;
-	long long	third_param;
+	int			first_param;
+	int			second_param;
+	int			third_param;
 
 	first_param = vm->memory[MOD(pc + 2)];
 	if (first_param > 0 && first_param <= REG_NUMBER)

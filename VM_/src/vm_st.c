@@ -3,8 +3,8 @@
 static void		get_parameters(t_process *process, t_vm *vm, int pc)
 {
 	int			first_param;
-	long long	second_param;
-	long long	value;
+	int			second_param;
+	int			value;
 
 	first_param = vm->memory[MOD(pc + 2)];
 	second_param = 0;

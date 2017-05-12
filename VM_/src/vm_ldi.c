@@ -1,6 +1,6 @@
 #include "vm.h"
 
-static long long	get_param(t_process *process, t_vm *vm, int *index,
+static short	get_param(t_process *process, t_vm *vm, int *index,
 						t_arg_type type)
 {
 	short			indirection;
@@ -33,8 +33,8 @@ static long long	get_param(t_process *process, t_vm *vm, int *index,
 void			vm_ldi(t_process *process, t_vm *vm)
 {
 	int				index;
-	int			param1;
-	int			param2;
+	short			param1;
+	short			param2;
 	unsigned char	reg_number;
 
 	index = vm_read_register(process->pc) + 2;

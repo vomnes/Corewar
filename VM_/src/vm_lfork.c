@@ -3,7 +3,7 @@
 void	vm_lfork(t_process *process, t_vm *vm)
 {
 	int			pc;
-	int			indirection;
+	short		indirection;
 	t_process	*duplicate;
 
 	pc = vm_read_register(process->pc);

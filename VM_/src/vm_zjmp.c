@@ -2,7 +2,7 @@
 
 void	vm_zjmp(t_process *process, t_vm *vm)
 {
-	int	indirection;
+	short	indirection;
 	int	pc;
 
 	pc = vm_read_register(process->pc);
