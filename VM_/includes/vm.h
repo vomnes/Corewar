@@ -69,6 +69,7 @@ struct					s_process
 	int					no;
 	int					player_no;
 	int					nb_lives;
+	int					last_live_cycle;
 	int					alive;
 	unsigned char		registers[REG_NUMBER + 1][REG_SIZE];
 	unsigned char		pc[REG_SIZE];
