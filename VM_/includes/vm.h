@@ -39,6 +39,7 @@ typedef struct			s_cell
 typedef struct			s_vm
 {
 	unsigned char		memory[MEM_SIZE];
+	t_cell				cells[MEM_SIZE];
 	t_player			players[MAX_PLAYERS + 1];
 	int					nb_players;
 	t_process			*processes;
