@@ -37,5 +37,5 @@ void				vm_lld(t_process *process, t_vm *vm)
 		get_parameters(vm, process, pc, 4);
 	else
 		process->carry = 0;
-	vm_advance_pc(process);
+	vm_advance_pc(process, vm);
 }

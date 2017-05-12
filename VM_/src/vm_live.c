@@ -18,5 +18,5 @@ void		vm_live(t_process *process, t_vm *vm)
 	}
 	vm->nb_lives_since_last_check += 1;
 	process->nb_lives += 1;
-	vm_store_in_register(&process->pc, MOD(pc + 5));
+	vm_advance_pc(process, vm);
 }

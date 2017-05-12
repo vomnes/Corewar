@@ -1,18 +1,5 @@
 #include "vm.h"
 
-static void	advance_pc(t_process *process, int pc)
-{
-	if (process->instruction.first_type == T_REG)
-		vm_store_in_register(&process->pc, MOD(pc + 3));
-	else if (process->instruction.first_type == T_DIR)
-		vm_store_in_register(&process->pc, MOD(pc + 6));
-	else if (process->instruction.first_type == T_IND)
-		vm_store_in_register(&process->pc, MOD(pc + 4));
-	else
-		vm_store_in_register(&process->pc, MOD(pc + 2));
-}
-
-
 void		vm_aff(t_process *process, t_vm *vm)
 {
 	int				character;
@@ -30,5 +17,5 @@ void		vm_aff(t_process *process, t_vm *vm)
 			ft_printf("%c", (char)character);
 		}
 	}
-	advance_pc(process, pc);
+	vm_advance_pc(process, vm);
 }

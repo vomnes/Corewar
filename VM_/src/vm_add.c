@@ -33,5 +33,5 @@ void		vm_add(t_process *process, t_vm *vm)
 	pc = vm_read_register(process->pc);
 	if (vm_check_parameter_types(process->instruction) == 1)
 		add_registers(process, vm, pc);
-	vm_advance_pc(process);
+	vm_advance_pc(process, vm);
 }

@@ -36,5 +36,5 @@ void			vm_st(t_process *process, t_vm *vm)
 	pc = vm_read_register(process->pc);
 	if (process->instruction.first_type == T_REG)
 		get_parameters(process, vm, pc);
-	vm_advance_pc(process);
+	vm_advance_pc(process, vm);
 }

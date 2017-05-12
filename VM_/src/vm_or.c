@@ -25,5 +25,5 @@ void			vm_or(t_process *process, t_vm *vm)
 	}
 	else
 		process->carry = 0;
-	vm_advance_pc(process);
+	vm_advance_pc(process, vm);
 }

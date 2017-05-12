@@ -10,5 +10,5 @@ void	vm_zjmp(t_process *process, t_vm *vm)
 	if (process->carry == 1)
 		vm_store_in_register(&process->pc, MOD(pc + indirection % IDX_MOD));
 	else
-		vm_store_in_register(&process->pc, MOD(pc + 3));
+		vm_advance_pc(process, vm);
 }

@@ -33,7 +33,7 @@ static void	print_advancement(t_vm *vm, int pc1, int advancement)
 	int i;
 
 	i = 1;
-	while (i < advancement)
+	while (i <= advancement)
 	{
 		ft_printf("%.2x ", vm->memory[pc1]);
 		pc1 = MOD(pc1 + 1);
@@ -41,7 +41,7 @@ static void	print_advancement(t_vm *vm, int pc1, int advancement)
 	}
 }
 
-int			vm_advance_pc(t_vm *vm, t_process *process)
+int			vm_advance_pc(t_process *process, t_vm *vm)
 {
 	int	pc1;
 	int	pc2;
@@ -53,8 +53,9 @@ int			vm_advance_pc(t_vm *vm, t_process *process)
 	vm_store_in_register(&process->pc, pc2);
 	if (vm_verbose_pc(vm))
 	{
-		ft_printf("ADV %d (%#.4x -> %#.4x) ", advancement, pc1, pc2);
+		ft_printf("ADV %d (0x%04x -> 0x%04x) ", advancement, pc1, pc2);
 		print_advancement(vm, pc1, advancement);
+		ft_printf("\n");
 	}
 	return (pc2);
 }

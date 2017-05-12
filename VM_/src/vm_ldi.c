@@ -53,5 +53,5 @@ void			vm_ldi(t_process *process, t_vm *vm)
 							MOD((param1 + param2) % IDX_MOD)));
 		}
 	}
-	vm_advance_pc(process);
+	vm_advance_pc(process, vm);
 }
