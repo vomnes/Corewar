@@ -1,6 +1,6 @@
 #include "vm.h"
 
-static short			get_param(t_process *process, t_vm *vm, long long *index,
+static short			get_param(t_process *process, t_vm *vm, int *index,
 						t_arg_type type)
 {
 	short				indirection;
