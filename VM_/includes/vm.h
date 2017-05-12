@@ -96,12 +96,12 @@ t_process				*vm_create_process(t_vm *vm);
 void 					vm_copy_process(t_process *parent, t_process *child);
 t_process				*vm_get_process(t_vm *vm, int no);
 void					vm_print_process(t_process *process);
-int						vm_advance_pc(t_process *process);
+int						vm_advance_pc(t_vm *vm, t_process *process);
 int						vm_do_one_cycle(t_vm *vm);
 
 void					vm_decode_parameter_byte(t_process *process, t_vm *vm);
 int						vm_check_parameter_types(t_instruction instruction);
-int				vm_get_parameters_xorand(t_process *process, t_vm *vm,
+int						vm_get_parameters_xorand(t_process *process, t_vm *vm,
 						char type, int *pc);
 
 unsigned int			vm_n_bytes_to_uint(unsigned char *ptr, size_t n);
