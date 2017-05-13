@@ -53,6 +53,13 @@ typedef struct			s_vm
 	int					speed;
 }						t_vm;
 
+typedef union			u_parameter
+{
+	unsigned char		uch;
+	int					in;
+	short				sh;
+}						t_parameter;
+
 typedef struct			s_instruction
 {
 	unsigned char		opcode;
@@ -62,6 +69,7 @@ typedef struct			s_instruction
 	t_arg_type			second_type;
 	t_arg_type			third_type;
 	t_arg_type			args[MAX_ARGS_NUMBER];
+	t_parameter			params[MAX_ARGS_NUMBER];
 }						t_instruction;
 
 struct					s_process
@@ -104,6 +112,7 @@ void					vm_decode_parameter_byte(t_process *process, t_vm *vm);
 int						vm_check_parameter_types(t_instruction instruction);
 int						vm_get_parameters_xorand(t_process *process, t_vm *vm,
 						char type, int *pc);
+int						vm_get_parameters(t_process *process, t_vm *vm);
 
 unsigned int			vm_n_bytes_to_uint(unsigned char *ptr, size_t n);
 int		 				vm_read_memory_int(t_vm *vm, int index);
@@ -117,6 +126,7 @@ int						vm_read_register(unsigned char reg[REG_SIZE]);
 void					vm_store_in_register(unsigned char (*reg)[REG_SIZE],
 						int value);
 void					vm_print_register(unsigned char reg[REG_SIZE]);
+int						vm_valid_registers(t_instruction instruction);
 
 
 t_player 				*vm_get_player(t_vm *vm, int player_nb);
