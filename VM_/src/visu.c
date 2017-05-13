@@ -1,5 +1,5 @@
 #include "vm.h"
-/*
+
 static int		check_pos_pc(t_vm vm, int i)
 {
 	t_process *process;
@@ -15,7 +15,7 @@ static int		check_pos_pc(t_vm vm, int i)
 	}
 	return (0);
 }
-*/
+
 void		print_color_w(t_vm vm, WINDOW *window, int color, int pos)
 {
 	wattron(window, COLOR_PAIR(color));
@@ -25,7 +25,7 @@ void		print_color_w(t_vm vm, WINDOW *window, int color, int pos)
 
 void		check_cells(t_vm *vm, WINDOW *window, int pos)
 {
-	//int		color;
+	int		color;
 
 	if ((color = check_pos_pc(*vm, pos)))
 	//if (vm->cells[pos].present != 0)
@@ -60,12 +60,60 @@ void		print_memory(t_vm *vm, WINDOW *window)
 	wrefresh(window);
 }
 
-void			print_info(WINDOW *window)
+static void		print_players(t_vm *vm, WINDOW *window)
 {
+	int i;
+	int x;
+
+	i = -1;
+	int y;
+	wmove(window, 8, 15);
+	while (++i <= MAX_PLAYERS)
+		if (vm->players[i].number != 0)
+		{
+			wprintw(window, "Player %d : ", vm->players[i].number);
+			wattron(window, COLOR_PAIR(vm->players[i].number));
+			wprintw(window, "%s", vm->players[i].name);
+			wattroff(window, COLOR_PAIR(vm->players[i].number));
+			getyx(window, y, x);
+			wmove(window, y + 4, 15);
+		}
+}
+
+
+void			print_info(t_vm *vm, WINDOW *window)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+// Start & Pause
+	wmove(window, 1, 20);
+	if (vm->pause == 1)
+		wprintw(window, "** PAUSED **");
+	else
+		wprintw(window, "** RUNNING **");
+
+//Cycles
+	wmove(window, 3 , 2);
+	wprintw(window, "Cycles : \t%d", vm->cycle_nbr);
+
+//Speed_frame
+	wmove(window, 4, 42);
+	wprintw(window, "Speed : x%d", vm->speed);
+
+//Processes
+	wmove(window, 5 , 2);
+	if (vm->processes->prev)
+		wprintw(window, "Processes : \t%d", vm->processes->prev->no);
+	else
+		wprintw(window, "Processes : \t%d", vm->nb_players);
+	print_players(vm, window);
 	wrefresh(window);
 }
 
-void			init_windows(WINDOW **window) // <<-- a remplacer par une structure WINDOW du nombre de fenetres qu'il faut
+void			init_windows(WINDOW **windows)
 {
 	initscr();
 	start_color();
@@ -77,9 +125,11 @@ void			init_windows(WINDOW **window) // <<-- a remplacer par une structure WINDO
 	init_pair(6, COLOR_GREEN, COLOR_BLACK);
 	keypad(stdscr, TRUE);
 
-	window[1] = newwin(64, 193, 0, 0);
-	window[2] = newwin(70, 60, 0, 194);
-	box(window[2], 0,0);
+	windows[1] = newwin(64, 193, 0, 0);
+//	windows[2] = newwin(70, 60, 0, 194);
+	windows[2] = newwin(70, 60, 0, 0);
+	
+	box(windows[2], 0,0);
 }
 
 int			check_entry_keys(t_vm *vm)
@@ -103,7 +153,7 @@ void			display_all_windows(t_vm *vm, WINDOW *window[4])  // <<-- a remplacer par
 	int entry;
 
 	entry = check_entry_keys(vm);
-	print_memory(vm, window[1]);
-	print_info(window[2]);
-	//usleep(2000);
+//	print_memory(vm, window[1]);
+	print_info(vm, window[2]);
+	usleep(2000);
 }
