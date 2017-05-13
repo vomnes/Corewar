@@ -52,3 +52,49 @@ int				vm_check_parameter_types(t_instruction instruction)
 	}
 	return (1);
 }
+
+static int			vm_get_one_parameter(t_process *process, t_vm *vm, int head,
+					int i)
+{
+	if (process->instruction.args[i] == T_REG)
+	{
+		process->instruction.params[i].uch = vm->memory[head];
+		return (head + 1);
+	}
+	else if (process->instruction.args[i] == T_DIR)
+	{
+		if (g_op_tab[process->instruction.opcode].has_index)
+		{
+			process->instruction.params[i].sh = vm_read_memory_short(vm, head);
+			return (head + 2);
+		}
+		else
+		{
+			process->instruction.params[i].in = vm_read_memory_int(vm, head);
+			return (head + 4);
+		}
+	}
+	else if (process->instruction.args[i] == T_IND)
+	{
+		process->instruction.params[i].sh = vm_read_memory_short(vm, head);
+		return (head + 2);
+	}
+	return (head);
+}
+
+int					vm_get_parameters(t_process *process, t_vm *vm)
+{
+	int	i;
+	int head;
+
+	head = MOD(vm_read_register(process->pc) + 1);
+	if (g_op_tab[process->instruction.opcode].param_byte)
+		head = MOD(head + 1);
+	i = 0;
+	while (i < g_op_tab[process->instruction.opcode].nb_args)
+	{
+		head = MOD(head + vm_get_one_parameter(process, vm, head, i));
+		i++;
+	}
+	return (1);
+}

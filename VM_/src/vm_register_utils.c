@@ -47,3 +47,19 @@ void	vm_print_register(unsigned char reg[REG_SIZE])
 		i++;
 	}
 }
+
+int		vm_valid_registers(t_instruction instruction)
+{
+	int i;
+
+	i = 0;
+	while (i < g_op_tab[instruction.opcode].nb_args)
+	{
+		if (instruction.args[i] == T_REG)
+			if (instruction.params[i].uch < 1 ||
+				instruction.params[i].uch > REG_NUMBER)
+				return (0);
+		i++;
+	}
+	return (1);
+}
