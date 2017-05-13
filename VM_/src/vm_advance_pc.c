@@ -57,5 +57,7 @@ int			vm_advance_pc(t_process *process, t_vm *vm)
 		print_advancement(vm, pc1, advancement);
 		ft_printf("\n");
 	}
+	vm->cells[pc1].present = 0;
+	vm->cells[pc2].present = process->player_no;
 	return (pc2);
 }

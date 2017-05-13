@@ -28,7 +28,7 @@ int main(int ac, char **av)
 	ret = 1;
 	while (ret == 1)
 	{
-		(ret == 1 && vm.pause != 1) ? vm_do_one_cycle(&vm) : 1;
+		(ret == 1 && vm.pause != 1) ? (ret = vm_do_one_cycle(&vm)) : 1;
 		(vm.vis == 1) ? display_all_windows(&vm, windows) : 1;
 	}
 //	vm_print_process(vm_get_process(&vm, 1));

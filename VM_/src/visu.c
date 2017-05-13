@@ -1,5 +1,5 @@
 #include "vm.h"
-
+/*
 static int		check_pos_pc(t_vm vm, int i)
 {
 	t_process *process;
@@ -15,7 +15,7 @@ static int		check_pos_pc(t_vm vm, int i)
 	}
 	return (0);
 }
-
+*/
 void		print_color_w(t_vm vm, WINDOW *window, int color, int pos)
 {
 	wattron(window, COLOR_PAIR(color));
@@ -25,10 +25,11 @@ void		print_color_w(t_vm vm, WINDOW *window, int color, int pos)
 
 void		check_cells(t_vm *vm, WINDOW *window, int pos)
 {
-	int		color;
+	//int		color;
 
 	if ((color = check_pos_pc(*vm, pos)))
-		print_color_w(*vm, window, color + 2, pos);
+	//if (vm->cells[pos].present != 0)
+		print_color_w(*vm, window, vm->cells[pos].present + 2, pos);
 	else if (vm->cells[pos].recent == 1 && vm->cells[pos].count-- > 0)
 		print_color_w(*vm, window, 5, pos);
 	else if (vm->cells[pos].player_no != 0)
