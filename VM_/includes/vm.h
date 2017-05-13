@@ -34,6 +34,7 @@ typedef struct			s_cell
 	int					present;
 	int					recent;
 	int					live;
+	int					count;
 }						t_cell;
 
 typedef struct			s_vm
@@ -51,6 +52,7 @@ typedef struct			s_vm
 	int					cycle_nbr;
 	int					cycle_to_die;
 	int					speed;
+	int					pause;
 }						t_vm;
 
 typedef struct			s_instruction
@@ -80,7 +82,7 @@ struct					s_process
 };
 
 void					init_windows(WINDOW **window);
-void					display_all_windows(t_vm vm, WINDOW *window);
+void					display_all_windows(t_vm *vm, WINDOW *window[4]);
 
 void					vm_init(t_vm *vm);
 void					vm_introduce_contestants(t_vm *vm);
