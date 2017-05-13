@@ -16,57 +16,93 @@ static int		check_pos_pc(t_vm vm, int i)
 	return (0);
 }
 
-void print_memory(t_vm vm, WINDOW *window)
+void		print_color_w(t_vm vm, WINDOW *window, int color, int pos)
 {
-	int i;
-	int color;
+	wattron(window, COLOR_PAIR(color));
+	wprintw(window, "%02x",vm.memory[pos]);
+	wattroff(window, COLOR_PAIR(color));
+}
 
-	i = 0;
+void		check_cells(t_vm *vm, WINDOW *window, int pos)
+{
+	int		color;
+
+	if ((color = check_pos_pc(*vm, pos)))
+		print_color_w(*vm, window, color + 2, pos);
+	else if (vm->cells[pos].recent == 1 && vm->cells[pos].count-- > 0)
+		print_color_w(*vm, window, 5, pos);
+	else if (vm->cells[pos].player_no != 0)
+		print_color_w(*vm, window, vm->cells[pos].player_no, pos);
+	else
+		wprintw(window, "%02x", vm->memory[pos]);
+}
+
+void		print_memory(t_vm *vm, WINDOW *window)
+{
+	static int count = 0;
+	int		i;
+	int		color;
+
+	i = -1;
 	color = 0;
 	wmove(window, 1, 1);
-	while (i < MEM_SIZE)
+	if (count++ < vm->speed || vm->pause == 1)
+		return ;
+	else
+		count = 0;
+	while (++i < MEM_SIZE)
 	{
-		if ((color = check_pos_pc(vm, i)))
-		{
-			wattron(window, COLOR_PAIR(color + 2));
-			wprintw(window, "%02x",vm.memory[i]);
-			wattroff(window, COLOR_PAIR(color + 2));
-		}
-		else if (vm.cells[i].player_no != 0)
-		{
-			wattron(window, COLOR_PAIR(vm.cells[i].player_no));
-			wprintw(window, "%02x",vm.memory[i]);
-			wattroff(window, COLOR_PAIR(vm.cells[i].player_no));
-		}
-		else
-			wprintw(window, "%02x", vm.memory[i]);
-		if ((i + 1) % 64 == 0)
-			wprintw(window, "\n ");
-		else
-			wprintw(window, " ");
-		i++;
+		check_cells(vm, window, i);
+		((i + 1) % 64 == 0) ? wprintw(window, "\n ") : wprintw(window, " ");
 	}
 	box(window, 0, 0);
-	refresh();
 	wrefresh(window);
 }
 
+void			print_info(WINDOW *window)
+{
+	wrefresh(window);
+}
 
 void			init_windows(WINDOW **window) // <<-- a remplacer par une structure WINDOW du nombre de fenetres qu'il faut
 {
 	initscr();
 	start_color();
-	init_pair(1, COLOR_RED, COLOR_BLUE);
-	init_pair(2, COLOR_YELLOW, COLOR_RED);
-	init_pair(3, COLOR_RED, COLOR_GREEN);
+	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(3, COLOR_RED, COLOR_BLUE);
 	init_pair(4, COLOR_BLUE, COLOR_RED);
+	init_pair(5, COLOR_BLACK, COLOR_WHITE);
+	init_pair(6, COLOR_GREEN, COLOR_BLACK);
 	keypad(stdscr, TRUE);
 
-	*window = newwin(64, 193, 0, 0);
+	window[1] = newwin(64, 193, 0, 0);
+	window[2] = newwin(70, 60, 0, 194);
+	box(window[2], 0,0);
 }
 
-void			display_all_windows(t_vm vm, WINDOW *window)  // <<-- a remplacer par une structure WINDOW du nombre de fenetres qu'il faut
+int			check_entry_keys(t_vm *vm)
 {
-	print_memory(vm, window);
-	usleep(5000);
+	int entry;
+
+	entry = 0;
+	nodelay(stdscr, 1);
+	entry = getch();
+	noecho();
+	nodelay(stdscr, 0);
+	(entry == '+') ? vm->speed += 10 : 1;
+	(entry == '-' && vm->speed > 0) ? vm->speed -= 10 : 1;
+	if (entry == 32)
+		(vm->pause == 1) ? (vm->pause = 0) : (vm->pause = 1);
+	return (entry);
+}
+
+void			display_all_windows(t_vm *vm, WINDOW *window[4])  // <<-- a remplacer par une structure WINDOW du nombre de fenetres qu'il faut
+{
+	int entry;
+
+	entry = check_entry_keys(vm);
+	print_memory(vm, window[1]);
+	print_info(window[2]);
+	//usleep(2000);
 }

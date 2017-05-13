@@ -6,7 +6,11 @@ void			vm_fill_cells(t_vm *vm, int pos, int player_no)
 
 	i = -1;
 	while (++i < 4)
+	{
 		vm->cells[MOD(pos + i)].player_no = player_no;
+		vm->cells[MOD(pos + i)].recent = 1;
+		vm->cells[MOD(pos + i)].count = 150;
+	}
 }
 
 void			vm_fill_memory(t_vm *vm, int no_player, size_t pos)
