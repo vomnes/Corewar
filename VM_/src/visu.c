@@ -81,6 +81,27 @@ static void		print_players(t_vm *vm, WINDOW *window)
 }
 
 
+void			print_heart(t_vm *vm, WINDOW *window)
+{
+	char *str[16];
+
+	str[0] = "     OOOOOOOO:       OOOOOOOO!";
+	str[1] = " oOOOO!!!!;;;;O    OO.......:;!O";
+	str[2] = "'OOO!!!;;;;;;;;O  O.......:   ;!O";
+	str[3] = "OOO!!!!;;::::::.OO........:    ;!O";
+	str[4] = "OO!!!!;;:::::..............:   ;!O";
+	str[5] = "OOO!!!;::::::..............:   ;!O";
+	str[6] = " OO!!;;::::::.............:   ;!O";
+	str[7] = "  OO!;;::::::.............::::!O";
+	str[8] = "    O!!;::::::............:::O";
+	str[9] = "      !!!;:::::..........ooO";
+	str[10] = "         !!;:::::.......O";
+	str[11] = "            ;;::::.....O";
+	str[12] = "              :::..O";
+	str[13] = "                ::.";
+	str[14] = "                 :";
+}
+
 void			print_info(t_vm *vm, WINDOW *window)
 {
 	int x;
@@ -126,8 +147,8 @@ void			init_windows(WINDOW **windows)
 	keypad(stdscr, TRUE);
 
 	windows[1] = newwin(64, 193, 0, 0);
-//	windows[2] = newwin(70, 60, 0, 194);
-	windows[2] = newwin(70, 60, 0, 0);
+	windows[2] = newwin(64, 60, 0, 194);
+//	windows[2] = newwin(70, 60, 0, 0);
 	
 	box(windows[2], 0,0);
 }
@@ -153,7 +174,6 @@ void			display_all_windows(t_vm *vm, WINDOW *window[4])  // <<-- a remplacer par
 	int entry;
 
 	entry = check_entry_keys(vm);
-//	print_memory(vm, window[1]);
+	print_memory(vm, window[1]);
 	print_info(vm, window[2]);
-	usleep(2000);
 }
