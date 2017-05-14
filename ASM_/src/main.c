@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 18:34:38 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/12 19:00:23 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/14 14:54:15 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ int			main(int argc, char **argv)
 
 	if (ft_strcmp(argv[OPTION], "-r") == 0 || ft_strcmp(argv[OPTION], \
 		"-rev") == 0)
-	{
-		rev_read_file_champ(argc, argv);
-	}
+		rev_process_reverse_binary(argc, argv);
 	else
 	{
 		if (open_input(argc, argv, &data.input) == -1)
