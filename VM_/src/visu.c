@@ -60,31 +60,15 @@ void		print_memory(t_vm *vm, WINDOW *window)
 	wrefresh(window);
 }
 
-static void		print_players(t_vm *vm, WINDOW *window)
-{
-	int i;
-	int x;
-
-	i = -1;
-	int y;
-	wmove(window, 8, 15);
-	while (++i <= MAX_PLAYERS)
-		if (vm->players[i].number != 0)
-		{
-			wprintw(window, "Player %d : ", vm->players[i].number);
-			wattron(window, COLOR_PAIR(vm->players[i].number));
-			wprintw(window, "%s", vm->players[i].name);
-			wattroff(window, COLOR_PAIR(vm->players[i].number));
-			getyx(window, y, x);
-			wmove(window, y + 4, 15);
-		}
-}
-
-
-void			print_heart(t_vm *vm, WINDOW *window)
+void			print_heart(WINDOW *window, int pos)
 {
 	char *str[16];
+	int		x;
+	int		y;
+	int		count;
 
+	count = -1;
+	getyx(window, y, x);
 	str[0] = "     OOOOOOOO:       OOOOOOOO!";
 	str[1] = " oOOOO!!!!;;;;O    OO.......:;!O";
 	str[2] = "'OOO!!!;;;;;;;;O  O.......:   ;!O";
@@ -100,6 +84,38 @@ void			print_heart(t_vm *vm, WINDOW *window)
 	str[12] = "              :::..O";
 	str[13] = "                ::.";
 	str[14] = "                 :";
+	while (++count <= 14)
+	{
+		wmove(window, y + count + 1, pos);
+		wprintw(window, str[count]);
+	}
+}
+
+static void		print_players(t_vm *vm, WINDOW *window)
+{
+	int i;
+	int x;
+	int y;
+
+	i = 0;
+	wmove(window, 25, 2);
+	getyx(window, y, x);
+	while (++i <= MAX_PLAYERS)
+		if (vm->players[i].number != 0)
+		{
+			wprintw(window, "Player %d : ", vm->players[i].number);
+			wattron(window, COLOR_PAIR(vm->players[i].number));
+			wmove(window, y + 1, x);
+			wprintw(window, "%s", vm->players[i].name);
+			wattroff(window, COLOR_PAIR(vm->players[i].number));
+			print_heart(window, x);
+			getyx(window, y, x);
+			if (i % 2 == 0)
+				wmove(window, y + 3 , 2);
+			else
+				wmove(window, 25, 60);
+			getyx(window, y, x);
+		}
 }
 
 void			print_info(t_vm *vm, WINDOW *window)
@@ -147,7 +163,7 @@ void			init_windows(WINDOW **windows)
 	keypad(stdscr, TRUE);
 
 	windows[1] = newwin(64, 193, 0, 0);
-	windows[2] = newwin(64, 60, 0, 194);
+	windows[2] = newwin(64, 120, 0, 194);
 //	windows[2] = newwin(70, 60, 0, 0);
 	
 	box(windows[2], 0,0);
