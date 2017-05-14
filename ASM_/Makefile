@@ -31,7 +31,9 @@ SRC =	./src/main.c \
 			./src/program_data.c \
 			./src/init_struct_parsing.c \
 			./src/ft_exit_clean.c \
-			./src/rev_parse_header.c
+			./src/rev_process_reverse_binary.c \
+			./src/rev_transform_header.c \
+			./src/rev_transform_instructions.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -64,7 +66,9 @@ OBJ =	./obj/main.o \
 			./obj/program_data.o \
 			./obj/init_struct_parsing.o \
 			./obj/ft_exit_clean.o \
-			./obj/rev_parse_header.o
+			./obj/rev_process_reverse_binary.o \
+			./obj/rev_transform_header.o \
+			./obj/rev_transform_instructions.o
 
 MAKE = make
 
