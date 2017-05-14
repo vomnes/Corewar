@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 18:34:38 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/14 14:54:15 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/14 15:14:41 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,22 @@
 
 #define SUCCESS 0
 #define FAILURE -1
+
+static void	print_usage(int argc, char **argv)
+{
+	if (argc <= 1 || ft_strcmp(argv[FILE], "-d") == 0)
+	{
+		ft_putstr("Usage: ./asm [-details/-d | -rev/-r] <sourcefile.s>\n");
+		ft_putstr("       -details : Instead of creating a .cor file, \
+outputs a stripped and\n");
+		ft_putstr("                  annotated version of the code to the \
+standard output.\n");
+		ft_putstr("       -rev     : Disassemble a .cor file by writing on");
+		ft_putstr(" the standard\n                  \
+the pseudo-asm code of this .cor file.\n");
+		exit(-1);
+	}
+}
 
 static int	manage_binary(t_data *data)
 {
@@ -37,6 +53,7 @@ int			main(int argc, char **argv)
 {
 	t_data data;
 
+	print_usage(argc, argv);
 	if (ft_strcmp(argv[OPTION], "-r") == 0 || ft_strcmp(argv[OPTION], \
 		"-rev") == 0)
 		rev_process_reverse_binary(argc, argv);

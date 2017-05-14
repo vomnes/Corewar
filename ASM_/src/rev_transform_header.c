@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/14 14:38:33 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/14 14:52:13 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/14 15:16:21 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ unsigned int		rev_parse_header(size_t size, unsigned char buf[size])
 	i = 0;
 	j = 0;
 	rev_check_exec_magic(buf);
-    i += 4;
+	i += 4;
 	ft_printf("%s \"", NAME_CMD_STRING);
 	while (i < size && buf[i])
 		ft_putchar(buf[i++]);
