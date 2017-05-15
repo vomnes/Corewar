@@ -15,6 +15,7 @@ SRC_FILES =	corewar.c \
 			vm_process.c \
 			vm_advance_pc.c \
 			vm_parameters.c \
+			vm_parameters2.c \
 			vm_error.c \
 			vm_register_utils.c \
 			vm_player_utils.c \

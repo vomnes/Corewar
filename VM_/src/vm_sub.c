@@ -1,5 +1,36 @@
 #include "vm.h"
 
+void		vm_sub(t_process *process, t_vm *vm)
+{
+	int	pc;
+	int	sub1;
+	int	sub2;
+	int	diff;
+
+	pc = vm_read_register(process->pc);
+	process->carry = 0;
+	if (vm_check_parameter_types(process->instruction) &&
+		vm_get_parameters(process, vm) &&
+		vm_valid_registers(process->instruction))
+	{
+		sub1 = vm_read_register(
+			process->registers[process->instruction.params[0].uch]);
+		sub2 = vm_read_register(
+			process->registers[process->instruction.params[1].uch]);
+		if ((diff = sub1 - sub2) == 0)
+			process->carry = 1;
+		vm_store_in_register(
+			&process->registers[process->instruction.params[2].uch], diff);
+		if (vm_verbose_operations(vm))
+			ft_printf("P    %d | sub r%hhd r%hhd r%hhd\n", process->no,
+			process->instruction.params[0].uch, process->
+			instruction.params[1].uch, process->instruction.params[2].uch);
+	}
+	vm_advance_pc(process,vm);
+}
+
+
+/*
 static void	sub_registers(t_process *process, t_vm *vm, int pc)
 {
 	int			first_param;
@@ -35,3 +66,4 @@ void		vm_sub(t_process *process, t_vm *vm)
 		sub_registers(process, vm, pc);
 	vm_advance_pc(process, vm);
 }
+*/

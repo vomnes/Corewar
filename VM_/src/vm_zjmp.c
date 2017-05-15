@@ -12,6 +12,8 @@ void	vm_zjmp(t_process *process, t_vm *vm)
 	if (process->carry == 1)
 	{
 		vm_store_in_register(&process->pc, MOD(pc + indirection % IDX_MOD));
+		vm->cells[pc].present = 0;
+		vm->cells[MOD(pc + indirection % IDX_MOD)].present = process->player_no;
 		if (vm_verbose_operations(vm))
 			ft_printf("P    %d | zjmp %hd OK\n", process->no, indirection);
 	}

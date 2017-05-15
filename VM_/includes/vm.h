@@ -117,6 +117,8 @@ int						vm_check_parameter_types(t_instruction instruction);
 int						vm_get_parameters_xorand(t_process *process, t_vm *vm,
 						char type, int *pc);
 int						vm_get_parameters(t_process *process, t_vm *vm);
+int						vm_param_to_int_idx(t_process *process, t_vm *vm,
+						int i);
 
 unsigned int			vm_n_bytes_to_uint(unsigned char *ptr, size_t n);
 int		 				vm_read_memory_int(t_vm *vm, int index);
