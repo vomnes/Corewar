@@ -121,7 +121,7 @@ static void		print_players(t_vm *vm, WINDOW *window)
 		{
 			wprintw(window, "Player %d : ", vm->players[i].number);
 			wattron(window, COLOR_PAIR(vm->players[i].number));
-			wmove(window, y + 1, x);
+			wmove(window, y + 1, x + 1);
 			wprintw(window, "%s", vm->players[i].name);
 			wattroff(window, COLOR_PAIR(vm->players[i].number));
 			print_heart(window, x, vm, i);
