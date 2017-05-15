@@ -43,7 +43,7 @@ void			vm_ld(t_process *process, t_vm *vm)
 			load = vm_read_memory_int(vm, pc +
 				process->instruction.params[0].sh);
 		vm_store_in_register(
-			&process->registers[process->instruction.params[0].uch], load);
+			&process->registers[process->instruction.params[1].uch], load);
 		if (vm_verbose_operations(vm))
 			ft_printf("P    %d | ld %d r%hhd\n", process->no, load,
 			process->instruction.params[1].uch);

@@ -93,7 +93,7 @@ int					vm_get_parameters(t_process *process, t_vm *vm)
 	i = 0;
 	while (i < g_op_tab[process->instruction.opcode].nb_args)
 	{
-		head = MOD(head + vm_get_one_parameter(process, vm, head, i));
+		head = MOD(vm_get_one_parameter(process, vm, head, i));
 		i++;
 	}
 	return (1);
