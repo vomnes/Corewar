@@ -77,18 +77,16 @@ static int	vm_check_alive_processes(t_vm *vm)
 
 int			vm_do_one_cycle(t_vm *vm)
 {
-	static int	cycles_since_last_check = 0;
-
 	vm_dump_if_necessary(vm);
 	vm->cycle_nbr += 1;
 	if (vm_verbose_cycles(vm))
 		ft_printf("It is now cycle %d\n", vm->cycle_nbr);
-	cycles_since_last_check += 1;
+	vm->cycles_since_last_check += 1;
 	vm_advance_processes_one_cycle(vm);
-	if (cycles_since_last_check >= vm->cycle_to_die)
+	if (vm->cycles_since_last_check >= vm->cycle_to_die)
 	{
 		vm_check_lives_and_kill(vm);
-		cycles_since_last_check = 0;
+		vm->cycles_since_last_check = 0;
 	}
 	return (vm_check_alive_processes(vm));
 }
