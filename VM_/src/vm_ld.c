@@ -1,4 +1,5 @@
 #include "vm.h"
+
 /*
 static void		print_parameter(t_instruction instruction, int i)
 {
@@ -44,7 +45,7 @@ void			vm_ld(t_process *process, t_vm *vm)
 		vm_store_in_register(
 			&process->registers[process->instruction.params[0].uch], load);
 		if (vm_verbose_operations(vm))
-			ft_printf("P %d | ld %d r%hhd\n", process->no, load,
+			ft_printf("P    %d | ld %d r%hhd\n", process->no, load,
 			process->instruction.params[1].uch);
 		if (load == 0)
 			process->carry = 1;

@@ -1,5 +1,36 @@
 #include "vm.h"
 
+void		vm_st(t_process *process, t_vm *vm)
+{
+	int	pc;
+	int	storage;
+
+	pc = vm_read_register(process->pc);
+	if (vm_check_parameter_types(process->instruction) &&
+		vm_get_parameters(process, vm) &&
+		vm_valid_registers(process->instruction))
+	{
+		storage = vm_read_register(
+			process->registers[process->instruction.params[0].uch]);
+		if (process->instruction.second_type == T_REG)
+			vm_store_in_register(
+			&process->registers[process->instruction.params[1].uch], storage);
+		else
+		{
+			vm_store_in_memory_int(vm,
+			MOD((pc + process->instruction.params[1].sh) % IDX_MOD), storage);
+			vm_fill_cells(vm, MOD((pc + process->instruction.params[1].sh) %
+			IDX_MOD), process->player_no);
+		}
+		if (vm_verbose_operations(vm))
+			ft_printf("P    %d | st r%hhd %d\n", process->no, process->
+			instruction.params[0].uch, process->instruction.params[1].sh);
+	}
+	vm_advance_pc(process, vm);
+}
+
+
+/*
 static void		get_parameters(t_process *process, t_vm *vm, int pc)
 {
 	int			first_param;
@@ -38,3 +69,4 @@ void			vm_st(t_process *process, t_vm *vm)
 		get_parameters(process, vm, pc);
 	vm_advance_pc(process, vm);
 }
+*/
