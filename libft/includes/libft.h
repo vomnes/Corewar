@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/05 16:12:25 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/10 10:42:51 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/15 15:38:57 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,6 @@ int					ft_isspace(int c);
 void 				ft_strtab_free(char **tab);
 size_t				ft_intlen(int nbr);
 long long int		ft_lltoi(const char *nptr);
+size_t 				ft_strtab_len(char **tab);
 
 #endif

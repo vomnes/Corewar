@@ -6,7 +6,7 @@
 #    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 14:49:06 by atrudel           #+#    #+#              #
-#    Updated: 2017/05/08 11:44:24 by vomnes           ###   ########.fr        #
+#    Updated: 2017/05/15 15:39:19 by vomnes           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,7 +132,8 @@ SRC_FILES =	ft_memset.c \
 			ft_isspace.c \
 			ft_strtab_free.c \
 			ft_intlen.c \
-			ft_lltoi.c
+			ft_lltoi.c \
+			ft_strtab_len.c
 
 OBJ_FILES =	$(SRC_FILES:.c=.o)
 
