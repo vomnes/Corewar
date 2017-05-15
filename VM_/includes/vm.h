@@ -20,6 +20,7 @@ typedef	struct			s_player
 	unsigned char		memory[CHAMP_MAX_SIZE];
 	unsigned int		size_player;
 	int					number;
+	int					cycle_of_last_live;
 }						t_player;
 
 typedef struct			s_live
@@ -51,6 +52,7 @@ typedef struct			s_vm
 	int					verbose;
 	int					cycle_nbr;
 	int					cycle_to_die;
+	int					cycles_since_last_check;
 	int					speed;
 	int					pause;
 }						t_vm;
