@@ -50,7 +50,11 @@ void				vm_parse_header(size_t size, unsigned char buf[size], \
 	if (nb > MAX_PLAYERS)
 		vm_error_exit(vm, "Error: too many players");
 	if (nb && vm->players[nb].number != 0)
-		vm_error_exit(vm, "Error: Player number already taken");
+	{
+		ft_dprintf(2, "Error: Player number [%d] already taken, please\
+ choose one number for each players\n", nb);
+		exit(-1);
+	}
 	vm->players[nb].number = nb;
 	vm_pick_info(size, buf, &vm->players[nb]);
 }

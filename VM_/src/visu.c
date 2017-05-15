@@ -16,14 +16,14 @@ static int		check_pos_pc(t_vm vm, int i)
 	return (0);
 }
 
-void		print_color_w(t_vm vm, WINDOW *window, int color, int pos)
+static void		print_color_w(t_vm vm, WINDOW *window, int color, int pos)
 {
 	wattron(window, COLOR_PAIR(color));
 	wprintw(window, "%02x",vm.memory[pos]);
 	wattroff(window, COLOR_PAIR(color));
 }
 
-void		check_cells(t_vm *vm, WINDOW *window, int pos)
+static void		check_cells(t_vm *vm, WINDOW *window, int pos)
 {
 	int		color;
 
@@ -60,15 +60,35 @@ void		print_memory(t_vm *vm, WINDOW *window)
 	wrefresh(window);
 }
 
-void			print_heart(WINDOW *window, int pos)
+void			print_color_heart(t_vm *vm, WINDOW *window, char *str[16], int pos, int player_no)
 {
-	char *str[16];
 	int		x;
 	int		y;
 	int		count;
+	int		value;
 
-	count = -1;
 	getyx(window, y, x);
+	count = -1;
+	(void)player_no;
+	value = (15.0 / vm->cycle_to_die * vm->cycles_since_last_check) + 0.5;
+	while (++count <= 14)
+	{
+		wmove(window, y + count + 1, pos);
+		if (count > value || (vm->players[player_no].cycle_of_last_live > (vm->cycle_nbr - vm->cycles_since_last_check)))
+		{
+			wattron(window, COLOR_PAIR(7));
+			wprintw(window, str[count]);
+			wattroff(window, COLOR_PAIR(7));
+		}
+		else
+			wprintw(window, str[count]);
+	}
+}
+
+void			print_heart(WINDOW *window, int pos, t_vm *vm, int player_no)
+{
+	char *str[16];
+
 	str[0] = "     OOOOOOOO:       OOOOOOOO!";
 	str[1] = " oOOOO!!!!;;;;O    OO.......:;!O";
 	str[2] = "'OOO!!!;;;;;;;;O  O.......:   ;!O";
@@ -84,11 +104,7 @@ void			print_heart(WINDOW *window, int pos)
 	str[12] = "              :::..O";
 	str[13] = "                ::.";
 	str[14] = "                 :";
-	while (++count <= 14)
-	{
-		wmove(window, y + count + 1, pos);
-		wprintw(window, str[count]);
-	}
+	print_color_heart(vm, window, str, pos, player_no);
 }
 
 static void		print_players(t_vm *vm, WINDOW *window)
@@ -108,14 +124,27 @@ static void		print_players(t_vm *vm, WINDOW *window)
 			wmove(window, y + 1, x);
 			wprintw(window, "%s", vm->players[i].name);
 			wattroff(window, COLOR_PAIR(vm->players[i].number));
-			print_heart(window, x);
+			print_heart(window, x, vm, i);
 			getyx(window, y, x);
 			if (i % 2 == 0)
 				wmove(window, y + 3 , 2);
 			else
-				wmove(window, 25, 60);
+				wmove(window, y - 16, 60);
 			getyx(window, y, x);
 		}
+}
+
+void			print_info_vm(t_vm *vm, WINDOW *window)
+{
+	int x;
+	int y;
+
+	getyx(window, y, x);
+	wmove(window, y + 3, 2);
+	wprintw(window, "Cycles to die : %d", vm->cycle_to_die);
+	getyx(window, y, x);
+	wmove(window, y, x + 42);
+	wprintw(window, "NB_LIVE_SINCE_LAST_CHECK : %d", vm->nb_lives_since_last_check);
 }
 
 void			print_info(t_vm *vm, WINDOW *window)
@@ -126,9 +155,9 @@ void			print_info(t_vm *vm, WINDOW *window)
 	x = 0;
 	y = 0;
 // Start & Pause
-	wmove(window, 1, 20);
+	wmove(window, 1, 40);
 	if (vm->pause == 1)
-		wprintw(window, "** PAUSED **");
+		wprintw(window, " ** PAUSED **");
 	else
 		wprintw(window, "** RUNNING **");
 
@@ -137,16 +166,20 @@ void			print_info(t_vm *vm, WINDOW *window)
 	wprintw(window, "Cycles : \t%d", vm->cycle_nbr);
 
 //Speed_frame
-	wmove(window, 4, 42);
+	wmove(window, 4, 70);
 	wprintw(window, "Speed : x%d", vm->speed);
 
 //Processes
+	t_process *tmp = vm->processes;
+	while (tmp->next)
+		tmp = tmp->next;
 	wmove(window, 5 , 2);
-	if (vm->processes->prev)
-		wprintw(window, "Processes : \t%d", vm->processes->prev->no);
-	else
-		wprintw(window, "Processes : \t%d", vm->nb_players);
+	wprintw(window, "Processes : \t%d", tmp->no);
+
+// info_cycle
+	print_info_vm(vm, window);
 	print_players(vm, window);
+
 	wrefresh(window);
 }
 
@@ -154,18 +187,17 @@ void			init_windows(WINDOW **windows)
 {
 	initscr();
 	start_color();
-	init_pair(1, COLOR_RED, COLOR_BLACK);
+	init_pair(1, COLOR_MAGENTA, COLOR_BLACK);
 	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(3, COLOR_RED, COLOR_BLUE);
-	init_pair(4, COLOR_BLUE, COLOR_RED);
+	init_pair(3, COLOR_CYAN, COLOR_BLACK);
+	init_pair(4, COLOR_BLUE, COLOR_BLACK);
 	init_pair(5, COLOR_BLACK, COLOR_WHITE);
 	init_pair(6, COLOR_GREEN, COLOR_BLACK);
+	init_pair(7, COLOR_RED, COLOR_BLACK);
 	keypad(stdscr, TRUE);
 
 	windows[1] = newwin(64, 193, 0, 0);
-	windows[2] = newwin(64, 120, 0, 194);
-//	windows[2] = newwin(70, 60, 0, 0);
-	
+	windows[2] = newwin(64, 100, 0, 194);
 	box(windows[2], 0,0);
 }
 
