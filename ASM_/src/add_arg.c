@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 15:23:17 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/12 14:21:07 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/15 16:11:19 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void		init_arg(t_args **arg)
 	(*arg)->type = 0;
 	(*arg)->t_arg = 0;
 	(*arg)->value = 0;
+	(*arg)->op = 0;
+	(*arg)->value_2 = 0;
 	(*arg)->label = NULL;
 }
 

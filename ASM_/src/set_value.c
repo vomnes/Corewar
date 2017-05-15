@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:05:01 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 17:31:21 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/15 19:52:29 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,32 @@ static int	get_label_octet_index(t_instructions *lst, char *current_label)
 	return (0);
 }
 
+static int result_expression(t_args *arg)
+{
+	int result;
+
+	result = 0;
+	if (arg->op == '+')
+		result = arg->value + arg->value_2;
+	else if (arg->op == '-')
+		result = arg->value - arg->value_2;
+	else if (arg->op == '*')
+		result = arg->value * arg->value_2;
+	else if (arg->op == '/')
+	{
+		if (arg->value_2 == 0)
+			return (0);
+		result = arg->value / arg->value_2;
+	}
+	else if (arg->op == '%')
+	{
+		if (arg->value_2 == 0)
+			return (0);
+		result = arg->value % arg->value_2;
+	}
+	return (result);
+}
+
 static void	check_each_arg(t_instructions **lst, t_instructions *instructions)
 {
 	t_args *current;
@@ -41,6 +67,8 @@ static void	check_each_arg(t_instructions **lst, t_instructions *instructions)
 			current->value = get_label_octet_index(instructions, \
 			current->label) - (*lst)->index_octet;
 		}
+		if (current->op != 0)
+			current->value = result_expression(current);
 		current = current->next;
 	}
 }
@@ -50,7 +78,7 @@ static void	check_each_arg(t_instructions **lst, t_instructions *instructions)
 ** current index octet and label's index octet).
 */
 
-int			set_label_value(t_instructions **lst)
+int			set_value(t_instructions **lst)
 {
 	t_instructions *current;
 

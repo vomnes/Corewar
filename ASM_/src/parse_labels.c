@@ -6,21 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/03 16:12:00 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 17:20:07 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/15 18:25:36 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
 #define LINE parsing->clean_line
-
-static int		ft_is_label_chars(int c)
-{
-	if (ft_strchr(LABEL_CHARS, (char)c) != NULL)
-		return (0);
-	else
-		return (1);
-}
 
 static int		is_label(t_parsing *parsing, char *content)
 {

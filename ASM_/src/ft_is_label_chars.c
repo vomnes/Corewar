@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   program_data.c                                     :+:      :+:    :+:   */
+/*   ft_is_label_chars.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/10 15:06:33 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/15 19:55:00 by vomnes           ###   ########.fr       */
+/*   Created: 2017/05/15 18:25:38 by vomnes            #+#    #+#             */
+/*   Updated: 2017/05/15 18:26:19 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int	program_data(t_data *data)
+int		ft_is_label_chars(int c)
 {
-	if (create_param_byte(&data->parsing.lst) == -1)
-		return (-1);
-	if (get_prog_data(&data->parsing.lst, &data->header) == -1)
-		return (-1);
-	if (set_value(&data->parsing.lst) == -1)
-		return (-1);
-	return (0);
+	if (ft_strchr(LABEL_CHARS, (char)c) != NULL)
+		return (0);
+	else
+		return (1);
 }

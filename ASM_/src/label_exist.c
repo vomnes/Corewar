@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   program_data.c                                     :+:      :+:    :+:   */
+/*   label_exist.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/10 15:06:33 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/15 19:55:00 by vomnes           ###   ########.fr       */
+/*   Created: 2017/05/15 18:31:22 by vomnes            #+#    #+#             */
+/*   Updated: 2017/05/15 18:33:25 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int	program_data(t_data *data)
+int	label_exist(t_instructions *lst, char *label_to_check)
 {
-	if (create_param_byte(&data->parsing.lst) == -1)
-		return (-1);
-	if (get_prog_data(&data->parsing.lst, &data->header) == -1)
-		return (-1);
-	if (set_value(&data->parsing.lst) == -1)
-		return (-1);
+	t_instructions *tmp;
+
+	tmp = lst;
+	while (tmp != NULL)
+	{
+		if (tmp->label_name != NULL)
+		{
+			if (ft_strcmp(tmp->label_name, label_to_check) == 0)
+				return (1);
+		}
+		tmp = tmp->next;
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/12 18:09:05 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/15 19:53:09 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef	struct				s_args
 	char					type;
 	char					t_arg;
 	int						value;
+	char					op;
+	int						value_2;
 	char					*label;
 	struct s_args			*next;
 }							t_args;
@@ -101,10 +103,13 @@ void						check_header_content(const char *cmd_string, \
 unsigned int content_len, t_parsing *parsing, header_t *header);
 int							parse_name_comment(t_parsing *parsing, \
 header_t *header);
+int							ft_is_label_chars(int c);
+int							label_exist(t_instructions *lst, char *label_to_check);
 int							parse_labels(t_parsing *parsing);
 int							get_opcode(char *to_analyse, char **opcode_name);
 int							parse_opcode(t_instructions **lst);
 int							get_args(t_instructions **lst);
+int 						eval_expr(t_args *current, char num_arg, int num_line, char flag_type, t_instructions *check_label);
 int							arg_dir_ind_parse(t_args *current, \
 char num_arg, int num_line, t_instructions *check_label);
 int							parse_args(t_instructions **lst);
@@ -116,7 +121,7 @@ t_parsing *collect);
 int							add_arg(t_args **lst_head, char *content);
 
 int							create_param_byte(t_instructions **lst);
-int							set_label_value(t_instructions **lst);
+int							set_value(t_instructions **lst);
 int							get_prog_data(t_instructions **lst, \
 header_t *header);
 int							program_data(t_data *data);

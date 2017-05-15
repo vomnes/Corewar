@@ -24,7 +24,7 @@ SRC =	./src/main.c \
 			./src/check_header_content.c \
 			./src/ft_isprint_nospace.c \
 			./src/get_prog_data.c \
-			./src/set_label_value.c \
+			./src/set_value.c \
 			./src/write_binary.c \
 			./src/ft_display_hex_octet.c \
 			./src/details_compilation.c \
@@ -33,7 +33,10 @@ SRC =	./src/main.c \
 			./src/ft_exit_clean.c \
 			./src/rev_process_reverse_binary.c \
 			./src/rev_transform_header.c \
-			./src/rev_transform_instructions.c
+			./src/rev_transform_instructions.c \
+			./src/ft_is_label_chars.c \
+			./src/eval_expr.c \
+			./src/label_exist.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -59,7 +62,7 @@ OBJ =	./obj/main.o \
 			./obj/check_header_content.o \
 			./obj/ft_isprint_nospace.o \
 			./obj/get_prog_data.o \
-			./obj/set_label_value.o \
+			./obj/set_value.o \
 			./obj/write_binary.o \
 			./obj/ft_display_hex_octet.o \
 			./obj/details_compilation.o \
@@ -68,7 +71,10 @@ OBJ =	./obj/main.o \
 			./obj/ft_exit_clean.o \
 			./obj/rev_process_reverse_binary.o \
 			./obj/rev_transform_header.o \
-			./obj/rev_transform_instructions.o
+			./obj/rev_transform_instructions.o \
+			./obj/ft_is_label_chars.o \
+			./obj/eval_expr.o \
+			./obj/label_exist.o
 
 MAKE = make
 
