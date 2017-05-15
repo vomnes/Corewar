@@ -18,8 +18,8 @@ void		vm_st(t_process *process, t_vm *vm)
 		else
 		{
 			vm_store_in_memory_int(vm,
-			MOD((pc + process->instruction.params[1].sh) % IDX_MOD), storage);
-			vm_fill_cells(vm, MOD((pc + process->instruction.params[1].sh) %
+			MOD(pc + process->instruction.params[1].sh % IDX_MOD), storage);
+			vm_fill_cells(vm, MOD(pc + process->instruction.params[1].sh %
 			IDX_MOD), process->player_no);
 		}
 		if (vm_verbose_operations(vm))

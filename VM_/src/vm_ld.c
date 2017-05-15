@@ -41,7 +41,7 @@ void			vm_ld(t_process *process, t_vm *vm)
 			load = process->instruction.params[0].in;
 		else
 			load = vm_read_memory_int(vm, pc +
-				process->instruction.params[0].sh);
+				process->instruction.params[0].sh % IDX_MOD);
 		vm_store_in_register(
 			&process->registers[process->instruction.params[1].uch], load);
 		if (vm_verbose_operations(vm))
