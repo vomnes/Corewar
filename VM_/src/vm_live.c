@@ -19,7 +19,7 @@ void		vm_live(t_process *process, t_vm *vm)
 		if (vm_verbose_lives(vm))
 			ft_printf("Player %d (%s) is said to be alive\n",
 		-player_nb, player->name);
-		vm->last_live_player_no = player_nb;
+		vm->last_live_player_no = -player_nb;
 		player->cycle_of_last_live = vm->cycle_nbr;
 	}
 	vm->lives_since_last_check += 1;
