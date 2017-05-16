@@ -23,16 +23,15 @@ t_process	*vm_create_process(t_vm *vm)
 	{
 		process_list = vm->processes;
 		count = 2;
-		while (process_list->next)
-		{
+		while (process_list->next && count++)
 			process_list = process_list->next;
-			count++;
-		}
 		process_list->next = new_process;
 		new_process->prev = process_list;
 	}
 	new_process->no = count;
 	new_process->alive = 1;
+	vm->nb_processes += 1;
+	vm->nb_alive_processes += 1;
 	return (new_process);
 }
 

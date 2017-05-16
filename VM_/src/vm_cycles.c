@@ -43,6 +43,7 @@ static void	vm_check_lives_and_kill(t_vm *vm)
 				current->no, vm->cycle_nbr - current->last_live_cycle,
 				vm->cycle_to_die);
 			current->alive = 0;
+			vm->nb_alive_processes -= 1;
 		}
 		current->nb_lives = 0;
 		current = current->next;
