@@ -87,7 +87,8 @@ struct					s_process
 	int					last_live_cycle;
 	int					alive;
 	unsigned char		registers[REG_NUMBER + 1][REG_SIZE];
-	unsigned char		pc[REG_SIZE];
+	//unsigned char		pc[REG_SIZE];
+	int					pc;
 	int					carry;
 	t_instruction		instruction;
 	struct s_process	*next;
