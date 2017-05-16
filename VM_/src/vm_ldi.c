@@ -20,7 +20,7 @@ void		vm_ldi(t_process *process, t_vm *vm)
 		vm_store_in_register(
 			&process->registers[process->instruction.params[2].uch], load);
 		if (vm_verbose_operations(vm))
-			ft_printf("P    %d | ldi %d %d r%d\n       | -> load from %d + %d \
+			ft_printf("P%5d | ldi %d %d r%d\n       | -> load from %d + %d \
 = %d (with pc and mod %d)\n", process->no, param1, param2, process->instruction.
 params[2].uch, param1, param2, sum, pc + sum % IDX_MOD);
 	}

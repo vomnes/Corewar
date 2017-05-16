@@ -1,5 +1,8 @@
 #include "vm.h"
 
+//MODIFIER LE CARRY
+
+
 static short			get_param(t_process *process, t_vm *vm, int *index,
 						t_arg_type type)
 {

@@ -22,7 +22,7 @@ void		vm_add(t_process *process, t_vm *vm)
 		vm_store_in_register(
 			&process->registers[process->instruction.params[2].uch], sum);
 		if (vm_verbose_operations(vm))
-			ft_printf("P    %d | add r%hhd r%hhd r%hhd\n", process->no,
+			ft_printf("P%5d | add r%hhd r%hhd r%hhd\n", process->no,
 			process->instruction.params[0].uch, process->
 			instruction.params[1].uch, process->instruction.params[2].uch);
 	}

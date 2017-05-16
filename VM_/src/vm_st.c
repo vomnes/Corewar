@@ -23,7 +23,7 @@ void		vm_st(t_process *process, t_vm *vm)
 			IDX_MOD), process->player_no);
 		}
 		if (vm_verbose_operations(vm))
-			ft_printf("P    %d | st r%hhd %d\n", process->no, process->
+			ft_printf("P%5d | st r%hhd %d\n", process->no, process->
 			instruction.params[0].uch, process->instruction.params[1].sh);
 	}
 	vm_advance_pc(process, vm);

@@ -15,12 +15,12 @@ void	vm_zjmp(t_process *process, t_vm *vm)
 		vm->cells[pc].present = 0;
 		vm->cells[MOD(pc + indirection % IDX_MOD)].present = process->player_no;
 		if (vm_verbose_operations(vm))
-			ft_printf("P    %d | zjmp %hd OK\n", process->no, indirection);
+			ft_printf("P%5d | zjmp %hd OK\n", process->no, indirection);
 	}
 	else
 	{
 		if (vm_verbose_operations(vm))
-			ft_printf("P    %d | zjmp %hd FAILED\n", process->no, indirection);
+			ft_printf("P%5d | zjmp %hd FAILED\n", process->no, indirection);
 		vm_advance_pc(process, vm);
 	}
 }

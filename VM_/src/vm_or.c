@@ -20,7 +20,7 @@ void	vm_or(t_process *process, t_vm *vm)
 		vm_store_in_register(
 			&process->registers[process->instruction.params[2].uch], result);
 		if (vm_verbose_operations(vm))
-			ft_printf("P    %d | or %d %d r%hhd\n", process->no, param1,
+			ft_printf("P%5d | or %d %d r%hhd\n", process->no, param1,
 			param2, process->instruction.params[2].uch);
 	}
 	vm_advance_pc(process, vm);
