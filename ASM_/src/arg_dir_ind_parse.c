@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/07 19:02:58 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/15 19:51:38 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/16 12:32:18 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,43 @@ static int	empty_arg(char *content, int num_arg, int num_line)
 	return (0);
 }
 
-static int ft_isstr_expression_char(const char *str)
+static int	ft_isstr_expression_char(const char *str)
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (str[i] != '\0')
-    {
-        if (str[i] != ' ' && str[i] != '+' && str[i] != '-'
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] != ' ' && str[i] != '+' && str[i] != '-'
 		&& str[i] != '*' && str[i] != '/' && str[i] != '%'
 		&& !ft_isdigit(str[i]))
-            return (-1);
-        i++;
-    }
-    return (1);
+			return (-1);
+		i++;
+	}
+	return (1);
+}
+
+static int	with_label(t_args *current, char num_arg, int num_line, \
+t_instructions *check_label)
+{
+	char *content;
+
+	content = (current->type < 3) ? current->content + 1 : current->content;
+	if (ft_charindex(content, ' ') != -1)
+	{
+		if (eval_expr_label(current, num_arg, num_line, check_label))
+			return (-1);
+	}
+	else
+	{
+		if (label_exist(check_label, content + 1) == 0)
+		{
+			ft_dprintf(2, UNDEFINED_LABEL, num_arg, num_line);
+			return (-1);
+		}
+		current->label = content + 1;
+	}
+	return (0);
 }
 
 /*
@@ -58,25 +81,13 @@ t_instructions *check_label)
 			return (-1);
 		if (*content == LABEL_CHAR)
 		{
-			if (ft_charindex(content, ' ') != -1)
-			{
-				if (eval_expr(current, num_arg, num_line, 1, check_label))
-					return (-1);
-			}
-			else
-			{
-				if (label_exist(check_label, content + 1) == 0)
-				{
-					ft_dprintf(2, UNDEFINED_LABEL, num_arg, num_line);
-					return (-1);
-				}
-				current->label = content + 1;
-			}
+			if (with_label(current, num_arg, num_line, check_label) == -1)
+				return (-1);
 		}
 		else if (ft_isnumber_syntax(content, 1) == 1)
 			current->value = ft_lltoi(content);
 		else if (ft_isstr_expression_char(content) == 1)
-			return (eval_expr(current, num_arg, num_line, 0, check_label));
+			return (eval_expr(current, num_arg, num_line));
 		else
 		{
 			ft_dprintf(2, UNDEFINED_SYNTAX, num_arg, num_line);

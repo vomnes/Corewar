@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_label_value.c                                  :+:      :+:    :+:   */
+/*   set_value.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/09 12:05:01 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/15 19:52:29 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/16 12:44:20 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	get_label_octet_index(t_instructions *lst, char *current_label)
 	return (0);
 }
 
-static int result_expression(t_args *arg)
+static int	result_expression(t_args *arg)
 {
 	int result;
 
@@ -75,7 +75,8 @@ static void	check_each_arg(t_instructions **lst, t_instructions *instructions)
 
 /*
 ** set_label_value : Set the value of each argument using label (result between
-** current index octet and label's index octet).
+** current index octet and label's index octet) and if expression the result
+** of the calculation.
 */
 
 int			set_value(t_instructions **lst)

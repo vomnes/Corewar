@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/15 19:53:09 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/16 12:26:24 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,16 @@ unsigned int content_len, t_parsing *parsing, header_t *header);
 int							parse_name_comment(t_parsing *parsing, \
 header_t *header);
 int							ft_is_label_chars(int c);
-int							label_exist(t_instructions *lst, char *label_to_check);
+int							label_exist(t_instructions *lst, \
+char *label_to_check);
 int							parse_labels(t_parsing *parsing);
 int							get_opcode(char *to_analyse, char **opcode_name);
 int							parse_opcode(t_instructions **lst);
 int							get_args(t_instructions **lst);
-int 						eval_expr(t_args *current, char num_arg, int num_line, char flag_type, t_instructions *check_label);
+int							eval_expr_label(t_args *current, char num_arg, \
+int num_line, t_instructions *check_label);
+int							eval_expr(t_args *current, char num_arg, \
+int num_line);
 int							arg_dir_ind_parse(t_args *current, \
 char num_arg, int num_line, t_instructions *check_label);
 int							parse_args(t_instructions **lst);
