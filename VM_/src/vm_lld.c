@@ -1,5 +1,33 @@
 #include "vm.h"
 
+void		vm_lld(t_process *process, t_vm *vm)
+{
+	int load;
+	int pc;
+
+	pc = vm_read_register(process->pc);
+	process->carry = 0;
+	if (vm_check_parameter_types(process->instruction) &&
+		vm_get_parameters(process, vm) &&
+		vm_valid_registers(process->instruction))
+	{
+		if (process->instruction.first_type == T_DIR)
+			load = process->instruction.params[0].in;
+		else
+			load = vm_read_memory_int(vm, pc +
+				process->instruction.params[0].sh);
+		vm_store_in_register(
+			&process->registers[process->instruction.params[1].uch], load);
+		if (vm_verbose_operations(vm))
+			ft_printf("P%5d | lld %d r%hhd\n", process->no, load,
+			process->instruction.params[1].uch);
+		if (load == 0)
+			process->carry = 1;
+	}
+	vm_advance_pc(process, vm);
+}
+
+/*
 static void			get_parameters(t_vm *vm, t_process *process, int pc, int i)
 {
 	long long		first_param;
@@ -39,3 +67,4 @@ void				vm_lld(t_process *process, t_vm *vm)
 		process->carry = 0;
 	vm_advance_pc(process, vm);
 }
+*/

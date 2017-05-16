@@ -1,8 +1,37 @@
 #include "vm.h"
 
 //MODIFIER LE CARRY
+void		vm_lldi(t_process *process, t_vm *vm)
+{
+	int		pc;
+	int		param1;
+	int		param2;
+	int		sum;
+	int		load;
+
+	process->carry = 0;
+	pc = vm_read_register(process->pc);
+	if (vm_check_parameter_types(process->instruction) &&
+		vm_get_parameters(process, vm) &&
+		vm_valid_registers(process->instruction))
+	{
+		param1 = vm_param_to_int_no_idx(process, vm, 0);
+		param2 = vm_param_to_int_no_idx(process, vm, 1);
+		if ((sum = param1 + param2) == 0)
+			process->carry = 1;
+		load = vm_read_memory_int(vm, MOD(pc + sum));
+		vm_store_in_register(
+			&process->registers[process->instruction.params[2].uch], load);
+		if (vm_verbose_operations(vm))
+			ft_printf("P%5d | lldi %d %d r%d\n       | -> load from %d + %d \
+= %d (with pc %d)\n", process->no, param1, param2, process->instruction.
+params[2].uch, param1, param2, sum, pc + sum);
+	}
+	vm_advance_pc(process, vm);
+}
 
 
+/*
 static short			get_param(t_process *process, t_vm *vm, int *index,
 						t_arg_type type)
 {
@@ -59,3 +88,4 @@ void			vm_lldi(t_process *process, t_vm *vm)
 		process->carry = 0;
 	vm_advance_pc(process, vm);
 }
+*/

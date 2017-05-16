@@ -12,4 +12,5 @@ void	vm_lfork(t_process *process, t_vm *vm)
 	indirection = vm_read_memory_short(vm, pc + 1);
 	vm_advance_pc(process, vm);
 	vm_store_in_register(&duplicate->pc, MOD(pc + indirection));
+	vm->cells[MOD(pc + indirection)].present = process->player_no;
 }

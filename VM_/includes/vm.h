@@ -50,6 +50,7 @@ typedef struct			s_vm
 	int					dumps;
 	int					vis;
 	int					verbose;
+	int					aff;
 	int					cycle_nbr;
 	int					cycle_to_die;
 	int					cycles_since_last_check;

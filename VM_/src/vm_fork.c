@@ -11,5 +11,6 @@ void	vm_fork(t_process *process, t_vm *vm)
 	vm_copy_process(process, duplicate);
 	indirection = vm_read_memory_short(vm, pc + 1);
 	vm_advance_pc(process, vm);
-	vm_store_in_register(&duplicate->pc, MOD((pc + indirection) % IDX_MOD));
+	vm_store_in_register(&duplicate->pc, MOD(pc + indirection % IDX_MOD));
+	vm->cells[MOD(pc + indirection % IDX_MOD)].present = process->player_no;
 }

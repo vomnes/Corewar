@@ -45,6 +45,11 @@ char		**vm_parse_line_command(char **av, t_vm *vm)
 		vm->vis = 1;
 		av++;
 	}
+	else if (*av && ft_strcmp(*av, "-a") == 0)
+	{
+		vm->aff = 1;
+		av++;
+	}
 	else if (*av)
 	{
 		av = vm_read_file_champ(av, vm, count_champs);
