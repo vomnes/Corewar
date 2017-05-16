@@ -26,7 +26,7 @@ void		vm_and(t_process *process, t_vm *vm)
 	vm_advance_pc(process, vm);
 }
 
-
+/*
 int			vm_get_parameters_xorand(t_process *process, t_vm *vm, char type,\
 									int *pc)
 {
@@ -56,7 +56,7 @@ int			vm_get_parameters_xorand(t_process *process, t_vm *vm, char type,\
 	}
 	return (parameter);
 }
-/*
+
 void			vm_and(t_process *process, t_vm *vm)
 {
 	int			pc;

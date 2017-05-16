@@ -1,6 +1,5 @@
 #include "vm.h"
 
-//MODIFIER LE CARRY
 void		vm_lldi(t_process *process, t_vm *vm)
 {
 	int		pc;

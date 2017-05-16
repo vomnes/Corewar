@@ -19,6 +19,7 @@ void		vm_sti(t_process *process, t_vm *vm)
 		storage = vm_read_register(
 			process->registers[process->instruction.params[0].uch]);
 		vm_store_in_memory_int(vm, MOD(pc + sum % IDX_MOD), storage);
+		vm_fill_cells(vm, MOD(pc + sum % IDX_MOD), process->player_no);
 		if (vm_verbose_operations(vm))
 			ft_printf("P%5d | sti r%hhd %d %d\n       | -> store to %d + %d = \
 %d (with pc and mod %d)\n", process->no, process->instruction.params[0].uch,
