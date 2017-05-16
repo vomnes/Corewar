@@ -47,10 +47,12 @@ int			vm_advance_pc(t_process *process, t_vm *vm)
 	int	pc2;
 	int	advancement;
 
-	pc1 = vm_read_register(process->pc);
+	//pc1 = vm_read_register(process->pc);
+	pc1 = process->pc;
 	advancement = calculate_advancement(process);
 	pc2 = MOD(pc1 + advancement);
-	vm_store_in_register(&process->pc, pc2);
+	//vm_store_in_register(&process->pc, pc2);
+	process->pc = pc2;
 	if (vm_verbose_pc(vm))
 	{
 		ft_printf("ADV %d (0x%04x -> 0x%04x) ", advancement, pc1, pc2);

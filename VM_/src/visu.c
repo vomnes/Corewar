@@ -1,21 +1,5 @@
 #include "vm.h"
 
-static int		check_pos_pc(t_vm vm, int i)
-{
-	t_process *process;
-	int		value;
-
-	process = vm.processes;
-	while (process)
-	{
-		value = vm_read_register(process->pc);
-		if (value == i && value != 0 && process->alive == 1)
-			return (process->player_no);
-		process = process->next;
-	}
-	return (0);
-}
-
 static void		print_color_w(t_vm vm, WINDOW *window, int color, int pos)
 {
 	wattron(window, COLOR_PAIR(color));
@@ -25,24 +9,22 @@ static void		print_color_w(t_vm vm, WINDOW *window, int color, int pos)
 
 static void		check_cells(t_vm *vm, WINDOW *window, int pos)
 {
-	int		color;
 
-	if ((color = check_pos_pc(*vm, pos)))
-	//if (vm->cells[pos].present != 0)
-		print_color_w(*vm, window, vm->cells[pos].present + 2, pos);
+	if (vm->cells[pos].present == 1)
+		print_color_w(*vm, window, vm->cells[pos].present + 4, pos);
 	else if (vm->cells[pos].recent == 1 && vm->cells[pos].count-- > 0)
-		print_color_w(*vm, window, 5, pos);
+		print_color_w(*vm, window, 9, pos);
 	else if (vm->cells[pos].player_no != 0)
 		print_color_w(*vm, window, vm->cells[pos].player_no, pos);
 	else
 		wprintw(window, "%02x", vm->memory[pos]);
 }
 
-void		print_memory(t_vm *vm, WINDOW *window)
+void			print_memory(t_vm *vm, WINDOW *window)
 {
 	static int count = 0;
-	int		i;
-	int		color;
+	int			i;
+	int			color;
 
 	i = -1;
 	color = 0;
@@ -62,10 +44,10 @@ void		print_memory(t_vm *vm, WINDOW *window)
 
 void			print_color_heart(t_vm *vm, WINDOW *window, char *str[16], int pos, int player_no)
 {
-	int		x;
-	int		y;
-	int		count;
-	int		value;
+	int			x;
+	int			y;
+	int			count;
+	int			value;
 
 	getyx(window, y, x);
 	count = -1;
@@ -73,12 +55,12 @@ void			print_color_heart(t_vm *vm, WINDOW *window, char *str[16], int pos, int p
 	value = (15.0 / vm->cycle_to_die * vm->cycles_since_last_check) + 0.5;
 	while (++count <= 14)
 	{
-		wmove(window, y + count + 1, pos);
+		wmove(window, y + count + 2, pos);
 		if (count > value || (vm->players[player_no].cycle_of_last_live > (vm->cycle_nbr - vm->cycles_since_last_check)))
 		{
-			wattron(window, COLOR_PAIR(7));
+			wattron(window, COLOR_PAIR(9));
 			wprintw(window, str[count]);
-			wattroff(window, COLOR_PAIR(7));
+			wattroff(window, COLOR_PAIR(9));
 		}
 		else
 			wprintw(window, str[count]);
@@ -114,7 +96,7 @@ static void		print_players(t_vm *vm, WINDOW *window)
 	int y;
 
 	i = 0;
-	wmove(window, 25, 2);
+	wmove(window, 23, 2);
 	getyx(window, y, x);
 	while (++i <= MAX_PLAYERS)
 		if (vm->players[i].number != 0)
@@ -122,14 +104,15 @@ static void		print_players(t_vm *vm, WINDOW *window)
 			wprintw(window, "Player %d : ", vm->players[i].number);
 			wattron(window, COLOR_PAIR(vm->players[i].number));
 			wmove(window, y + 1, x + 1);
-			wprintw(window, "%s", vm->players[i].name);
+			wprintw(window, "%.30s", vm->players[i].name);
+			(ft_strlen(vm->players[i].name) > 30) ? wprintw(window, "[...]") : 1;
 			wattroff(window, COLOR_PAIR(vm->players[i].number));
 			print_heart(window, x, vm, i);
 			getyx(window, y, x);
 			if (i % 2 == 0)
 				wmove(window, y + 3 , 2);
 			else
-				wmove(window, y - 16, 60);
+				wmove(window, y - 17, 60);
 			getyx(window, y, x);
 		}
 }
@@ -141,7 +124,7 @@ void			print_info_vm(t_vm *vm, WINDOW *window)
 
 	getyx(window, y, x);
 	wmove(window, y + 3, 2);
-	wprintw(window, "Cycles to die : %d", vm->cycle_to_die);
+	wprintw(window, "Cycles to die : %d ", vm->cycle_to_die);
 	getyx(window, y, x);
 	wmove(window, y, x + 42);
 	wprintw(window, "NB_LIVE_SINCE_LAST_CHECK : %d", vm->lives_since_last_check);
@@ -163,22 +146,22 @@ void			print_info(t_vm *vm, WINDOW *window)
 
 //Cycles
 	wmove(window, 3 , 2);
-	wprintw(window, "Cycles : \t%d", vm->cycle_nbr);
+	wprintw(window, "Cycles : \t%d ", vm->cycle_nbr);
 
 //Speed_frame
 	wmove(window, 4, 70);
-	wprintw(window, "Speed : x%d", vm->speed);
+	wprintw(window, "Speed : x%03d", vm->speed);
 
 //Processes
-	t_process *tmp = vm->processes;
-	while (tmp->next)
-		tmp = tmp->next;
 	wmove(window, 5 , 2);
-	wprintw(window, "Processes : \t%d", tmp->no);
+	wprintw(window, "Processes : \t%d (Alive : %d)", vm->nb_processes,
+			vm->nb_alive_processes);
+	
 
 // info_cycle
 	print_info_vm(vm, window);
 	print_players(vm, window);
+	curs_set(0);
 
 	wrefresh(window);
 }
@@ -191,9 +174,11 @@ void			init_windows(WINDOW **windows)
 	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(3, COLOR_CYAN, COLOR_BLACK);
 	init_pair(4, COLOR_BLUE, COLOR_BLACK);
-	init_pair(5, COLOR_BLACK, COLOR_WHITE);
-	init_pair(6, COLOR_GREEN, COLOR_BLACK);
-	init_pair(7, COLOR_RED, COLOR_BLACK);
+	init_pair(5, COLOR_BLUE, COLOR_MAGENTA);
+	init_pair(6, COLOR_CYAN, COLOR_YELLOW);
+	init_pair(7, COLOR_MAGENTA, COLOR_CYAN);
+	init_pair(8, COLOR_RED, COLOR_BLUE);
+	init_pair(9, COLOR_RED, COLOR_BLACK);
 	keypad(stdscr, TRUE);
 
 	windows[1] = newwin(64, 193, 0, 0);
@@ -210,7 +195,7 @@ int			check_entry_keys(t_vm *vm)
 	entry = getch();
 	noecho();
 	nodelay(stdscr, 0);
-	(entry == '+') ? vm->speed += 10 : 1;
+	(entry == '+' && vm->speed < 100) ? vm->speed += 10 : 1;
 	(entry == '-' && vm->speed > 0) ? vm->speed -= 10 : 1;
 	if (entry == 32)
 		(vm->pause == 1) ? (vm->pause = 0) : (vm->pause = 1);

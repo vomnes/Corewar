@@ -7,7 +7,8 @@ void		vm_sub(t_process *process, t_vm *vm)
 	int	sub2;
 	int	diff;
 
-	pc = vm_read_register(process->pc);
+//	pc = vm_read_register(process->pc);
+	pc = process->pc;
 	process->carry = 0;
 	if (vm_check_parameter_types(process->instruction) &&
 		vm_get_parameters(process, vm) &&

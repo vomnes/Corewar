@@ -21,7 +21,8 @@ void			vm_decode_parameter_byte(t_process *process, t_vm *vm)
 {
 	unsigned char	byte;
 
-	byte = vm->memory[MOD(vm_read_register(process->pc) + 1)];
+	byte = vm->memory[MOD(process->pc + 1)];
+	//byte = vm->memory[MOD(vm_read_register(process->pc) + 1)];
 	vm_decode_two_bits(byte, &process->instruction.first_type);
 	process->instruction.args[0] = process->instruction.first_type;
 	byte = byte << 2;
@@ -87,7 +88,8 @@ int					vm_get_parameters(t_process *process, t_vm *vm)
 	int	i;
 	int head;
 
-	head = MOD(vm_read_register(process->pc) + 1);
+	//head = MOD(vm_read_register(process->pc) + 1);
+	head = MOD(process->pc + 1);
 	if (g_op_tab[process->instruction.opcode].param_byte)
 		head = MOD(head + 1);
 	i = 0;

@@ -10,7 +10,8 @@ static void	vm_advance_processes_one_cycle(t_vm *vm)
 	{
 		if (process->alive)
 		{
-			pc = vm_read_register(process->pc);
+			//pc = vm_read_register(process->pc);
+			pc = process->pc;
 			if (!process->instruction.opcode)
 				process->instruction = vm_read_opcode(vm, pc);
 			process->instruction.cycles_to_execution -= 1;

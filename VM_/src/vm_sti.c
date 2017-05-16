@@ -8,7 +8,8 @@ void		vm_sti(t_process *process, t_vm *vm)
 	int	sum;
 	int	storage;
 
-	pc = vm_read_register(process->pc);
+	pc = process->pc;
+	//pc = vm_read_register(process->pc);
 	if( vm_check_parameter_types(process->instruction) &&
 		vm_get_parameters(process, vm) &&
 		vm_valid_registers(process->instruction))
