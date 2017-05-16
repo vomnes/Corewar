@@ -46,6 +46,7 @@ typedef struct			s_vm
 	int					nb_players;
 	t_process			*processes;
 	int					nb_processes;
+	int					nb_alive_processes;
 	int					nb_lives_since_last_check;
 	int					last_live_player_no;
 	int					dumps;
