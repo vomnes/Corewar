@@ -10,7 +10,7 @@ static void		print_color_w(t_vm vm, WINDOW *window, int color, int pos)
 static void		check_cells(t_vm *vm, WINDOW *window, int pos)
 {
 
-	if (vm->cells[pos].present != 0)
+	if (vm->cells[pos].present == 1)
 		print_color_w(*vm, window, vm->cells[pos].present + 4, pos);
 	else if (vm->cells[pos].recent == 1 && vm->cells[pos].count-- > 0)
 		print_color_w(*vm, window, 9, pos);
