@@ -45,6 +45,7 @@ typedef struct			s_vm
 	t_player			players[MAX_PLAYERS + 1];
 	int					nb_players;
 	t_process			*processes;
+	t_process			*last_process;
 	int					nb_processes;
 	int					nb_alive_processes;
 	int					lives_since_last_check;
@@ -111,7 +112,8 @@ void					vm_dump_if_necessary(t_vm *vm);
 
 t_process				*vm_create_process(t_vm *vm);
 t_process				*vm_delete_process(t_process *process, t_vm *vm);
-void 					vm_copy_process(t_process *parent, t_process *child);
+void 					vm_copy_process(t_process *parent, t_process *child,
+						t_vm *vm);
 t_process				*vm_get_process(t_vm *vm, int no);
 void					vm_print_process(t_process *process);
 int						vm_advance_pc(t_process *process, t_vm *vm);

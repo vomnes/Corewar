@@ -5,9 +5,7 @@ static void	vm_advance_processes_one_cycle(t_vm *vm)
 	unsigned int	pc;
 	t_process		*process;
 
-	process = vm->processes;
-	while (process && process->next)
-		process = process->next;
+	process = vm->last_process;
 	while (process)
 	{
 		if (process->alive)
@@ -27,6 +25,13 @@ static void	vm_advance_processes_one_cycle(t_vm *vm)
 	}
 }
 
+static void	vm_decrement_cycle_to_die(t_vm *vm)
+{
+	vm->cycle_to_die -= CYCLE_DELTA;
+	if (vm_verbose_cycles(vm))
+		ft_printf("Cycle to die is now %d\n", vm->cycle_to_die);
+}
+
 static void	vm_check_lives_and_kill(t_vm *vm)
 {
 	t_process	*current;
@@ -35,7 +40,8 @@ static void	vm_check_lives_and_kill(t_vm *vm)
 	current = vm->processes;
 	while (current)
 	{
-		if (current->nb_lives < 1)
+		// if (current->nb_lives < 1)
+		if (vm->cycle_nbr - current->last_live_cycle > vm->cycle_to_die)
 		{
 			if (vm_verbose_deaths(vm))
 				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
@@ -50,7 +56,7 @@ static void	vm_check_lives_and_kill(t_vm *vm)
 	}
 	if (vm->lives_since_last_check >= NBR_LIVE || vm->check_count >= MAX_CHECKS)
 	{
-		vm->cycle_to_die -= CYCLE_DELTA;
+		vm_decrement_cycle_to_die(vm);
 		vm->check_count = 0;
 	}
 	vm->lives_since_last_check = 0;

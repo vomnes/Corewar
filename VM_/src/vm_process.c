@@ -31,6 +31,7 @@ t_process	*vm_create_process(t_vm *vm)
 	new_process->alive = 1;
 	vm->nb_processes += 1;
 	vm->nb_alive_processes += 1;
+	vm->last_process = new_process;
 	return (new_process);
 }
 
@@ -47,6 +48,8 @@ t_process	*vm_delete_process(t_process *process, t_vm *vm)
 	{
 		if (process->next)
 			process->next->prev = process->prev;
+		else
+			vm->last_process = process->prev;
 		if (process->prev)
 			process->prev->next = process->next;
 		else
@@ -60,7 +63,7 @@ t_process	*vm_delete_process(t_process *process, t_vm *vm)
 	return (NULL);
 }
 
-void 		vm_copy_process(t_process *parent, t_process *child)
+void 		vm_copy_process(t_process *parent, t_process *child, t_vm *vm)
 {
 	int i;
 
@@ -74,6 +77,7 @@ void 		vm_copy_process(t_process *parent, t_process *child)
 	child->player_no = parent->player_no;
 	child->alive = parent->alive;
 	child->carry = parent->carry;
+	child->last_live_cycle = vm->cycle_nbr;
 }
 
 /*
