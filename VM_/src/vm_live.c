@@ -8,7 +8,8 @@ void		vm_live(t_process *process, t_vm *vm)
 
 	process->instruction.first_type = T_DIR;
 	process->instruction.args[0] = T_DIR;
-	pc = vm_read_register(process->pc);
+//	pc = vm_read_register(process->pc);
+	pc = process->pc;
 	player_nb = vm_read_memory_int(vm, pc + 1);
 	player= vm_get_player(vm, -player_nb);
 	if (vm_verbose_operations(vm))

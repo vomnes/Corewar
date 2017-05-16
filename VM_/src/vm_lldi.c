@@ -9,7 +9,8 @@ void		vm_lldi(t_process *process, t_vm *vm)
 	int		load;
 
 	process->carry = 0;
-	pc = vm_read_register(process->pc);
+//	pc = vm_read_register(process->pc);
+	pc = process->pc;
 	if (vm_check_parameter_types(process->instruction) &&
 		vm_get_parameters(process, vm) &&
 		vm_valid_registers(process->instruction))

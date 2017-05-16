@@ -8,7 +8,8 @@ int			check_pos_pc(t_vm vm, int i)
 	process = vm.processes;
 	while (process)
 	{
-		value = vm_read_register(process->pc);
+		//value = vm_read_register(process->pc);
+		value = process->pc;
 		if (value == i && value != 0)
 			return (1);
 		process = process->next;

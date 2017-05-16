@@ -29,7 +29,7 @@ char				**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 			vm_error_exit(vm, "Bad entry of number player");
 		av += 2;
 	}
-	if ((fd = open(*av, O_RDONLY)) < 0)
+	if (open(*av, O_DIRECTORY) > 0 || (fd = open(*av, O_RDONLY)) < 0)
 	{
 		perror(0);
 		exit(-1);

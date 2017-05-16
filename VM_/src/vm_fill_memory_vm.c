@@ -9,7 +9,7 @@ void			vm_fill_cells(t_vm *vm, int pos, int player_no)
 	{
 		vm->cells[MOD(pos + i)].player_no = player_no;
 		vm->cells[MOD(pos + i)].recent = 1;
-		vm->cells[MOD(pos + i)].count = 150;
+		vm->cells[MOD(pos + i)].count = 25;
 	}
 }
 
@@ -39,14 +39,16 @@ void				vm_fill_memory_vm(t_vm *vm)
 	tmp = MEM_SIZE / number_players;
 	vm_fill_memory(vm, 1, 0);
 	process = vm_get_process(vm, 1);
-	vm_store_in_register(&process->pc, size);
+//	vm_store_in_register(&process->pc, size);
+	process->pc = size;
 	while (no_player <= MAX_PLAYERS)
 	{
 		if (vm->players[no_player].number != 0)
 		{
 			size = size + tmp;
 			process = vm_get_process(vm, no_player);
-			vm_store_in_register(&process->pc, size);
+			//vm_store_in_register(&process->pc, size);
+			process->pc = size;
 			vm_fill_memory(vm, no_player, size);
 		}
 		no_player++;

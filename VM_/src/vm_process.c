@@ -118,7 +118,8 @@ void		vm_print_process(t_process *process)
 		ft_printf("This process is dead\n");
 	ft_printf("Carry: %d\n", process->carry);
 	ft_printf("PC : ");
-	vm_print_register(process->pc);
+	ft_putnbr(process->pc);
+	//vm_print_register(process->pc);
 	ft_printf("\n");
 	ft_printf("Registers:\n");
 	i = 1;
