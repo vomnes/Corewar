@@ -8,7 +8,7 @@
 # include "libft.h"
 # include "op.h"
 
-# define MOD(x) (x % MEM_SIZE)
+# define MOD(x) (x < 0 ? (MEM_SIZE + x % MEM_SIZE) : x % MEM_SIZE)
 
 extern t_op					g_op_tab[17];
 typedef struct s_process	t_process;
@@ -118,6 +118,8 @@ int						vm_get_parameters_xorand(t_process *process, t_vm *vm,
 						char type, int *pc);
 int						vm_get_parameters(t_process *process, t_vm *vm);
 int						vm_param_to_int_idx(t_process *process, t_vm *vm,
+						int i);
+int						vm_param_to_int_no_idx(t_process *process, t_vm *vm,
 						int i);
 
 unsigned int			vm_n_bytes_to_uint(unsigned char *ptr, size_t n);
