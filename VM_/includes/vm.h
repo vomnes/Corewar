@@ -8,7 +8,7 @@
 # include "libft.h"
 # include "op.h"
 
-# define MOD(x) (x < 0 ? (MEM_SIZE + x % MEM_SIZE) : x % MEM_SIZE)
+# define MOD(x) ((x) < 0 ? (MEM_SIZE + (x) % MEM_SIZE) : ((x) % MEM_SIZE))
 
 extern t_op					g_op_tab[17];
 typedef struct s_process	t_process;
