@@ -47,7 +47,8 @@ typedef struct			s_vm
 	t_process			*processes;
 	int					nb_processes;
 	int					nb_alive_processes;
-	int					nb_lives_since_last_check;
+	int					lives_since_last_check;
+	int					check_count;
 	int					last_live_player_no;
 	int					dumps;
 	int					vis;
@@ -109,6 +110,7 @@ int						vm_verbose_pc(t_vm *vm);
 void					vm_dump_if_necessary(t_vm *vm);
 
 t_process				*vm_create_process(t_vm *vm);
+t_process				*vm_delete_process(t_process *process, t_vm *vm);
 void 					vm_copy_process(t_process *parent, t_process *child);
 t_process				*vm_get_process(t_vm *vm, int no);
 void					vm_print_process(t_process *process);

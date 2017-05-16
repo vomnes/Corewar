@@ -12,18 +12,17 @@ t_process	*vm_create_process(t_vm *vm)
 {
 	t_process	*new_process;
 	t_process	*process_list;
-	int			count;
+	static int	count = 0;
 
 	if (!(new_process = (t_process *)ft_memalloc(sizeof(*new_process))))
 		vm_error_exit(vm, "Malloc failed while creating a new process struct");
-	count = 1;
+	count++;
 	if (!(vm->processes))
 		vm->processes = new_process;
 	else
 	{
 		process_list = vm->processes;
-		count = 2;
-		while (process_list->next && count++)
+		while (process_list->next)
 			process_list = process_list->next;
 		process_list->next = new_process;
 		new_process->prev = process_list;
@@ -33,6 +32,32 @@ t_process	*vm_create_process(t_vm *vm)
 	vm->nb_processes += 1;
 	vm->nb_alive_processes += 1;
 	return (new_process);
+}
+
+/*
+**	Deletes "process" from the list (in vm->processes).
+**	Returns a pointer to the next process in the list.
+*/
+
+t_process	*vm_delete_process(t_process *process, t_vm *vm)
+{
+	t_process	*next;
+
+	if (process)
+	{
+		if (process->next)
+			process->next->prev = process->prev;
+		if (process->prev)
+			process->prev->next = process->next;
+		else
+			vm->processes = process->next;
+		next = process->next;
+		vm->nb_alive_processes -= 1;
+		free(process);
+
+		return (next);
+	}
+	return (NULL);
 }
 
 void 		vm_copy_process(t_process *parent, t_process *child)
