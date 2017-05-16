@@ -53,8 +53,8 @@ t_process	*vm_delete_process(t_process *process, t_vm *vm)
 			vm->processes = process->next;
 		next = process->next;
 		vm->nb_alive_processes -= 1;
+		vm->cells[process->pc].present = 0;
 		free(process);
-
 		return (next);
 	}
 	return (NULL);
