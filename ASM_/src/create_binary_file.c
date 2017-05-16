@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 15:14:15 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/09 19:57:19 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/16 15:30:48 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,17 @@ int	create_binary_file(t_input input)
 	ft_strindex(input.file_name, ".s"))))
 		return (-1);
 	if (!(name_dot_cor = ft_strjoin_free(name_dot_cor, ".cor")))
+	{
+		ft_strdel(&name_dot_cor);
 		return (-1);
+	}
 	binary_fd = open(name_dot_cor, O_RDWR | O_CREAT | O_TRUNC, \
 					S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH, 0777);
 	if (binary_fd == -1)
+	{
+		ft_strdel(&name_dot_cor);
 		return (-1);
+	}
 	ft_printf("Writing output program to %s\n", name_dot_cor);
 	ft_strdel(&name_dot_cor);
 	return (binary_fd);

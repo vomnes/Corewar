@@ -36,7 +36,8 @@ SRC =	./src/main.c \
 			./src/rev_transform_instructions.c \
 			./src/ft_is_label_chars.c \
 			./src/eval_expr.c \
-			./src/label_exist.c
+			./src/label_exist.c \
+			./src/exit_free_expression_tab.c
 
 OBJ =	./obj/main.o \
 			./obj/write_header.o \
@@ -74,7 +75,8 @@ OBJ =	./obj/main.o \
 			./obj/rev_transform_instructions.o \
 			./obj/ft_is_label_chars.o \
 			./obj/eval_expr.o \
-			./obj/label_exist.o
+			./obj/label_exist.o \
+			./obj/exit_free_expression_tab.o
 
 MAKE = make
 

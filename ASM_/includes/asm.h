@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/16 12:26:24 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/16 15:42:50 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int							eval_expr_label(t_args *current, char num_arg, \
 int num_line, t_instructions *check_label);
 int							eval_expr(t_args *current, char num_arg, \
 int num_line);
+int							exit_free_expression_tab(char **expression_tab);
 int							arg_dir_ind_parse(t_args *current, \
 char num_arg, int num_line, t_instructions *check_label);
 int							parse_args(t_instructions **lst);
