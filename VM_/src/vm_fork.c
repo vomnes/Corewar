@@ -6,6 +6,8 @@ void	vm_fork(t_process *process, t_vm *vm)
 	short		indirection;
 	t_process	*duplicate;
 
+	process->instruction.first_type = T_DIR;
+	process->instruction.args[0] = T_DIR;
 	pc = vm_read_register(process->pc);
 	duplicate = vm_create_process(vm);
 	vm_copy_process(process, duplicate);
