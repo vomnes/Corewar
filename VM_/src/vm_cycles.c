@@ -29,10 +29,9 @@ static void	vm_advance_processes_one_cycle(t_vm *vm)
 
 static void	vm_check_lives_and_kill(t_vm *vm)
 {
-	static int	check_count = 0;
 	t_process	*current;
 
-	check_count += 1;
+	vm->check_count += 1;
 	current = vm->processes;
 	while (current)
 	{
@@ -40,20 +39,21 @@ static void	vm_check_lives_and_kill(t_vm *vm)
 		{
 			if (vm_verbose_deaths(vm))
 				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
-				current->no, vm->cycle_nbr - current->last_live_cycle,
-				vm->cycle_to_die);
-			current->alive = 0;
-			vm->nb_alive_processes -= 1;
+	current->no, vm->cycle_nbr - current->last_live_cycle, vm->cycle_to_die);
+			current = vm_delete_process(current, vm);
 		}
-		current->nb_lives = 0;
-		current = current->next;
+		else
+		{
+			current->nb_lives = 0;
+			current = current->next;
+		}
 	}
-	if (vm->nb_lives_since_last_check >= NBR_LIVE || check_count >= MAX_CHECKS)
+	if (vm->lives_since_last_check >= NBR_LIVE || vm->check_count >= MAX_CHECKS)
 	{
 		vm->cycle_to_die -= CYCLE_DELTA;
-		check_count = 0;
+		vm->check_count = 0;
 	}
-	vm->nb_lives_since_last_check = 0;
+	vm->lives_since_last_check = 0;
 }
 
 static int	vm_check_alive_processes(t_vm *vm)

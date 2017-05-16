@@ -6,13 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 17:09:41 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/12 11:22:10 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/16 16:04:08 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void		ft_strcat_name(char const *s, \
+static void		ft_strcat_name(char const *s, \
 char prog_name[PROG_NAME_LENGTH + 1], size_t len, const char *cmd_string)
 {
 	int		i;
@@ -32,8 +32,8 @@ char prog_name[PROG_NAME_LENGTH + 1], size_t len, const char *cmd_string)
 	}
 }
 
-void		ft_strcat_comment(char const *s, char comment[COMMENT_LENGTH + 1], \
-size_t len, const char *cmd_string)
+static void		ft_strcat_comment(char const *s, \
+char comment[COMMENT_LENGTH + 1], size_t len, const char *cmd_string)
 {
 	int		i;
 
@@ -52,7 +52,7 @@ size_t len, const char *cmd_string)
 	}
 }
 
-static void	error_a(char *name, t_parsing *parsing, const char *cmd_string)
+static void		error_a(char *name, t_parsing *parsing, const char *cmd_string)
 {
 	int index_open;
 
@@ -71,8 +71,8 @@ static void	error_a(char *name, t_parsing *parsing, const char *cmd_string)
 	}
 }
 
-static void	error_b(char *name, t_parsing *parsing, const char *cmd_string, \
-int content_len)
+static void		error_b(char *name, t_parsing *parsing, \
+const char *cmd_string, int content_len)
 {
 	int index_open;
 	int index_close;
@@ -102,7 +102,7 @@ limit (Max length %d)\n",\
 ** .comment "my_comment"
 */
 
-void		check_header_content(const char *cmd_string, \
+void			check_header_content(const char *cmd_string, \
 unsigned int content_len, t_parsing *parsing, header_t *header)
 {
 	char	*name;

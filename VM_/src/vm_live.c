@@ -21,7 +21,7 @@ void		vm_live(t_process *process, t_vm *vm)
 		vm->last_live_player_no = player_nb;
 		player->cycle_of_last_live = vm->cycle_nbr;
 	}
-	vm->nb_lives_since_last_check += 1;
+	vm->lives_since_last_check += 1;
 	process->nb_lives += 1;
 	process->last_live_cycle = vm->cycle_nbr;
 	vm_advance_pc(process, vm);

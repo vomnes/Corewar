@@ -127,7 +127,7 @@ void			print_info_vm(t_vm *vm, WINDOW *window)
 	wprintw(window, "Cycles to die : %d ", vm->cycle_to_die);
 	getyx(window, y, x);
 	wmove(window, y, x + 42);
-	wprintw(window, "NB_LIVE_SINCE_LAST_CHECK : %d", vm->nb_lives_since_last_check);
+	wprintw(window, "NB_LIVE_SINCE_LAST_CHECK : %d", vm->lives_since_last_check);
 }
 
 void			print_info(t_vm *vm, WINDOW *window)
