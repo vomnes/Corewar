@@ -10,8 +10,8 @@ static void		print_color_w(t_vm vm, WINDOW *window, int color, int pos)
 static void		check_cells(t_vm *vm, WINDOW *window, int pos)
 {
 
-	if (vm->cells[pos].present == 1)
-		print_color_w(*vm, window, vm->cells[pos].present + 4, pos);
+	if (vm->cells[pos].present != 0)
+		print_color_w(*vm, window, vm->cells[pos].player_no + 4, pos);
 	else if (vm->cells[pos].recent == 1 && vm->cells[pos].count-- > 0)
 		print_color_w(*vm, window, 9, pos);
 	else if (vm->cells[pos].player_no != 0)
@@ -51,7 +51,6 @@ void			print_color_heart(t_vm *vm, WINDOW *window, char *str[16], int pos, int p
 
 	getyx(window, y, x);
 	count = -1;
-	(void)player_no;
 	value = (15.0 / vm->cycle_to_die * vm->cycles_since_last_check) + 0.5;
 	while (++count <= 14)
 	{
@@ -105,8 +104,8 @@ static void		print_players(t_vm *vm, WINDOW *window)
 			wattron(window, COLOR_PAIR(vm->players[i].number));
 			wmove(window, y + 1, x + 1);
 			wprintw(window, "%.30s", vm->players[i].name);
-			(ft_strlen(vm->players[i].name) > 30) ? wprintw(window, "[...]") : 1;
 			wattroff(window, COLOR_PAIR(vm->players[i].number));
+			(ft_strlen(vm->players[i].name) > 30) ? wprintw(window, "[...]") : 1;
 			print_heart(window, x, vm, i);
 			getyx(window, y, x);
 			if (i % 2 == 0)
@@ -179,6 +178,8 @@ void			init_windows(WINDOW **windows)
 	init_pair(7, COLOR_MAGENTA, COLOR_CYAN);
 	init_pair(8, COLOR_RED, COLOR_BLUE);
 	init_pair(9, COLOR_RED, COLOR_BLACK);
+	init_color(COLOR_GREEN, 104, 104, 103);
+	init_pair(10, COLOR_GREEN, COLOR_BLACK);
 	keypad(stdscr, TRUE);
 
 	windows[1] = newwin(64, 193, 0, 0);
