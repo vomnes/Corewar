@@ -8,7 +8,7 @@ void		vm_lldi(t_process *process, t_vm *vm)
 	int		sum;
 	int		load;
 
-	process->carry = 0;
+	// process->carry = 0;
 //	pc = vm_read_register(process->pc);
 	pc = process->pc;
 	if (vm_check_parameter_types(process->instruction) &&
@@ -17,8 +17,8 @@ void		vm_lldi(t_process *process, t_vm *vm)
 	{
 		param1 = vm_param_to_int_no_idx(process, vm, 0);
 		param2 = vm_param_to_int_no_idx(process, vm, 1);
-		if ((sum = param1 + param2) == 0)
-			process->carry = 1;
+		if ((sum = param1 + param2) == 0){}
+			// process->carry = 1;
 		load = vm_read_memory_int(vm, MOD(pc + sum));
 		vm_store_in_register(
 			&process->registers[process->instruction.params[2].uch], load);
