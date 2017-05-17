@@ -38,7 +38,7 @@ static void	vm_check_lives_and_kill(t_vm *vm)
 	t_process	*current;
 
 	vm->check_count += 1;
-	current = vm->processes;
+	current = vm->last_process;
 	while (current)
 	{
 		// if (current->nb_lives < 1)
@@ -52,7 +52,7 @@ static void	vm_check_lives_and_kill(t_vm *vm)
 		else
 		{
 			current->nb_lives = 0;
-			current = current->next;
+			current = current->prev;
 		}
 	}
 	if (vm->lives_since_last_check >= NBR_LIVE || vm->check_count >= MAX_CHECKS)

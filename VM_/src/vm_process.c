@@ -42,7 +42,7 @@ t_process	*vm_create_process(t_vm *vm)
 
 t_process	*vm_delete_process(t_process *process, t_vm *vm)
 {
-	t_process	*next;
+	t_process	*previous;
 
 	if (process)
 	{
@@ -54,11 +54,11 @@ t_process	*vm_delete_process(t_process *process, t_vm *vm)
 			process->prev->next = process->next;
 		else
 			vm->processes = process->next;
-		next = process->next;
+		previous = process->prev;
 		vm->nb_alive_processes -= 1;
 		vm->cells[process->pc].present = 0;
 		free(process);
-		return (next);
+		return (previous);
 	}
 	return (NULL);
 }
