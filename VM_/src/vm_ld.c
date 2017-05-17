@@ -33,7 +33,6 @@ void			vm_ld(t_process *process, t_vm *vm)
 
 //	pc = vm_read_register(process->pc);
 	pc = process->pc;
-	process->carry = 0;
 	if (vm_check_parameter_types(process->instruction) &&
 		vm_get_parameters(process, vm) &&
 		vm_valid_registers(process->instruction))
@@ -48,6 +47,7 @@ void			vm_ld(t_process *process, t_vm *vm)
 		if (vm_verbose_operations(vm))
 			ft_printf("P%5d | ld %d r%hhd\n", process->no, load,
 			process->instruction.params[1].uch);
+		process->carry = 0;
 		if (load == 0)
 			process->carry = 1;
 	}

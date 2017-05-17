@@ -42,7 +42,7 @@ static void	vm_check_lives_and_kill(t_vm *vm)
 	while (current)
 	{
 		// if (current->nb_lives < 1)
-		if (vm->cycle_nbr - current->last_live_cycle > vm->cycle_to_die)
+		if (vm->cycle_nbr - current->last_live_cycle >= vm->cycle_to_die)
 		{
 			if (vm_verbose_deaths(vm))
 				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",

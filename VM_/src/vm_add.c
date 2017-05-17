@@ -9,7 +9,6 @@ void		vm_add(t_process *process, t_vm *vm)
 
 	//pc = vm_read_register(process->pc);
 	pc = process->pc;
-	process->carry = 0;
 	if (vm_check_parameter_types(process->instruction) &&
 		vm_get_parameters(process, vm) &&
 		vm_valid_registers(process->instruction))
@@ -18,6 +17,7 @@ void		vm_add(t_process *process, t_vm *vm)
 			process->registers[process->instruction.params[0].uch]);
 		add2 = vm_read_register(
 			process->registers[process->instruction.params[1].uch]);
+		process->carry = 0;
 		if ((sum = add1 + add2) == 0)
 			process->carry = 1;
 		vm_store_in_register(

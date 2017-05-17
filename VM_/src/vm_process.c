@@ -67,6 +67,7 @@ void 		vm_copy_process(t_process *parent, t_process *child, t_vm *vm)
 {
 	int i;
 
+	(void)vm;
 	i = 1;
 	while (i <= REG_NUMBER)
 	{
@@ -77,7 +78,7 @@ void 		vm_copy_process(t_process *parent, t_process *child, t_vm *vm)
 	child->player_no = parent->player_no;
 	child->alive = parent->alive;
 	child->carry = parent->carry;
-	child->last_live_cycle = vm->cycle_nbr;
+	child->last_live_cycle = parent->last_live_cycle;
 }
 
 /*

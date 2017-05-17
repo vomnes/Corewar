@@ -9,13 +9,13 @@ void		vm_and(t_process *process, t_vm *vm)
 
 //	pc = vm_read_register(process->pc);
 	pc = process->pc;
-	process->carry = 0;
 	if (vm_check_parameter_types(process->instruction) &&
 		vm_get_parameters(process, vm) &&
 		vm_valid_registers(process->instruction))
 	{
 		param1 = vm_param_to_int_idx(process, vm, 0);
 		param2 = vm_param_to_int_idx(process, vm, 1);
+		process->carry = 0;
 		if ((result = param1 & param2) == 0)
 			process->carry = 1;
 		vm_store_in_register(

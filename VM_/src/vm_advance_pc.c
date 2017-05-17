@@ -58,6 +58,9 @@ int			vm_advance_pc(t_process *process, t_vm *vm)
 		ft_printf("ADV %d (0x%04x -> 0x%04x) ", advancement, pc1,
 		pc1 + advancement);
 		print_advancement(vm, pc1, advancement);
+
+		// ft_printf("	P %d | carry = %d", process->no, process->carry);
+
 		ft_printf("\n");
 	}
 	vm->cells[pc1].present = 0;
