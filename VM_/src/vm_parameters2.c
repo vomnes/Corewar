@@ -8,7 +8,12 @@ int		vm_param_to_int_idx(t_process *process, t_vm *vm, int i)
 		return (vm_read_register(
 			process->registers[process->instruction.params[i].uch]));
 	else if (process->instruction.args[i] == T_DIR)
-		return (process->instruction.params[i].in);
+	{
+		if (g_op_tab[process->instruction.opcode].has_index)
+			return (process->instruction.params[i].sh);
+		else
+			return (process->instruction.params[i].in);
+	}
 	else if (process->instruction.args[i] == T_IND)
 	{
 		pc = process->pc;

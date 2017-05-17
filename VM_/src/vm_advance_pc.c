@@ -55,7 +55,8 @@ int			vm_advance_pc(t_process *process, t_vm *vm)
 	process->pc = pc2;
 	if (vm_verbose_pc(vm))
 	{
-		ft_printf("ADV %d (0x%04x -> 0x%04x) ", advancement, pc1, pc2);
+		ft_printf("ADV %d (0x%04x -> 0x%04x) ", advancement, pc1,
+		pc1 + advancement);
 		print_advancement(vm, pc1, advancement);
 		ft_printf("\n");
 	}
