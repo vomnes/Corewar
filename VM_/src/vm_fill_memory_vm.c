@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:16:18 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:16:35 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/18 17:19:10 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,25 @@ void			vm_fill_cells(t_vm *vm, int pos, int player_no)
 		vm->cells[MOD(pos + i)].recent = 1;
 		vm->cells[MOD(pos + i)].count = 25;
 	}
+}
+
+static void		fill_heart(t_vm *vm)
+{
+	vm->heart[0] = "     OOOOOOOO:       OOOOOOOO!";
+	vm->heart[1] = " oOOOO!!!!;;;;O    OO.......:;!O";
+	vm->heart[2] = "'OOO!!!;;;;;;;;O  O.......:   ;!O";
+	vm->heart[3] = "OOO!!!!;;::::::.OO........:    ;!O";
+	vm->heart[4] = "OO!!!!;;:::::..............:   ;!O";
+	vm->heart[5] = "OOO!!!;::::::..............:   ;!O";
+	vm->heart[6] = " OO!!;;::::::.............:   ;!O";
+	vm->heart[7] = "  OO!;;::::::.............::::!O";
+	vm->heart[8] = "    O!!;::::::............:::O";
+	vm->heart[9] = "      !!!;:::::..........ooO";
+	vm->heart[10] = "         !!;:::::.......O";
+	vm->heart[11] = "            ;;::::.....O";
+	vm->heart[12] = "              :::..O";
+	vm->heart[13] = "                ::.";
+	vm->heart[14] = "                 :";
 }
 
 void			vm_fill_memory(t_vm *vm, int no_player, size_t pos)
@@ -63,4 +82,5 @@ void			vm_fill_memory_vm(t_vm *vm)
 		}
 		no_player++;
 	}
+	fill_heart(vm);
 }
