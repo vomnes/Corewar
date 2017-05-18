@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:03:50 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 18:08:49 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/18 18:26:20 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct			s_vm
 	int					nb_players;
 	t_process			*processes;
 	t_process			*last_process;
+	char				*heart[16];
 	int					nb_processes;
 	int					nb_alive_processes;
 	int					lives_since_last_check;
@@ -103,7 +104,7 @@ struct					s_process
 };
 
 void					init_windows(WINDOW **window);
-void					display_all_windows(t_vm *vm, WINDOW *window[4]);
+void					display_all_windows(t_vm *vm, WINDOW *window[4], char ret);
 
 void					vm_init(t_vm *vm);
 void					vm_introduce_contestants(t_vm *vm);
