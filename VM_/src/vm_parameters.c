@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_parameters.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 11:28:48 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 11:31:05 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
 static void		vm_decode_two_bits(unsigned char byte, t_arg_type *type)
@@ -22,7 +34,6 @@ void			vm_decode_parameter_byte(t_process *process, t_vm *vm)
 	unsigned char	byte;
 
 	byte = vm->memory[MOD(process->pc + 1)];
-	//byte = vm->memory[MOD(vm_read_register(process->pc) + 1)];
 	vm_decode_two_bits(byte, &process->instruction.first_type);
 	process->instruction.args[0] = process->instruction.first_type;
 	byte = byte << 2;
@@ -54,8 +65,8 @@ int				vm_check_parameter_types(t_instruction instruction)
 	return (1);
 }
 
-static int			vm_get_one_parameter(t_process *process, t_vm *vm, int head,
-					int i)
+static int		vm_get_one_parameter(t_process *process, t_vm *vm, int head,
+				int i)
 {
 	if (process->instruction.args[i] == T_REG)
 	{
@@ -83,12 +94,11 @@ static int			vm_get_one_parameter(t_process *process, t_vm *vm, int head,
 	return (head);
 }
 
-int					vm_get_parameters(t_process *process, t_vm *vm)
+int				vm_get_parameters(t_process *process, t_vm *vm)
 {
 	int	i;
 	int head;
 
-	//head = MOD(vm_read_register(process->pc) + 1);
 	head = MOD(process->pc + 1);
 	if (g_op_tab[process->instruction.opcode].param_byte)
 		head = MOD(head + 1);

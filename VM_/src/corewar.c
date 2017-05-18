@@ -38,7 +38,7 @@ int main(int ac, char **av)
 	else
 		ft_printf("No player has won because no live was well performed\n");
 
-	// DELETE DATA
 	(vm.vis == 1) ? endwin() : 1;
+	vm_delete_data(&vm);
 	return (0);
 }

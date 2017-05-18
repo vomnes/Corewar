@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm.h                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 11:03:50 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 11:12:00 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef VM_H
 # define VM_H
@@ -22,12 +33,6 @@ typedef	struct			s_player
 	int					number;
 	int					cycle_of_last_live;
 }						t_player;
-
-typedef struct			s_live
-{
-	int					player_no;
-	struct s_live		*next;
-}						t_live;
 
 typedef struct			s_cell
 {
@@ -89,7 +94,6 @@ struct					s_process
 	int					last_live_cycle;
 	int					alive;
 	unsigned char		registers[REG_NUMBER + 1][REG_SIZE];
-	//unsigned char		pc[REG_SIZE];
 	int					pc;
 	int					carry;
 	t_instruction		instruction;
@@ -113,7 +117,7 @@ void					vm_dump_if_necessary(t_vm *vm);
 
 t_process				*vm_create_process(t_vm *vm);
 t_process				*vm_delete_process(t_process *process, t_vm *vm);
-void 					vm_copy_process(t_process *parent, t_process *child,
+void					vm_copy_process(t_process *parent, t_process *child,
 						t_vm *vm);
 t_process				*vm_get_process(t_vm *vm, int no);
 void					vm_print_process(t_process *process);
@@ -131,7 +135,7 @@ int						vm_param_to_int_no_idx(t_process *process, t_vm *vm,
 						int i);
 
 unsigned int			vm_n_bytes_to_uint(unsigned char *ptr, size_t n);
-int		 				vm_read_memory_int(t_vm *vm, int index);
+int						vm_read_memory_int(t_vm *vm, int index);
 short					vm_read_memory_short(t_vm *vm, int index);
 void					vm_store_in_memory_int(t_vm *vm, int index, int value);
 void					vm_store_in_memory_short(t_vm *vm, int index,
@@ -144,10 +148,10 @@ void					vm_store_in_register(unsigned char (*reg)[REG_SIZE],
 void					vm_print_register(unsigned char reg[REG_SIZE]);
 int						vm_valid_registers(t_instruction instruction);
 
-
-t_player 				*vm_get_player(t_vm *vm, int player_nb);
+t_player				*vm_get_player(t_vm *vm, int player_nb);
 
 void					vm_error_exit(t_vm *vm, char *message);
+void					vm_delete_data(t_vm *vm);
 
 void					vm_parse_header(size_t size, unsigned char buf[size], \
 						t_vm *vm, int nb);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_parse_header.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 11:32:20 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 11:33:13 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
 void				vm_pick_size_player(unsigned char *buf, t_player *player)
@@ -5,7 +17,8 @@ void				vm_pick_size_player(unsigned char *buf, t_player *player)
 	player->size_player = vm_n_bytes_to_uint(buf, 4);
 	if (player->size_player > CHAMP_MAX_SIZE)
 	{
-		ft_dprintf(2, "Error: champ %s has too large code (%d bytes > %d bytes)\n",
+		ft_dprintf(2, "Error: champ %s has too large code \
+(%d bytes > %d bytes)\n",
 				player->name, player->size_player, CHAMP_MAX_SIZE);
 		exit(-1);
 	}
@@ -52,7 +65,7 @@ void				vm_parse_header(size_t size, unsigned char buf[size], \
 	if (nb && vm->players[nb].number != 0)
 	{
 		ft_dprintf(2, "Error: Player number [%d] already taken, please\
- choose one number for each players\n", nb);
+choose one number for each players\n", nb);
 		exit(-1);
 	}
 	vm->players[nb].number = nb;

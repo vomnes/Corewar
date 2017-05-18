@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_parameters2.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 11:31:17 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 11:32:00 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
 int		vm_param_to_int_idx(t_process *process, t_vm *vm, int i)
@@ -17,7 +29,6 @@ int		vm_param_to_int_idx(t_process *process, t_vm *vm, int i)
 	else if (process->instruction.args[i] == T_IND)
 	{
 		pc = process->pc;
-		//pc = vm_read_register(process->pc);
 		return (vm_read_memory_int(vm, MOD(pc +
 			process->instruction.params[i].sh % IDX_MOD)));
 	}
@@ -44,7 +55,6 @@ int		vm_param_to_int_no_idx(t_process *process, t_vm *vm, int i)
 	}
 	else if (process->instruction.args[i] == T_IND)
 	{
-//		pc = vm_read_register(process->pc);
 		pc = process->pc;
 		return (vm_read_memory_int(vm, MOD(pc +
 			process->instruction.params[i].sh)));

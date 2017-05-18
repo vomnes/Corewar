@@ -1,17 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_live.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 11:21:41 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 11:23:10 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
 void		vm_live(t_process *process, t_vm *vm)
 {
 	int			pc;
- 	int			player_nb;
+	int			player_nb;
 	t_player	*player;
 
 	process->instruction.first_type = T_DIR;
 	process->instruction.args[0] = T_DIR;
-//	pc = vm_read_register(process->pc);
 	pc = process->pc;
 	player_nb = vm_read_memory_int(vm, pc + 1);
-	player= vm_get_player(vm, -player_nb);
+	player = vm_get_player(vm, -player_nb);
 	if (vm_verbose_operations(vm))
 		ft_printf("P%5d | live %d\n", process->no, player_nb);
 	if (player)

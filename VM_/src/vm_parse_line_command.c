@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_parse_line_command.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 11:34:44 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 11:37:46 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
-
-static char **handle_dumps(char **av, t_vm *vm)
+static char	**handle_dumps(char **av, t_vm *vm)
 {
 	int tmp;
 
@@ -16,7 +27,7 @@ static char **handle_dumps(char **av, t_vm *vm)
 	return (NULL);
 }
 
-static char **handle_verbose(char **av, t_vm *vm)
+static char	**handle_verbose(char **av, t_vm *vm)
 {
 	int	tmp;
 
@@ -40,16 +51,10 @@ char		**vm_parse_line_command(char **av, t_vm *vm)
 		av = ret;
 	else if ((ret = handle_verbose(av, vm)))
 		av = ret;
-	else if (*av && ft_strcmp(*av, "-vis") == 0)
-	{
+	else if (*av && ft_strcmp(*av, "-vis") == 0 && av++)
 		vm->vis = 1;
-		av++;
-	}
-	else if (*av && ft_strcmp(*av, "-a") == 0)
-	{
+	else if (*av && ft_strcmp(*av, "-a") == 0 && av++)
 		vm->aff = 1;
-		av++;
-	}
 	else if (*av)
 	{
 		av = vm_read_file_champ(av, vm, count_champs);

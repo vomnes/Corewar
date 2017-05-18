@@ -1,5 +1,16 @@
-#include "vm.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_advance_pc.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 10:56:29 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 10:57:16 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "vm.h"
 
 static int	calculate_advancement(t_process *process)
 {
@@ -47,20 +58,15 @@ int			vm_advance_pc(t_process *process, t_vm *vm)
 	int	pc2;
 	int	advancement;
 
-	//pc1 = vm_read_register(process->pc);
 	pc1 = process->pc;
 	advancement = calculate_advancement(process);
 	pc2 = MOD(pc1 + advancement);
-	//vm_store_in_register(&process->pc, pc2);
 	process->pc = pc2;
 	if (vm_verbose_pc(vm))
 	{
 		ft_printf("ADV %d (0x%04x -> 0x%04x) ", advancement, pc1,
 		pc1 + advancement);
 		print_advancement(vm, pc1, advancement);
-
-		// ft_printf("	P %d | carry = %d", process->no, process->carry);
-
 		ft_printf("\n");
 	}
 	vm->cells[pc1].present = 0;

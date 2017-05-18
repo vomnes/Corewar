@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_init.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 11:18:45 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 11:18:46 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
-
-// !! Cette fonction suppose que tous les numeros de joueur sont toujours utilises
-// entre 1 et nb_players
+/*
+**	This function assumes that all player numbers are used between 1 and
+**	nb_players
+*/
 
 void	vm_init(t_vm *vm)
 {

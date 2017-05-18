@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_memory_rw.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 11:26:08 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 11:26:43 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
 unsigned int	vm_n_bytes_to_uint(unsigned char *ptr, size_t n)
@@ -43,7 +55,6 @@ int				vm_read_memory_int(t_vm *vm, int index)
 	}
 	return (value);
 }
-
 
 /*
 **	Reads 2 bytes of memory and returns it as a signed short.

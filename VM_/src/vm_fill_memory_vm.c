@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_fill_memory_vm.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 11:16:18 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 11:16:35 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
 void			vm_fill_cells(t_vm *vm, int pos, int player_no)
@@ -25,7 +37,7 @@ void			vm_fill_memory(t_vm *vm, int no_player, size_t pos)
 	}
 }
 
-void				vm_fill_memory_vm(t_vm *vm)
+void			vm_fill_memory_vm(t_vm *vm)
 {
 	int				number_players;
 	unsigned long	size;
@@ -39,7 +51,6 @@ void				vm_fill_memory_vm(t_vm *vm)
 	tmp = MEM_SIZE / number_players;
 	vm_fill_memory(vm, 1, 0);
 	process = vm_get_process(vm, 1);
-//	vm_store_in_register(&process->pc, size);
 	process->pc = size;
 	while (no_player <= MAX_PLAYERS)
 	{
@@ -47,7 +58,6 @@ void				vm_fill_memory_vm(t_vm *vm)
 		{
 			size = size + tmp;
 			process = vm_get_process(vm, no_player);
-			//vm_store_in_register(&process->pc, size);
 			process->pc = size;
 			vm_fill_memory(vm, no_player, size);
 		}

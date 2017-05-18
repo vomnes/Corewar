@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_null_op.c                                       :+:      :+:    :+:   */
+/*   vm_delete_data.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/18 11:27:40 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:27:41 by atrudel          ###   ########.fr       */
+/*   Created: 2017/05/18 11:00:45 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 11:06:07 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	vm_null_op(t_process *process, t_vm *vm)
+void	vm_delete_data(t_vm *vm)
 {
-	int	pc1;
-	int	pc2;
+	t_process *current;
 
-	pc1 = process->pc;
-	pc2 = MOD(pc1 + 1);
-	process->pc = pc2;
-	vm->cells[pc1].present = 0;
-	vm->cells[pc2].present = process->player_no;
+	current = vm->last_process;
+	while (current)
+		current = vm_delete_process(current, vm);
 }

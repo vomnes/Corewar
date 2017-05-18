@@ -1,3 +1,14 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/05/18 11:15:05 by atrudel           #+#    #+#              #
+#    Updated: 2017/05/18 11:19:24 by atrudel          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 NAME = corewar
 
 LIB_PATH = ../libft
@@ -8,7 +19,7 @@ INC_PATH = ./includes
 
 SRC_FILES =	corewar.c \
 			vm_init.c \
-			vm_introduction.c \
+			vm_introduce_contestants.c \
 			vm_verbose.c \
 			vm_dump.c \
 			vm_cycles.c \
@@ -17,6 +28,7 @@ SRC_FILES =	corewar.c \
 			vm_parameters.c \
 			vm_parameters2.c \
 			vm_error.c \
+			vm_delete_data.c \
 			vm_register_utils.c \
 			vm_player_utils.c \
 			vm_memory_rw.c \

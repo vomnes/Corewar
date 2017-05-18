@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_sub.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 11:42:03 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 11:42:24 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
 void		vm_sub(t_process *process, t_vm *vm)
@@ -7,7 +19,6 @@ void		vm_sub(t_process *process, t_vm *vm)
 	int	sub2;
 	int	diff;
 
-//	pc = vm_read_register(process->pc);
 	pc = process->pc;
 	if (vm_check_parameter_types(process->instruction) &&
 		vm_get_parameters(process, vm) &&
@@ -27,44 +38,5 @@ void		vm_sub(t_process *process, t_vm *vm)
 			process->instruction.params[0].uch, process->
 			instruction.params[1].uch, process->instruction.params[2].uch);
 	}
-	vm_advance_pc(process,vm);
-}
-
-
-/*
-static void	sub_registers(t_process *process, t_vm *vm, int pc)
-{
-	int			first_param;
-	int			second_param;
-	int			third_param;
-
-	first_param = vm->memory[MOD(pc + 2)];
-	if (first_param > 0 && first_param <= REG_NUMBER)
-	{
-		first_param = vm_read_register(process->registers[first_param]);
-		second_param = vm->memory[MOD(pc + 3)];
-		if (second_param > 0 && second_param <= REG_NUMBER)
-		{
-			second_param = vm_read_register(process->registers[second_param]);
-			third_param = vm->memory[MOD(pc + 4)];
-			if (third_param > 0 && third_param <= REG_NUMBER)
-			{
-				vm_store_in_register(&process->registers[third_param],
-						(first_param - second_param));
-				process->carry = 1;
-			}
-		}
-	}
-}
-
-void		vm_sub(t_process *process, t_vm *vm)
-{
-	int		pc;
-
-	process->carry = 0;
-	pc = vm_read_register(process->pc);
-	if (vm_check_parameter_types(process->instruction) == 1)
-		sub_registers(process, vm, pc);
 	vm_advance_pc(process, vm);
 }
-*/

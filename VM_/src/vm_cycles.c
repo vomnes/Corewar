@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_cycles.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 10:59:28 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 10:59:29 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
 static void	vm_advance_processes_one_cycle(t_vm *vm)
@@ -10,7 +22,6 @@ static void	vm_advance_processes_one_cycle(t_vm *vm)
 	{
 		if (process->alive)
 		{
-			//pc = vm_read_register(process->pc);
 			pc = process->pc;
 			if (!process->instruction.opcode)
 				process->instruction = vm_read_opcode(vm, pc);
@@ -41,7 +52,6 @@ static void	vm_check_lives_and_kill(t_vm *vm)
 	current = vm->last_process;
 	while (current)
 	{
-		// if (current->nb_lives < 1)
 		if (vm->cycle_nbr - current->last_live_cycle >= vm->cycle_to_die)
 		{
 			if (vm_verbose_deaths(vm))

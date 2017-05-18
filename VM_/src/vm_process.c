@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_process.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 11:39:52 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 11:40:07 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
 /*
@@ -63,7 +75,7 @@ t_process	*vm_delete_process(t_process *process, t_vm *vm)
 	return (NULL);
 }
 
-void 		vm_copy_process(t_process *parent, t_process *child, t_vm *vm)
+void		vm_copy_process(t_process *parent, t_process *child, t_vm *vm)
 {
 	int i;
 
@@ -107,34 +119,4 @@ t_process	*vm_get_process(t_vm *vm, int no)
 	}
 	ft_dprintf(2, "ERROR: Unable to reach process no %d\n", no);
 	return (NULL);
-}
-
-// A enlever
-
-void		vm_print_process(t_process *process)
-{
-	int i;
-
-	ft_printf("Process no %d\n", process->no);
-	ft_printf("Belongs to player no %d\n", process->player_no);
-	if (process->alive)
-		ft_printf("This process is alive\n");
-	else
-		ft_printf("This process is dead\n");
-	ft_printf("Carry: %d\n", process->carry);
-	ft_printf("PC : ");
-	ft_putnbr(process->pc);
-	//vm_print_register(process->pc);
-	ft_printf("\n");
-	ft_printf("Registers:\n");
-	i = 1;
-	while (i <= REG_NUMBER)
-	{
-		ft_printf("\tRegister %d: ", i);
-		vm_print_register(process->registers[i]);
-		ft_printf("\n");
-		i++;
-	}
-
-	ft_printf("Instruction: %hhd\n", process->instruction.opcode);
 }

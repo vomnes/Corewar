@@ -1,18 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vm_zjmp.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/05/18 11:43:07 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/18 11:43:34 by atrudel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
 void	vm_zjmp(t_process *process, t_vm *vm)
 {
 	short	indirection;
-	int	pc;
+	int		pc;
 
 	pc = process->pc;
-	//pc = vm_read_register(process->pc);
 	process->instruction.args[0] = T_DIR;
 	vm_get_parameters(process, vm);
 	indirection = vm_read_memory_short(vm, pc + 1);
 	if (process->carry == 1)
 	{
-		//vm_store_in_register(&process->pc, MOD(pc + indirection % IDX_MOD));
 		process->pc = MOD(pc + indirection % IDX_MOD);
 		vm->cells[pc].present = 0;
 		vm->cells[MOD(pc + indirection % IDX_MOD)].present = process->player_no;
