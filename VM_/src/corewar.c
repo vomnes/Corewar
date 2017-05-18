@@ -2,7 +2,18 @@
 
 int			print_usage(void)
 {
-	ft_printf("Usage: ./corewar ...\n");
+	ft_printf("Usage: ./corewar [-a -vis -d N -v N] <champion1.cor> <...>\n");
+	ft_printf("\t-a\t: Prints output from 'aff' (Default is to hide it)\n");
+	ft_printf("\t-vis\t: Ncurses output mode\n");
+	ft_printf("\t-d N\t: Dumps memory after N cycles then exits\n");
+	ft_printf("\t-v N\t: Verbosity levels, can be added together to enable \
+several\n");
+	ft_printf("\t\t- 0 : Show only essentials\n");
+	ft_printf("\t\t- 1 : Show lives\n");
+	ft_printf("\t\t- 2 : Show cycles\n");
+	ft_printf("\t\t- 4 : Show operations\n");
+	ft_printf("\t\t- 8 : Show deaths\n");
+	ft_printf("\t\t- 16 : Show PC movements (Except for jumps)\n");
 	return (0);
 }
 
