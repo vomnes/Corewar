@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 10:59:28 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 10:59:29 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/18 18:19:09 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,11 @@ static void	vm_check_lives_and_kill(t_vm *vm)
 			if (vm_verbose_deaths(vm))
 				ft_printf("Process %d hasn't lived for %d cycles (CTD %d)\n",
 	current->no, vm->cycle_nbr - current->last_live_cycle, vm->cycle_to_die);
+			vm_get_player(vm, current->player_no)->nb_alive_processes -= 1;
 			current = vm_delete_process(current, vm);
 		}
 		else
-		{
-			current->nb_lives = 0;
 			current = current->prev;
-		}
 	}
 	if (vm->lives_since_last_check >= NBR_LIVE || vm->check_count >= MAX_CHECKS)
 	{

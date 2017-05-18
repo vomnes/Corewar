@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:03:50 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:12:00 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/18 18:08:49 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef	struct			s_player
 	unsigned char		memory[CHAMP_MAX_SIZE];
 	unsigned int		size_player;
 	int					number;
+	int					nb_alive_processes;
 	int					cycle_of_last_live;
 }						t_player;
 

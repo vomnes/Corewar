@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:18:45 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:18:46 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/18 18:12:14 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	vm_init(t_vm *vm)
 		vm_create_process(vm);
 		process = vm_get_process(vm, i);
 		process->player_no = i;
+		vm->players[i].nb_alive_processes += 1;
 		vm_store_in_register(&process->registers[1], -i);
 		i++;
 	}

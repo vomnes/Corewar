@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:39:52 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:40:07 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/18 18:14:44 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void		vm_copy_process(t_process *parent, t_process *child, t_vm *vm)
 			vm_read_register(parent->registers[i]));
 		i++;
 	}
+	vm_get_player(vm, parent->player_no)->nb_alive_processes += 1;
 	child->player_no = parent->player_no;
 	child->alive = parent->alive;
 	child->carry = parent->carry;
