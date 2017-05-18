@@ -6,7 +6,7 @@
 /*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 17:32:41 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/18 18:30:03 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/18 19:23:08 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,36 @@ void			print_color_heart(char *str, int color, WINDOW *window)
 	wattroff(window, COLOR_PAIR(color));
 }
 
+void			print_skull(WINDOW *window, int pos)
+{
+	char		*buf[15];
+
+	buf[0] = "                  ______";
+	buf[1] = "               .-\"      \"-.";
+	buf[2] = "              /            \\";
+	buf[3] = "  _          |              |          _";
+	buf[4] = " ( \\         |,  .-.  .-.  ,|         / )";
+	buf[5] = "  > \"=._     | )(__/  \\__)( |     _.=\" <";
+	buf[6] = " (_/\"=._\"=._ |/     /\\     \\| _.=\"_.=\"\\_)";
+	buf[7] = "        \"=._ (_     ^^     _)\"_.=\"";
+	buf[8] = "            \"=\\__|IIIIII|__/=\"";
+	buf[9] = "           _.=\"| \\IIIIII/ |\"=._";
+	buf[10] = " _     _.=\"_.=\"\\          /\"=._\"=._     _";
+	buf[11] = "( \\_.=\"_.=\"     `--------`     \"=._\"=._/ )";
+	buf[12] = " > _.=\"                            \"=._ <";
+	buf[13] = "(_/                                    \\_)";
+	buf[14] = "";
+	int i = -1;
+	int x;
+	int y;
+	getyx(window, y, x);
+	while (++i <= 14)
+	{
+		wmove(window, y + i + 2, pos);
+		wprintw(window, buf[i]);
+	}
+}
+
 void			print_heart(t_vm *vm, WINDOW *window, int pos, int player_no)
 {
 	int			x;
@@ -70,15 +100,18 @@ void			print_heart(t_vm *vm, WINDOW *window, int pos, int player_no)
 	getyx(window, y, x);
 	count = -1;
 	value = (15.0 / vm->cycle_to_die * vm->cycles_since_last_check) + 0.5;
-	while (++count <= 14)
-	{
-		wmove(window, y + count + 2, pos);
-		if (vm->players[player_no].nb_alive_processes > 0 && (count >= value || (vm->players[player_no].cycle_of_last_live >
-					(vm->cycle_nbr - vm->cycles_since_last_check))))
-			print_color_heart(vm->heart[count], 9, window);
-		else
-			print_color_heart(vm->heart[count], 10, window);
-	}
+	if (vm->players[player_no].nb_alive_processes == 0)
+		print_skull(window, pos);
+	else
+		while (++count <= 14)
+		{
+			wmove(window, y + count + 2, pos);
+			if (count >= value || (vm->players[player_no].cycle_of_last_live >
+						(vm->cycle_nbr - vm->cycles_since_last_check)))
+				print_color_heart(vm->heart[count], 9, window);
+			else
+				wprintw(window, "\t\t\t\t\t");
+		}
 }
 
 static void		print_players(t_vm *vm, WINDOW *window)
@@ -105,7 +138,7 @@ static void		print_players(t_vm *vm, WINDOW *window)
 			if (i % 2 == 0)
 				wmove(window, y + 3, 2);
 			else
-				wmove(window, y - 17, 60);
+				wmove(window, y - 17, 56);
 			getyx(window, y, x);
 		}
 }
