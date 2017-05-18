@@ -266,7 +266,6 @@ void			display_all_windows(t_vm *vm, WINDOW *window[4], char ret)
 {
 	int entry;
 
-	(void)ret;
 	entry = check_entry_keys(vm);
 	if (ret == 1)
 	{
