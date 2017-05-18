@@ -6,7 +6,7 @@
 /*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 17:32:41 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/18 17:41:25 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/18 18:03:31 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ void			print_memory(t_vm *vm, WINDOW *window)
 	wrefresh(window);
 }
 
+void			print_color_heart(char *str, int color, WINDOW *window)
+{
+	wattron(window, COLOR_PAIR(color));
+	wprintw(window, "%s", str);
+	wattroff(window, COLOR_PAIR(color));
+}
+
+int				check_process_is_alive(t_vm *vm, int player_no)
+{
+	if (vm->nb_alive_processes > nb_players)
+		return (1);
+}
+
 void			print_heart(t_vm *vm, WINDOW *window, int pos, int player_no)
 {
 	int			x;
@@ -68,13 +81,9 @@ void			print_heart(t_vm *vm, WINDOW *window, int pos, int player_no)
 		wmove(window, y + count + 2, pos);
 		if (count >= value || (vm->players[player_no].cycle_of_last_live >
 					(vm->cycle_nbr - vm->cycles_since_last_check)))
-		{
-			wattron(window, COLOR_PAIR(9));
-			wprintw(window, vm->heart[count]);
-			wattroff(window, COLOR_PAIR(9));
-		}
+			print_color_heart(vm->heart[count], 9, window);
 		else
-			wprintw(window, vm->heart[count]);
+			print_color_heart(vm->heart[count], 10, window);
 	}
 }
 
@@ -252,7 +261,6 @@ void			print_winner_champ(t_vm *vm, WINDOW *window)
 
 void			print_winner(t_vm *vm, WINDOW *window)
 {
-	(void)window;
 	wmove(window, 20, 80);
 	print_sword(window);
 	print_winner_champ(vm, window);
