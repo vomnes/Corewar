@@ -17,7 +17,7 @@ static void		check_cells(t_vm *vm, WINDOW *window, int pos)
 	else if (vm->cells[pos].player_no != 0)
 		print_color_w(*vm, window, vm->cells[pos].player_no, pos);
 	else
-		wprintw(window, "%02x", vm->memory[pos]);
+		print_color_w(*vm, window, 10, pos);
 }
 
 void			print_memory(t_vm *vm, WINDOW *window)
@@ -272,7 +272,6 @@ void			display_all_windows(t_vm *vm, WINDOW *window[4], char ret)
 {
 	int entry;
 
-	(void)ret;
 	entry = check_entry_keys(vm);
 	if (ret == 1)
 	{
