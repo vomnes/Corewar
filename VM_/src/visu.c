@@ -55,7 +55,7 @@ void			print_color_heart(t_vm *vm, WINDOW *window, char *str[16], int pos, int p
 	while (++count <= 14)
 	{
 		wmove(window, y + count + 2, pos);
-		if (count > value || (vm->players[player_no].cycle_of_last_live > (vm->cycle_nbr - vm->cycles_since_last_check)))
+		if (count >= value || (vm->players[player_no].cycle_of_last_live > (vm->cycle_nbr - vm->cycles_since_last_check)))
 		{
 			wattron(window, COLOR_PAIR(9));
 			wprintw(window, str[count]);
@@ -184,7 +184,9 @@ void			init_windows(WINDOW **windows)
 
 	windows[1] = newwin(64, 193, 0, 0);
 	windows[2] = newwin(64, 100, 0, 194);
+	windows[3] = newwin(64, 193, 0, 0);
 	box(windows[2], 0,0);
+	box(windows[3], 0,0);
 }
 
 int			check_entry_keys(t_vm *vm)
@@ -203,11 +205,84 @@ int			check_entry_keys(t_vm *vm)
 	return (entry);
 }
 
-void			display_all_windows(t_vm *vm, WINDOW *window[4])  // <<-- a remplacer par une structure WINDOW du nombre de fenetres qu'il faut
+void			print_sword(WINDOW *window)
+{
+	char *buf[32];
+	int x = 0;
+	int y = 0;
+	int i = -1;
+
+	getyx(window, y, x);
+	buf[0] = "                           .-.";
+	buf[1] = "                          {{@}}";
+	buf[2] = "          <>               8@8";
+	buf[3] = "        .::::.             888";
+	buf[4] = "    @\\\\/W\\/\\/W\\//@         8@8";
+	buf[5] = "     \\\\/^\\/\\/^\\//     _    )8(";
+	buf[6] = "      \\_O_<>_O_/     (@)__/8@8\\__(@)";
+	buf[7] = " ____________________ `~\"-=):(=-\"~`";
+	buf[8] = "|<><><>  |  |  <><><>|     |.|";
+	buf[9] = "|<>      |  |      <>|     |S|";
+	buf[10] = "|<>      |  |      <>|     |'|";
+	buf[11] = "|<>   .--------.   <>|     |.|";
+	buf[12] = "|     |   ()   |     |     |P|";
+	buf[13] = "|_____| (O\\/O) |_____|     |'|";
+	buf[14] = "|     \\   /\\   /     |     |.|";
+	buf[15] = "|------\\  \\/  /------|     |U|";
+	buf[16] = "|       '.__.'       |     |'|";
+	buf[17] = "|        |  |        |     |.|";
+	buf[18] = ":        |  |        :     |N|";
+	buf[19] = " \\<>     |  |     <>/      |'|";
+	buf[20] = "  \\<>    |  |    <>/       |.|";
+	buf[21] = "   \\<>   |  |   <>/        |K|";
+	buf[22] = "    `\\<> |  | <>/'         |'|";
+	buf[23] = "      `-.|  |.-`           \\ /";
+	buf[24] = "         '--'               ^";
+	while (++i < 24)
+	{
+		wmove(window, y + i, x);
+		wprintw(window, "%s", buf[i]);
+	}
+}
+
+void			print_winner_champ(t_vm *vm, WINDOW *window)
+{
+	t_player *winner;
+
+	wmove(window, 18, 65);
+	winner = vm_get_player(vm, vm->last_live_player_no);
+	wprintw(window, "Winner : ");
+	wattron(window, COLOR_PAIR(winner->number));
+	wprintw(window, "%s", winner->name);
+	wattroff(window, COLOR_PAIR(winner->number));
+}
+
+void			print_winner(t_vm *vm, WINDOW *window)
+{
+	(void)window;
+	wmove(window, 20, 65);
+	print_sword(window);
+	print_winner_champ(vm, window);
+	wrefresh(window);
+	while (check_entry_keys(vm) != 27)
+		;
+}
+
+void			display_all_windows(t_vm *vm, WINDOW *window[4], char ret)
 {
 	int entry;
 
+	(void)ret;
 	entry = check_entry_keys(vm);
-	print_memory(vm, window[1]);
-	print_info(vm, window[2]);
+	if (ret == 1)
+	{
+		print_memory(vm, window[1]);
+		print_info(vm, window[2]);
+	}
+	else
+	{
+		print_winner(vm, window[3]);
+		print_info(vm, window[2]);
+	}
+
 }
