@@ -6,7 +6,7 @@
 /*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 17:32:41 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/18 18:03:31 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/18 18:30:03 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,6 @@ void			print_color_heart(char *str, int color, WINDOW *window)
 	wattroff(window, COLOR_PAIR(color));
 }
 
-int				check_process_is_alive(t_vm *vm, int player_no)
-{
-	if (vm->nb_alive_processes > nb_players)
-		return (1);
-}
-
 void			print_heart(t_vm *vm, WINDOW *window, int pos, int player_no)
 {
 	int			x;
@@ -79,8 +73,8 @@ void			print_heart(t_vm *vm, WINDOW *window, int pos, int player_no)
 	while (++count <= 14)
 	{
 		wmove(window, y + count + 2, pos);
-		if (count >= value || (vm->players[player_no].cycle_of_last_live >
-					(vm->cycle_nbr - vm->cycles_since_last_check)))
+		if (vm->players[player_no].nb_alive_processes > 0 && (count >= value || (vm->players[player_no].cycle_of_last_live >
+					(vm->cycle_nbr - vm->cycles_since_last_check))))
 			print_color_heart(vm->heart[count], 9, window);
 		else
 			print_color_heart(vm->heart[count], 10, window);
