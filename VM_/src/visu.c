@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   visu.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/18 17:32:41 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/19 11:38:40 by pdady            ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "vm.h"
 
 static void		print_color_w(t_vm vm, WINDOW *window, int color, int pos)
@@ -63,7 +51,11 @@ void			print_color_heart(char *str, int color, WINDOW *window)
 void			print_skull(WINDOW *window, int pos)
 {
 	char		*buf[15];
+	int			x;
+	int			y;
+	int			i;
 
+	i = -1;
 	buf[0] = "                  ______";
 	buf[1] = "               .-\"      \"-.";
 	buf[2] = "              /            \\";
@@ -79,9 +71,6 @@ void			print_skull(WINDOW *window, int pos)
 	buf[12] = " > _.=\"                            \"=._ <";
 	buf[13] = "(_/                                    \\_)";
 	buf[14] = "";
-	int i = -1;
-	int x;
-	int y;
 	getyx(window, y, x);
 	while (++i <= 14)
 	{
@@ -191,7 +180,7 @@ void			init_windows(WINDOW **windows)
 	init_pair(3, COLOR_CYAN, COLOR_BLACK);
 	init_pair(4, COLOR_BLUE, COLOR_BLACK);
 	init_pair(5, COLOR_BLUE, COLOR_MAGENTA);
-	init_pair(6, COLOR_CYAN, COLOR_YELLOW);
+	 init_pair(6, COLOR_CYAN, COLOR_YELLOW);
 	init_pair(7, COLOR_MAGENTA, COLOR_CYAN);
 	init_pair(8, COLOR_RED, COLOR_BLUE);
 	init_pair(9, COLOR_RED, COLOR_BLACK);
@@ -226,7 +215,7 @@ int			check_entry_keys(t_vm *vm)
 	return (entry);
 }
 
-void			fill_sword_part(char *buf[25])
+void			fill_sword_part2(char *buf[25])
 {
 	buf[11] = "|<>   .--------.   <>|     |.|";
 	buf[12] = "|     |   ()   |     |     |P|";
@@ -264,7 +253,7 @@ void			print_sword(WINDOW *window)
 	buf[8] = "|<><><>  |  |  <><><>|     |.|";
 	buf[9] = "|<>      |  |      <>|     |S|";
 	buf[10] = "|<>      |  |      <>|     |'|";
-	fill_sword_part(buf);
+	fill_sword_part2(buf);
 	while (++i < 25)
 	{
 		wmove(window, y + i, x);
@@ -272,30 +261,33 @@ void			print_sword(WINDOW *window)
 	}
 }
 
-void			print_winner_champ(t_vm *vm, WINDOW *window)
+void			print_winner2(t_vm *vm, WINDOW *window)
 {
 	t_player *winner;
 
 	wmove(window, 18, 80);
 	winner = vm_get_player(vm, vm->last_live_player_no);
+	if (winner)
+	{
 	wprintw(window, "Winner : ");
 	wattron(window, COLOR_PAIR(winner->number));
 	wprintw(window, "%s", winner->name);
 	wattroff(window, COLOR_PAIR(winner->number));
 	wmove(window, 60, 85);
 	wprintw(window, "PRESS (ESC) TO EXIT");
+	}
 }
 
 void			print_winner(t_vm *vm, WINDOW *window)
 {
 	wmove(window, 20, 80);
 	print_sword(window);
-	print_winner_champ(vm, window);
+	print_winner2(vm, window);
 	wrefresh(window);
 	curs_set(0);
 	while (check_entry_keys(vm) != 27)
 		;
-}
+	}
 
 void			display_all_windows(t_vm *vm, WINDOW *window[4], char ret)
 {
@@ -309,7 +301,7 @@ void			display_all_windows(t_vm *vm, WINDOW *window[4], char ret)
 	}
 	else
 	{
-		print_winner(vm, window[3]);
 		print_info(vm, window[2]);
+		print_winner(vm, window[3]);
 	}
 }
