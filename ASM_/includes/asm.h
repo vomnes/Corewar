@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 17:11:27 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/16 15:42:50 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/19 10:46:50 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ typedef struct				s_output
 
 typedef struct				s_data
 {
-	header_t				header;
+	t_header				header;
 	t_input					input;
 	t_output				binary_file;
 	t_parsing				parsing;
@@ -100,9 +100,9 @@ void						init_struct_parsing(t_parsing *parsing);
 char						*ft_strtrim_comment(char *s, char comment_char);
 int							ft_isprint_nospace(int c);
 void						check_header_content(const char *cmd_string, \
-unsigned int content_len, t_parsing *parsing, header_t *header);
+unsigned int content_len, t_parsing *parsing, t_header *header);
 int							parse_name_comment(t_parsing *parsing, \
-header_t *header);
+t_header *header);
 int							ft_is_label_chars(int c);
 int							label_exist(t_instructions *lst, \
 char *label_to_check);
@@ -128,12 +128,12 @@ int							add_arg(t_args **lst_head, char *content);
 int							create_param_byte(t_instructions **lst);
 int							set_value(t_instructions **lst);
 int							get_prog_data(t_instructions **lst, \
-header_t *header);
+t_header *header);
 int							program_data(t_data *data);
 
 void						ft_write_byte(int fd, unsigned int value, \
 char nb_octet);
-void						write_header(int fd, header_t header);
+void						write_header(int fd, t_header header);
 int							write_binary(t_instructions **lst, \
 t_output *binary_file);
 int							generate_binary_code(t_data *data);
@@ -141,7 +141,7 @@ int							generate_binary_code(t_data *data);
 void						ft_display_hex_octet(unsigned long long int nb, \
 int nb_octet);
 void						details_compilation(t_instructions *lst, \
-header_t header);
+t_header header);
 
 int							ft_exit_clean(t_instructions **lst, int type);
 

@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/26 12:22:41 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 17:32:51 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/19 10:47:27 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	ft_write_str(int fd, char *str, int len)
 ** in a file descriptor.
 */
 
-void		write_header(int fd, header_t header)
+void		write_header(int fd, t_header header)
 {
 	ft_write_byte(fd, COREWAR_EXEC_MAGIC, 4);
 	ft_write_str(fd, header.prog_name, PROG_NAME_LENGTH + 4);

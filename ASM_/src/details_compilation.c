@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/10 09:09:16 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/12 11:18:25 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/19 10:49:08 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void			check_each_arg(t_instructions *lst)
 ** compilation.
 */
 
-void				details_compilation(t_instructions *lst, header_t header)
+void				details_compilation(t_instructions *lst, t_header header)
 {
 	t_instructions *current;
 

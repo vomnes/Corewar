@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/02 13:59:02 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/12 15:06:38 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/19 10:48:13 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void		parse_undefined_name_comment(t_parsing *parsing)
 ** .comment "my_comment"
 */
 
-int			parse_name_comment(t_parsing *parsing, header_t *header)
+int			parse_name_comment(t_parsing *parsing, t_header *header)
 {
 	check_header_content(NAME_CMD_STRING, PROG_NAME_LENGTH, parsing, header);
 	name_comment_checked(parsing, 1);
