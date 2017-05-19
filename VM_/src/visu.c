@@ -48,6 +48,18 @@ void			print_color_heart(char *str, int color, WINDOW *window)
 	wattroff(window, COLOR_PAIR(color));
 }
 
+void			clear_zone(WINDOW *window, int pos, int y)
+{
+	int i;
+
+	i = -1;
+	while (++i <= 14)
+	{
+		wmove(window, y + i + 2, pos);
+		wprintw(window, "\t\t\t\t\t");
+	}
+}
+
 void			print_skull(WINDOW *window, int pos)
 {
 	char		*buf[15];
@@ -72,11 +84,45 @@ void			print_skull(WINDOW *window, int pos)
 	buf[13] = "(_/                                    \\_)";
 	buf[14] = "";
 	getyx(window, y, x);
+	clear_zone(window, pos, y);
 	while (++i <= 14)
 	{
 		wmove(window, y + i + 2, pos);
 		wprintw(window, buf[i]);
 	}
+}
+
+void			print_cup(WINDOW *window, int pos)
+{
+	char		*buf[15];
+	int			x;
+	int			y;
+	int			i;
+
+	i = -1;
+	buf[0] = ".-..-\"\"``\"\"-..-.";
+	buf[1] = "|(`\\`'----'`/`)|";
+	buf[2] = " \\\\ ;:.    ; //";
+	buf[3] = "  \\\\|:.    |//";
+	buf[4] = "   )|:.    |(";
+	buf[5] = " ((,|:.    |,))";
+	buf[6] = "  '-\\::.   /-'";
+	buf[7] = "     '::..'";
+	buf[8] = "       }{";
+	buf[9] = "      {__}";
+	buf[10] = "     /    \\";
+	buf[11] = "    |`----'|";
+	buf[12] = "    | [#1] |";
+	buf[13] = "    '.____.\'";
+	getyx(window, y, x);
+	clear_zone(window, pos, y);
+	pos += 5;
+	while (++i < 14)
+	{
+		wmove(window, y + i + 2, pos);
+		wprintw(window, buf[i]);
+	}
+	wmove(window, y + i + 2, pos);
 }
 
 void			print_heart(t_vm *vm, WINDOW *window, int pos, int player_no)
@@ -89,7 +135,9 @@ void			print_heart(t_vm *vm, WINDOW *window, int pos, int player_no)
 	getyx(window, y, x);
 	count = -1;
 	value = (15.0 / vm->cycle_to_die * vm->cycles_since_last_check) + 0.5;
-	if (vm->players[player_no].nb_alive_processes == 0)
+	if (vm->nb_alive_processes == 0 && vm->last_live_player_no == player_no)
+		print_cup(window, pos);
+	else if (vm->players[player_no].nb_alive_processes == 0)
 		print_skull(window, pos);
 	else
 		while (++count < 15)
@@ -121,7 +169,7 @@ static void		print_players(t_vm *vm, WINDOW *window)
 			wprintw(window, "%.30s", vm->players[i].name);
 			wattroff(window, COLOR_PAIR(vm->players[i].number));
 			if (ft_strlen(vm->players[i].name) > 30)
-				wprintw(window, "[...]");
+				wprintw(window, " [...]");
 			print_heart(vm, window, x, i);
 			getyx(window, y, x);
 			if (i % 2 == 0)
@@ -180,7 +228,7 @@ void			init_windows(WINDOW **windows)
 	init_pair(3, COLOR_CYAN, COLOR_BLACK);
 	init_pair(4, COLOR_BLUE, COLOR_BLACK);
 	init_pair(5, COLOR_BLUE, COLOR_MAGENTA);
-	 init_pair(6, COLOR_CYAN, COLOR_YELLOW);
+	init_pair(6, COLOR_CYAN, COLOR_YELLOW);
 	init_pair(7, COLOR_MAGENTA, COLOR_CYAN);
 	init_pair(8, COLOR_RED, COLOR_BLUE);
 	init_pair(9, COLOR_RED, COLOR_BLACK);
@@ -230,12 +278,12 @@ void			fill_sword_part2(char *buf[25])
 	buf[21] = "   \\<>   |  |   <>/        |K|";
 	buf[22] = "    `\\<> |  | <>/'         |'|";
 	buf[23] = "      `-.|  |.-`           \\ /";
-	buf[24] = "         '--'";
+	buf[24] = "         '--'                  ";
 }
 
 void			print_sword(WINDOW *window)
 {
-	char		*buf[32];
+	char		*buf[25];
 	int			x;
 	int			y;
 	int			i;
@@ -269,13 +317,13 @@ void			print_winner2(t_vm *vm, WINDOW *window)
 	winner = vm_get_player(vm, vm->last_live_player_no);
 	if (winner)
 	{
-	wprintw(window, "Winner : ");
-	wattron(window, COLOR_PAIR(winner->number));
-	wprintw(window, "%s", winner->name);
-	wattroff(window, COLOR_PAIR(winner->number));
-	wmove(window, 60, 85);
-	wprintw(window, "PRESS (ESC) TO EXIT");
+		wprintw(window, "Winner : ");
+		wattron(window, COLOR_PAIR(winner->number));
+		wprintw(window, "%s", winner->name);
+		wattroff(window, COLOR_PAIR(winner->number));
 	}
+	wmove(window, 57, 85);
+	wprintw(window, "PRESS (ESC) TO EXIT");
 }
 
 void			print_winner(t_vm *vm, WINDOW *window)
@@ -287,7 +335,7 @@ void			print_winner(t_vm *vm, WINDOW *window)
 	curs_set(0);
 	while (check_entry_keys(vm) != 27)
 		;
-	}
+}
 
 void			display_all_windows(t_vm *vm, WINDOW *window[4], char ret)
 {
