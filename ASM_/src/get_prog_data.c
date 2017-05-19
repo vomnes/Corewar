@@ -6,13 +6,13 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 17:41:31 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/10 17:13:59 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/19 10:48:54 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static void	check_each_arg(t_instructions **lst, header_t *header)
+static void	check_each_arg(t_instructions **lst, t_header *header)
 {
 	t_args	*current;
 
@@ -41,7 +41,7 @@ static void	check_each_arg(t_instructions **lst, header_t *header)
 ** prog_size (header).
 */
 
-int			get_prog_data(t_instructions **lst, header_t *header)
+int			get_prog_data(t_instructions **lst, t_header *header)
 {
 	t_instructions	*current;
 	unsigned int	prog_size;

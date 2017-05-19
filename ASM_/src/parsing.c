@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/27 16:58:00 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/12 14:48:50 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/19 10:47:55 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void	clean_struct_parsing(t_parsing *parsing)
 	ft_strdel(&parsing->line_args);
 }
 
-static int	analyse_line(t_parsing *parsing, header_t *header, char **line)
+static int	analyse_line(t_parsing *parsing, t_header *header, char **line)
 {
 	if (!(parsing->clean_line = \
 		ft_strtrim_comment(*line, COMMENT_CHAR)))

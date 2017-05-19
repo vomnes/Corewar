@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 17:09:41 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/16 16:04:08 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/19 10:48:39 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ limit (Max length %d)\n",\
 */
 
 void			check_header_content(const char *cmd_string, \
-unsigned int content_len, t_parsing *parsing, header_t *header)
+unsigned int content_len, t_parsing *parsing, t_header *header)
 {
 	char	*name;
 	int		index_open;
