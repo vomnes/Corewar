@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:18:45 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 18:12:14 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/19 12:09:41 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,10 @@ void	vm_init(t_vm *vm)
 		i++;
 	}
 	vm->cycle_to_die = CYCLE_TO_DIE;
+	if (vm->vis)
+	{
+		vm->dumps = -1;
+		vm->verbose = 0;
+		vm->aff = 0;
+	}
 }
