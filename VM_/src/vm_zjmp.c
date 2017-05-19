@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:43:07 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/19 11:22:01 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/19 15:39:55 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	vm_zjmp(t_process *process, t_vm *vm)
 		vm->cells[pc].present = 0;
 		vm->cells[MOD(pc + indirection % IDX_MOD)].present = process->player_no;
 		if (vm_verbose_operations(vm))
-			ft_printf("P%5d | zjmp %hd OK\n", process->no, indirection);
+			ft_printf("P% 5d | zjmp %hd OK\n", process->no, indirection);
 	}
 	else
 	{
