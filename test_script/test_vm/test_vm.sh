@@ -10,19 +10,16 @@ corewar_cor1_cor2()
     ./cor_zaz/corewar -v 31 $1.cor $2.cor > output2
     echo "[1]\c"
     total=$(ls -la | grep "output2" | awk '{print $5}')
-    ../../VM_/corewar -v 31 $1.cor $2.cor > output1 &
-    pid=$!
+    ../../VM_/corewar -v 31 $1.cor $2.cor > output1 & pid=$!
     trap "kill $pid 2> /dev/null" EXIT
-    # While copy is running...
     echo ""
     while kill -0 $pid 2> /dev/null; do
-        # test=ls -la | grep "output1" | awk '{print $5}'
-        size2=$(ls -la | grep "output1" | awk '{print $5}')
-        update=$(echo "scale=2;100 * $size2 / $total" | bc)
+        current_size=$(ls -la | grep "output1" | awk '{print $5}')
+        update=$(echo "scale=2;100 * $current_size / $total" | bc)
         printf "\rLoading [%.f%%]" $update
     done
+    printf "\rLoading [100%%] >>"
     trap - EXIT
-    echo " >>\c"
     diff output1 output2 > output_diff
     if [[ -s output_diff ]]
     then echo "\033[0;31m FAILURE\033[0m"
