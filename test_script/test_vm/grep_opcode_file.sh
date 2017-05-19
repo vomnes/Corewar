@@ -2,7 +2,7 @@
 
 grep_check()
 {
-    grep "\s$1\s\|$1\s\|\s$1" $2 > output
+    grep "\s$1\s" $2 > output
     if [[ -s output ]]
     then echo "$1 : \033[0;32m [YES]\033[0m"
     else echo "$1 : \033[0;31m [NO]\033[0m"
