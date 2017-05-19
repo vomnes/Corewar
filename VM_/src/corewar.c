@@ -17,6 +17,28 @@ several\n");
 	return (0);
 }
 
+void		check_position_players(t_vm vm)
+{
+	int i;
+	int a;
+
+	i = 0;
+	a = 0;
+	while (++i <= MAX_PLAYERS)
+	{
+		if (vm.players[i].number == 0)
+		{
+			a = i;
+			while (a <= MAX_PLAYERS)
+			{
+				if (vm.players[a].number != 0)
+					vm_error_exit(&vm, "Bad entry of players");
+				a++;
+			}
+		}
+	}
+}
+
 int main(int ac, char **av)
 {
 	t_vm		vm;
@@ -35,6 +57,7 @@ int main(int ac, char **av)
 	av = vm_parse_line_command(av, &vm);
 	(vm.vis == 1) ? init_windows(windows) : 1;
 	vm_init(&vm);
+	check_position_players(vm);
 	vm_fill_memory_vm(&vm);
 	vm_introduce_contestants(&vm);
 	while (ret == 1)
