@@ -6,7 +6,7 @@
 /*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 17:32:41 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/18 19:23:08 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/19 11:38:40 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void			print_heart(t_vm *vm, WINDOW *window, int pos, int player_no)
 	if (vm->players[player_no].nb_alive_processes == 0)
 		print_skull(window, pos);
 	else
-		while (++count <= 14)
+		while (++count < 15)
 		{
 			wmove(window, y + count + 2, pos);
 			if (count >= value || (vm->players[player_no].cycle_of_last_live >
@@ -241,7 +241,7 @@ void			fill_sword_part(char *buf[25])
 	buf[21] = "   \\<>   |  |   <>/        |K|";
 	buf[22] = "    `\\<> |  | <>/'         |'|";
 	buf[23] = "      `-.|  |.-`           \\ /";
-	buf[24] = "         '--'               ^";
+	buf[24] = "         '--'";
 }
 
 void			print_sword(WINDOW *window)
@@ -265,7 +265,7 @@ void			print_sword(WINDOW *window)
 	buf[9] = "|<>      |  |      <>|     |S|";
 	buf[10] = "|<>      |  |      <>|     |'|";
 	fill_sword_part(buf);
-	while (++i < 24)
+	while (++i < 25)
 	{
 		wmove(window, y + i, x);
 		wprintw(window, "%s", buf[i]);
