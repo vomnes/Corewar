@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:21:41 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:23:10 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/19 11:21:17 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		vm_live(t_process *process, t_vm *vm)
 	player_nb = vm_read_memory_int(vm, pc + 1);
 	player = vm_get_player(vm, -player_nb);
 	if (vm_verbose_operations(vm))
-		ft_printf("P%5d | live %d\n", process->no, player_nb);
+		ft_printf("P% 5d | live %d\n", process->no, player_nb);
 	if (player)
 	{
 		if (vm_verbose_lives(vm))

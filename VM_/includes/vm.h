@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:03:50 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 18:52:34 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/19 11:22:29 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ struct					s_process
 };
 
 void					init_windows(WINDOW **window);
-void					display_all_windows(t_vm *vm, WINDOW *window[4], char ret);
+void					display_all_windows(t_vm *vm, WINDOW *window[4],
+						char ret);
 
 void					vm_init(t_vm *vm);
 void					vm_introduce_contestants(t_vm *vm);

@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:41:07 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:41:08 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/19 11:21:42 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void		vm_st(t_process *process, t_vm *vm)
 			IDX_MOD), process->player_no);
 		}
 		if (vm_verbose_operations(vm))
-			ft_printf("P%5d | st r%hhd %d\n", process->no, process->
+			ft_printf("P% 5d | st r%hhd %d\n", process->no, process->
 			instruction.params[0].uch, process->instruction.params[1].sh);
 	}
 	vm_advance_pc(process, vm);

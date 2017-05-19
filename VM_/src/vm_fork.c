@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:17:06 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:17:07 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/19 11:21:09 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	vm_fork(t_process *process, t_vm *vm)
 	vm_copy_process(process, duplicate, vm);
 	indirection = vm_read_memory_short(vm, pc + 1);
 	if (vm_verbose_operations(vm))
-		ft_printf("P%5d | fork %d (%d)\n", process->no, indirection,
+		ft_printf("P% 5d | fork %d (%d)\n", process->no, indirection,
 		pc + indirection % IDX_MOD);
 	vm_advance_pc(process, vm);
 	duplicate->pc = MOD(pc + indirection % IDX_MOD);

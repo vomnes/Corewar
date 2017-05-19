@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:42:03 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:42:24 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/19 11:21:53 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		vm_sub(t_process *process, t_vm *vm)
 		vm_store_in_register(
 			&process->registers[process->instruction.params[2].uch], diff);
 		if (vm_verbose_operations(vm))
-			ft_printf("P%5d | sub r%hhd r%hhd r%hhd\n", process->no,
+			ft_printf("P% 5d | sub r%hhd r%hhd r%hhd\n", process->no,
 			process->instruction.params[0].uch, process->
 			instruction.params[1].uch, process->instruction.params[2].uch);
 	}

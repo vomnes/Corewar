@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:23:35 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:23:36 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/19 11:21:20 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		vm_lld(t_process *process, t_vm *vm)
 		vm_store_in_register(
 			&process->registers[process->instruction.params[1].uch], load);
 		if (vm_verbose_operations(vm))
-			ft_printf("P%5d | lld %d r%hhd\n", process->no, load,
+			ft_printf("P% 5d | lld %d r%hhd\n", process->no, load,
 			process->instruction.params[1].uch);
 		process->carry = 0;
 		if (load == 0)
