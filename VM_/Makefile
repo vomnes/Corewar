@@ -6,13 +6,14 @@
 #    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/18 11:15:05 by atrudel           #+#    #+#              #
-#    Updated: 2017/05/18 11:19:24 by atrudel          ###   ########.fr        #
+#    Updated: 2017/05/20 13:58:55 by pdady            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = corewar
 
 LIB_PATH = ../libft
 OBJ_PATH = ./obj
+OBJ_PATH_VIS = ./obj
 SRC_PATH = ./src
 INC_PATH = ./includes
 
@@ -57,12 +58,14 @@ SRC_FILES =	corewar.c \
 			vm_aff.c \
 
 
-VISU_FILE =	visu.c \
+VISU_FILE =	visu.c vis_print_memory.c vis_print_winner.c vis_print_info.c \
+			vis_draw_utils.c
 
 INC_FILES = vm.h
 
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_PATH)/, $(SRC_FILES:.c=.o))
+OBJ_VIS = $(addprefix $(OBJ_PATH_VIS)/, $(VISU_FILE:.c=.o))
 # Ajouter op.o
 
 INC = $(addprefix $(INC_PATH)/, $(INC_FILES))
@@ -71,8 +74,8 @@ FLAGS = -Wall -Wextra -Werror -g
 
 all : $(NAME)
 
-$(NAME): $(OBJ) ../shared_files/op.o $(INC) $(LIB_PATH)/libft.a $(LIB_PATH)/includes/libft.h ./visu.o
-	gcc -o $(NAME) $(OBJ) ../shared_files/op.o ./visu.o -lncurses $(FLAGS) -L $(LIB_PATH) -lft -I . -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files
+$(NAME): $(OBJ) ../shared_files/op.o $(INC) $(LIB_PATH)/libft.a $(LIB_PATH)/includes/libft.h $(OBJ_VIS)
+	gcc -o $(NAME) $(OBJ) ../shared_files/op.o $(OBJ_VIS) -lncurses $(FLAGS) -L $(LIB_PATH) -lft -I . -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) $(LIB_PATH)/includes/libft.h
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
@@ -85,7 +88,7 @@ $(LIB_PATH)/libft.a: $(LIB_PATH)/Makefile $(LIB_PATH)/includes/libft.h
 ../shared_files/op.o: ../shared_files/op.c $(INC) $(LIB_PATH)/includes/libft.h
 	gcc -o $@ -c $< $(FLAGS) -I ../shared_files
 
-./visu.o: ./src/visu.c $(INC) $(LIB_PATH)/includes/libft.h
+$(OBJ_PATH_VIS)/%.o: ./src/$(VISU_FILE) $(INC) $(LIB_PATH)/includes/libft.h
 	gcc -o $@ -c $< $(FLAGS) -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files/
 
 
