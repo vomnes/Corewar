@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:03:50 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/20 14:02:59 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/20 15:01:15 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void					vis_print_winner(t_vm *vm, WINDOW *window);
 void					vis_print_info(t_vm *vm, WINDOW *window);
 void					vis_print_skull(WINDOW *window, int pos);
 void					vis_print_cup(WINDOW *window, int pos);
+void					clear_zone(WINDOW *window, int pos, int y);
 
 void					vm_init(t_vm *vm);
 void					vm_introduce_contestants(t_vm *vm);

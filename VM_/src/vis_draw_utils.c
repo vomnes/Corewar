@@ -6,13 +6,13 @@
 /*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 13:56:12 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/20 14:41:16 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/20 15:04:55 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-static void		clear_zone(WINDOW *window, int pos, int y)
+void			clear_zone(WINDOW *window, int pos, int y)
 {
 	int			i;
 
