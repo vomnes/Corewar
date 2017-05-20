@@ -6,7 +6,7 @@
 /*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 13:50:54 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/20 14:03:09 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/20 14:38:42 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void		print_heart(t_vm *vm, WINDOW *window, int pos, int player_no)
 
 	getyx(window, y, x);
 	count = -1;
-	value = (15.0 / vm->cycle_to_die * vm->cycles_since_last_check) + 0.5;
+	value = (15.0 / vm->cycle_to_die * vm->cycles_since_last_check);
 	if (vm->nb_alive_processes == 0 && vm->last_live_player_no == player_no)
 		vis_print_cup(window, pos);
 	else if (vm->players[player_no].nb_alive_processes == 0 ||
@@ -106,7 +106,7 @@ void			vis_print_info(t_vm *vm, WINDOW *window)
 	wmove(window, 4, 70);
 	wprintw(window, "Speed : x%03d", vm->speed);
 	wmove(window, 5, 2);
-	wprintw(window, "Processes : \t%d (Alive : %d)", vm->nb_processes,
+	wprintw(window, "Processes : \t%d (Alive : %d)\t\t", vm->nb_processes,
 			vm->nb_alive_processes);
 	print_info_vm(vm, window);
 	print_players(vm, window);

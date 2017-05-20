@@ -6,7 +6,7 @@
 /*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 12:55:14 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/20 14:04:56 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/20 14:42:52 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void			display_all_windows(t_vm *vm, WINDOW *window[4], char ret)
 	}
 	else
 	{
+		werase(window[2]);
+		box(window[2], 0, 0);
 		vis_print_info(vm, window[2]);
 		vis_print_winner(vm, window[3]);
 	}
