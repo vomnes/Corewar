@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:18:45 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/19 12:09:41 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 17:22:04 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,7 @@ void	vm_init(t_vm *vm)
 		vm->dumps = -1;
 		vm->verbose = 0;
 		vm->aff = 0;
+		vm->speed = 100;
+		vm->pause = 1;
 	}
 }
