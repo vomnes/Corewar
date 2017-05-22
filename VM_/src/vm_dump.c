@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 10:59:54 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/22 11:02:38 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/22 12:07:59 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void		print_memory_dump(t_vm vm)
 	while (++i < MEM_SIZE)
 	{
 		ft_printf("%02x ", vm.memory[i]);
-		if ((i + 1) % 64 == 0)
+		if ((i + 1) % 32 == 0)
 			ft_putchar('\n');
-		if ((i + 1) % 64 == 0 && (i + 1) % MEM_SIZE != 0)
+		if ((i + 1) % 32 == 0 && (i + 1) % MEM_SIZE != 0)
 			ft_printf("0x%04x : ", i + 1);
 	}
 }
