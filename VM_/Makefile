@@ -6,10 +6,10 @@
 #    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/18 11:15:05 by atrudel           #+#    #+#              #
-#    Updated: 2017/05/22 12:45:47 by atrudel          ###   ########.fr        #
+#    Updated: 2017/05/22 18:53:35 by atrudel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-NAME = corewar
+NAME = ../corewar
 
 LIB_PATH = ../libft
 OBJ_PATH = ./obj
@@ -67,42 +67,42 @@ INC_FILES = vm.h
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_PATH)/, $(SRC_FILES:.c=.o))
 OBJ_VIS = $(addprefix $(OBJ_PATH_VIS)/, $(VISU_FILE:.c=.o))
-# Ajouter op.o
 
 INC = $(addprefix $(INC_PATH)/, $(INC_FILES))
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 
 all : $(NAME)
 
 $(NAME): $(OBJ) ../shared_files/op.o $(INC) $(LIB_PATH)/libft.a $(LIB_PATH)/includes/libft.h $(OBJ_VIS)
-	gcc -o $(NAME) $(OBJ) ../shared_files/op.o $(OBJ_VIS) -lncurses $(FLAGS) -L $(LIB_PATH) -lft -I . -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files
+	@gcc -o $(NAME) $(OBJ) ../shared_files/op.o $(OBJ_VIS) -lncurses $(FLAGS) -L $(LIB_PATH) -lft -I . -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files
+	@echo "> \\033[4;m$(NAME)\\033[0m  :  [\\033[38;5;214mOK\\033[0m]"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) $(LIB_PATH)/includes/libft.h
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	gcc -o $@ -c $< $(FLAGS) -I . -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files
+	@gcc -o $@ -c $< $(FLAGS) -I . -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files
+	@echo "corewar >>> Add/Update $<"
 
 $(LIB_PATH)/libft.a: $(LIB_PATH)/Makefile $(LIB_PATH)/includes/libft.h
 	@make -C $(LIB_PATH)
 	@echo "libft created"
 
 ../shared_files/op.o: ../shared_files/op.c $(INC) $(LIB_PATH)/includes/libft.h
-	gcc -o $@ -c $< $(FLAGS) -I ../shared_files
+	@gcc -o $@ -c $< $(FLAGS) -I ../shared_files
 
 $(OBJ_PATH_VIS)/%.o: ./src/$(VISU_FILE) $(INC) $(LIB_PATH)/includes/libft.h
-	gcc -o $@ -c $< $(FLAGS) -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files/
-
+	@gcc -o $@ -c $< $(FLAGS) -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files/
+	@echo "corewar >>> Add/Update $<"
 
 clean:
-	rm -Rf $(OBJ_PATH)
-	rm -f ../shared_files/op.o
+	@echo Clean objects corewar
+	@rm -Rf $(OBJ_PATH)
+	@rm -f ../shared_files/op.o
 
 fclean: clean
-	rm -f $(NAME)
+	@echo Clean corewar
+	@rm -f $(NAME)
 
 re: fclean all
 
-norme:
-	norminette $(SRC) $(INC)
-
-.PHONY: clean fclean re norme
+.PHONY: clean fclean re all

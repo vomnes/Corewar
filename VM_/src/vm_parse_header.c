@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:32:20 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/19 11:37:09 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 19:03:44 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void				vm_check_exec_magic(unsigned char *buf)
 	nb = vm_n_bytes_to_uint(buf, 4);
 	if (nb != COREWAR_EXEC_MAGIC)
 	{
-		ft_putendl_fd("Error: Not a .cor file", 2);
+		ft_putendl_fd("Error: Not a valid .cor file", 2);
 		exit(-1);
 	}
 }
