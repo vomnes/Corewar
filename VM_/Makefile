@@ -6,7 +6,7 @@
 #    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/18 11:15:05 by atrudel           #+#    #+#              #
-#    Updated: 2017/05/22 18:06:08 by atrudel          ###   ########.fr        #
+#    Updated: 2017/05/22 18:53:35 by atrudel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = ../corewar
@@ -81,7 +81,7 @@ $(NAME): $(OBJ) ../shared_files/op.o $(INC) $(LIB_PATH)/libft.a $(LIB_PATH)/incl
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) $(LIB_PATH)/includes/libft.h
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@gcc -o $@ -c $< $(FLAGS) -I . -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files
-	@echo "corewar >>> Add/Update $^"
+	@echo "corewar >>> Add/Update $<"
 
 $(LIB_PATH)/libft.a: $(LIB_PATH)/Makefile $(LIB_PATH)/includes/libft.h
 	@make -C $(LIB_PATH)
@@ -92,7 +92,7 @@ $(LIB_PATH)/libft.a: $(LIB_PATH)/Makefile $(LIB_PATH)/includes/libft.h
 
 $(OBJ_PATH_VIS)/%.o: ./src/$(VISU_FILE) $(INC) $(LIB_PATH)/includes/libft.h
 	@gcc -o $@ -c $< $(FLAGS) -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files/
-	@echo "corewar >>> Add/Update $^"
+	@echo "corewar >>> Add/Update $<"
 
 clean:
 	@echo Clean objects corewar
