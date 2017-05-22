@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 18:34:38 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/22 14:32:47 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/22 17:18:54 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,5 @@ int			main(int argc, char **argv)
 		}
 		ft_exit_clean(&data.parsing.lst, SUCCESS);
 	}
-	sleep(42);
 	return (0);
 }
