@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:32:20 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/22 19:19:32 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/22 19:22:26 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void				vm_pick_size_player(unsigned char *buf, t_player *player)
 				player->name, player->size_player, CHAMP_MAX_SIZE);
 		exit(-1);
 	}
-	else if (player->size_player == 0)
-		vm_error_exit(vm, "Player size can't be 0 bytes");
 }
 
 void				vm_check_exec_magic(unsigned char *buf)
@@ -70,6 +68,8 @@ void				vm_parse_header(size_t size, unsigned char buf[size], \
 choose one number for each player\n", nb);
 		exit(-1);
 	}
+	if (vm->players[nb].size_player == 0)
+		vm_error_exit(vm, "Player size can't be 0 bytes");
 	vm->players[nb].number = nb;
 	vm_pick_info(size, buf, &vm->players[nb]);
 }
