@@ -6,7 +6,7 @@
 #    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/05 14:49:06 by atrudel           #+#    #+#              #
-#    Updated: 2017/05/15 15:39:19 by vomnes           ###   ########.fr        #
+#    Updated: 2017/05/22 18:11:11 by atrudel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -141,21 +141,15 @@ SRC = $(addprefix $(SRC_PATH)/, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_FILES))
 INC = $(addprefix $(INC_PATH)/, $(INC_FILES))
 
-FLAGS = -Wall -Wextra -Werror -g
+FLAGS = -Wall -Wextra -Werror
 
 
 all: $(NAME)
 
-$(NAME): create_libft $(OBJ) ok_libft
+$(NAME): $(OBJ)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "> Library :  [\\033[32mOK\\033[0m]"
-
-create_libft :
-	@echo -n \ \ \ \ libft\ :\ \
-
-ok_libft :
-	@echo " [\\033[32mOK\\033[0m]"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
@@ -174,8 +168,4 @@ fclean: clean
 
 re: fclean all
 
-norme:
-	@echo ========================[Norminette]=[Libft]==========================
-	@norminette $(SRC) $(INC)
-
-.PHONY: all clean fclean re norme
+.PHONY: all clean fclean re
