@@ -6,7 +6,7 @@
 /*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 12:55:14 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/20 14:59:47 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/22 11:30:39 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void			init_windows(WINDOW **windows)
 	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(3, COLOR_CYAN, COLOR_BLACK);
 	init_pair(4, COLOR_BLUE, COLOR_BLACK);
-	init_pair(5, COLOR_BLUE, COLOR_MAGENTA);
-	init_pair(6, COLOR_CYAN, COLOR_YELLOW);
-	init_pair(7, COLOR_MAGENTA, COLOR_CYAN);
-	init_pair(8, COLOR_RED, COLOR_BLUE);
+	init_pair(5, COLOR_BLACK, COLOR_MAGENTA);
+	init_pair(6, COLOR_BLACK, COLOR_YELLOW);
+	init_pair(7, COLOR_BLACK, COLOR_CYAN);
+	init_pair(8, COLOR_BLACK, COLOR_BLUE);
 	init_pair(9, COLOR_RED, COLOR_BLACK);
 	init_color(COLOR_GREEN, 104, 104, 103);
 	init_pair(10, COLOR_GREEN, COLOR_BLACK);
