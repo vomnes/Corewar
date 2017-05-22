@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:16:18 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/22 17:23:19 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/22 17:41:06 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void			vm_fill_memory(t_vm *vm, int no_player, size_t pos)
 	size_t		i;
 
 	i = 0;
-	vm->cells[pos].present = 1;
+	vm->cells[pos].present = no_player;
 	while (i < vm->players[no_player].size_player)
 	{
 		vm->cells[pos].player_no = no_player;
