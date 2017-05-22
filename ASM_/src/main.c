@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/18 18:34:38 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/16 16:04:58 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/22 14:32:47 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@
 
 static void	print_usage(int argc, char **argv)
 {
-	if (argc <= 1 || ft_strcmp(argv[FILE], "-d") == 0)
+	if (argc <= 1 || ft_strcmp(argv[FILE], "-d") == 0 ||
+	ft_strcmp(argv[FILE], "-details") == 0 ||
+	ft_strcmp(argv[FILE], "-r") == 0 ||
+	ft_strcmp(argv[FILE], "-rev") == 0)
 	{
 		ft_putstr("Usage: ./asm [-details/-d | -rev/-r] <sourcefile.s>\n");
 		ft_putstr("       -details : Instead of creating a .cor file, \
@@ -75,5 +78,6 @@ int			main(int argc, char **argv)
 		}
 		ft_exit_clean(&data.parsing.lst, SUCCESS);
 	}
+	sleep(42);
 	return (0);
 }

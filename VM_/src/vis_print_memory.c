@@ -6,7 +6,7 @@
 /*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 13:22:55 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/20 13:42:58 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/22 11:38:51 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void			print_color_w(t_vm vm, WINDOW *window, int color, int pos)
 static void			check_cells(t_vm *vm, WINDOW *window, int pos)
 {
 	if (vm->cells[pos].present != 0)
-		print_color_w(*vm, window, vm->cells[pos].player_no + 4, pos);
+		print_color_w(*vm, window, vm->cells[pos].present + 4, pos);
 	else if (vm->cells[pos].recent == 1 && vm->cells[pos].count-- > 0)
 		print_color_w(*vm, window, 9, pos);
 	else if (vm->cells[pos].player_no != 0)
