@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:27:40 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:27:41 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 12:39:00 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	vm_null_op(t_process *process, t_vm *vm)
 	int	pc2;
 
 	pc1 = process->pc;
-	pc2 = MOD(pc1 + 1);
+	pc2 = mod(pc1 + 1);
 	process->pc = pc2;
 	vm->cells[pc1].present = 0;
 	vm->cells[pc2].present = process->player_no;

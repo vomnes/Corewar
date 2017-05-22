@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:43:07 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/19 15:39:55 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 12:41:56 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	vm_zjmp(t_process *process, t_vm *vm)
 	indirection = vm_read_memory_short(vm, pc + 1);
 	if (process->carry == 1)
 	{
-		process->pc = MOD(pc + indirection % IDX_MOD);
+		process->pc = mod(pc + indirection % IDX_MOD);
 		vm->cells[pc].present = 0;
-		vm->cells[MOD(pc + indirection % IDX_MOD)].present = process->player_no;
+		vm->cells[mod(pc + indirection % IDX_MOD)].present = process->player_no;
 		if (vm_verbose_operations(vm))
 			ft_printf("P% 5d | zjmp %hd OK\n", process->no, indirection);
 	}

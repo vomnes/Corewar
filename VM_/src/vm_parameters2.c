@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:31:17 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:32:00 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 12:40:21 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		vm_param_to_int_idx(t_process *process, t_vm *vm, int i)
 	else if (process->instruction.args[i] == T_IND)
 	{
 		pc = process->pc;
-		return (vm_read_memory_int(vm, MOD(pc +
+		return (vm_read_memory_int(vm, mod(pc +
 			process->instruction.params[i].sh % IDX_MOD)));
 	}
 	else
@@ -56,7 +56,7 @@ int		vm_param_to_int_no_idx(t_process *process, t_vm *vm, int i)
 	else if (process->instruction.args[i] == T_IND)
 	{
 		pc = process->pc;
-		return (vm_read_memory_int(vm, MOD(pc +
+		return (vm_read_memory_int(vm, mod(pc +
 			process->instruction.params[i].sh)));
 	}
 	else

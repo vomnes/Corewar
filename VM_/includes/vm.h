@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:03:50 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/19 11:22:29 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 12:42:54 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <curses.h>
 # include "libft.h"
 # include "op.h"
-
-# define MOD(x) ((x) < 0 ? (MEM_SIZE + (x) % MEM_SIZE) : ((x) % MEM_SIZE))
 
 extern t_op					g_op_tab[17];
 typedef struct s_process	t_process;
@@ -185,5 +183,6 @@ void					vm_lfork(t_process *process, t_vm *vm);
 void					vm_aff(t_process *process, t_vm *vm);
 
 t_instruction			vm_read_opcode(t_vm *vm, unsigned int pc);
+int						mod(int x);
 
 #endif

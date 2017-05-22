@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:41:07 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/19 11:21:42 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 12:41:11 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void		vm_st(t_process *process, t_vm *vm)
 		else
 		{
 			vm_store_in_memory_int(vm,
-			MOD(pc + process->instruction.params[1].sh % IDX_MOD), storage);
-			vm_fill_cells(vm, MOD(pc + process->instruction.params[1].sh %
+			mod(pc + process->instruction.params[1].sh % IDX_MOD), storage);
+			vm_fill_cells(vm, mod(pc + process->instruction.params[1].sh %
 			IDX_MOD), process->player_no);
 		}
 		if (vm_verbose_operations(vm))

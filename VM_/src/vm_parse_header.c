@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:32:20 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:33:13 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/19 11:37:09 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void				vm_parse_header(size_t size, unsigned char buf[size], \
 	if (nb && vm->players[nb].number != 0)
 	{
 		ft_dprintf(2, "Error: Player number [%d] already taken, please\
-choose one number for each players\n", nb);
+choose one number for each player\n", nb);
 		exit(-1);
 	}
 	vm->players[nb].number = nb;

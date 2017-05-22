@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:16:18 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 17:19:10 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/22 12:34:46 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void			vm_fill_cells(t_vm *vm, int pos, int player_no)
 	i = -1;
 	while (++i < 4)
 	{
-		vm->cells[MOD(pos + i)].player_no = player_no;
-		vm->cells[MOD(pos + i)].recent = 1;
-		vm->cells[MOD(pos + i)].count = 25;
+		vm->cells[mod(pos + i)].player_no = player_no;
+		vm->cells[mod(pos + i)].recent = 1;
+		vm->cells[mod(pos + i)].count = 25;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:21:21 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/19 11:21:01 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 12:37:23 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ void	vm_lfork(t_process *process, t_vm *vm)
 		ft_printf("P% 5d | lfork %d (%d)\n", process->no, indirection,
 		pc + indirection);
 	vm_advance_pc(process, vm);
-	duplicate->pc = MOD(pc + indirection);
-	vm->cells[MOD(pc + indirection)].present = process->player_no;
+	duplicate->pc = mod(pc + indirection);
+	vm->cells[mod(pc + indirection)].present = process->player_no;
 }

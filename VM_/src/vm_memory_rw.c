@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:26:08 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:26:43 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 12:38:16 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int				vm_read_memory_int(t_vm *vm, int index)
 	i = 0;
 	while (i < 4)
 	{
-		index = MOD(index);
+		index = mod(index);
 		value = value << 8;
 		mask = (int)(vm->memory[index]);
 		value = value | mask;
@@ -71,7 +71,7 @@ short			vm_read_memory_short(t_vm *vm, int index)
 	i = 0;
 	while (i < 2)
 	{
-		index = MOD(index);
+		index = mod(index);
 		value = value << 8;
 		mask = (short)(vm->memory[index]);
 		value = value | mask;
@@ -94,7 +94,7 @@ void			vm_store_in_memory_int(t_vm *vm, int index, int value)
 	i = 3;
 	while (i >= 0)
 	{
-		index = MOD(index);
+		index = mod(index);
 		vm->memory[index] = (unsigned char)(value >> (8 * i));
 		index++;
 		i--;
@@ -114,7 +114,7 @@ void			vm_store_in_memory_short(t_vm *vm, int index, short value)
 	i = 1;
 	while (i >= 0)
 	{
-		index = MOD(index);
+		index = mod(index);
 		vm->memory[index] = (unsigned char)(value >> (8 * i));
 		index++;
 		i--;

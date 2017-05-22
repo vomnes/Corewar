@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vm_index.c                                         :+:      :+:    :+:   */
+/*   vm_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/05/18 11:17:37 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/22 12:36:12 by atrudel          ###   ########.fr       */
+/*   Created: 2017/05/22 12:27:16 by atrudel           #+#    #+#             */
+/*   Updated: 2017/05/22 12:30:09 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-long long			vm_decode_index(t_vm *vm, t_process *process, int head)
+int		mod(int x)
 {
-	short	address;
-	int		pc;
-
-	address = vm_read_memory_short(vm, head);
-	address = address % IDX_MOD;
-	pc = process->pc;
-	return (vm_read_memory_int(vm, mod(pc + address)));
+	if (x < 0)
+		return (MEM_SIZE + (x) % MEM_SIZE);
+	else
+		return ((x) % MEM_SIZE);
 }

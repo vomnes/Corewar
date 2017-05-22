@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:20:48 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/19 11:20:43 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 12:36:49 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		vm_ldi(t_process *process, t_vm *vm)
 		param1 = vm_param_to_int_idx(process, vm, 0);
 		param2 = vm_param_to_int_idx(process, vm, 1);
 		sum = param1 + param2;
-		load = vm_read_memory_int(vm, MOD(pc + sum % IDX_MOD));
+		load = vm_read_memory_int(vm, mod(pc + sum % IDX_MOD));
 		vm_store_in_register(
 			&process->registers[process->instruction.params[2].uch], load);
 		if (vm_verbose_operations(vm))

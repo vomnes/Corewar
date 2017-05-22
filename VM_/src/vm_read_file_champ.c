@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:40:20 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:40:21 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/19 11:35:30 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char				**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 	if (*av && ft_strcmp(*av, "-n") == 0)
 	{
 		if ((no_player = ft_lltoi(av[1])) <= 0)
-			vm_error_exit(vm, "Bad entry of number player");
+			vm_error_exit(vm, "Bad entry for player number");
 		av += 2;
 	}
 	if (open(*av, O_DIRECTORY) > 0 || (fd = open(*av, O_RDONLY)) < 0)

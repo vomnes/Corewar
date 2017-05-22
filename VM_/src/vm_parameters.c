@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:28:48 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 11:31:05 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 12:39:41 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			vm_decode_parameter_byte(t_process *process, t_vm *vm)
 {
 	unsigned char	byte;
 
-	byte = vm->memory[MOD(process->pc + 1)];
+	byte = vm->memory[mod(process->pc + 1)];
 	vm_decode_two_bits(byte, &process->instruction.first_type);
 	process->instruction.args[0] = process->instruction.first_type;
 	byte = byte << 2;
@@ -99,13 +99,13 @@ int				vm_get_parameters(t_process *process, t_vm *vm)
 	int	i;
 	int head;
 
-	head = MOD(process->pc + 1);
+	head = mod(process->pc + 1);
 	if (g_op_tab[process->instruction.opcode].param_byte)
-		head = MOD(head + 1);
+		head = mod(head + 1);
 	i = 0;
 	while (i < g_op_tab[process->instruction.opcode].nb_args)
 	{
-		head = MOD(vm_get_one_parameter(process, vm, head, i));
+		head = mod(vm_get_one_parameter(process, vm, head, i));
 		i++;
 	}
 	return (1);

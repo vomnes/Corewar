@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 10:56:29 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/18 10:57:16 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 12:34:11 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	print_advancement(t_vm *vm, int pc1, int advancement)
 	while (i <= advancement)
 	{
 		ft_printf("%.2x ", vm->memory[pc1]);
-		pc1 = MOD(pc1 + 1);
+		pc1 = mod(pc1 + 1);
 		i++;
 	}
 }
@@ -60,7 +60,7 @@ int			vm_advance_pc(t_process *process, t_vm *vm)
 
 	pc1 = process->pc;
 	advancement = calculate_advancement(process);
-	pc2 = MOD(pc1 + advancement);
+	pc2 = mod(pc1 + advancement);
 	process->pc = pc2;
 	if (vm_verbose_pc(vm))
 	{
