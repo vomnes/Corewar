@@ -6,7 +6,7 @@
 /*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 13:22:55 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/22 11:38:51 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/22 17:00:51 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ static void			check_cells(t_vm *vm, WINDOW *window, int pos)
 
 void				vis_print_memory(t_vm *vm, WINDOW *window)
 {
-	static int		count = 0;
+	static int		count = 100;
 	int				i;
 	int				color;
 
 	i = -1;
 	color = 0;
 	wmove(window, 1, 1);
-	if (count++ < vm->speed || vm->pause == 1)
+	if (count++ < vm->speed || (vm->pause == 1 && vm->cycle_nbr > 0))
 		return ;
 	else
-		count = 0;
+		count = 100;
 	while (++i < MEM_SIZE)
 	{
 		check_cells(vm, window, i);

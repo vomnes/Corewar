@@ -6,7 +6,7 @@
 /*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/20 12:55:14 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/22 11:30:39 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/22 17:24:56 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int				check_entry_keys(t_vm *vm)
 	entry = getch();
 	noecho();
 	nodelay(stdscr, 0);
-	(entry == '+' && vm->speed < 100) ? vm->speed += 10 : 1;
+	(entry == '+' && vm->speed < 150) ? vm->speed += 10 : 1;
 	(entry == '-' && vm->speed > 0) ? vm->speed -= 10 : 1;
 	if (entry == 32)
 	{
@@ -58,7 +58,7 @@ int				check_entry_keys(t_vm *vm)
 
 void			display_all_windows(t_vm *vm, WINDOW *window[4], char ret)
 {
-	int entry;
+	int			entry;
 
 	entry = check_entry_keys(vm);
 	if (ret == 1)
@@ -73,4 +73,6 @@ void			display_all_windows(t_vm *vm, WINDOW *window[4], char ret)
 		vis_print_info(vm, window[2]);
 		vis_print_winner(vm, window[3]);
 	}
+	if (vm->speed < 100)
+		usleep(1000000 - (vm->speed * 10000));
 }
