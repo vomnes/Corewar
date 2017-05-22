@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:32:20 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/22 19:03:44 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 19:19:32 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void				vm_pick_size_player(unsigned char *buf, t_player *player)
 				player->name, player->size_player, CHAMP_MAX_SIZE);
 		exit(-1);
 	}
+	else if (player->size_player == 0)
+		vm_error_exit(vm, "Player size can't be 0 bytes");
 }
 
 void				vm_check_exec_magic(unsigned char *buf)
