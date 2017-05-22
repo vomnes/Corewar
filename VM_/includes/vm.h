@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:03:50 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/22 12:42:54 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/22 12:46:03 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,17 @@ struct					s_process
 	struct s_process	*prev;
 };
 
+int						check_entry_keys(t_vm *vm);
+
 void					init_windows(WINDOW **window);
 void					display_all_windows(t_vm *vm, WINDOW *window[4],
 						char ret);
+void					vis_print_memory(t_vm *vm, WINDOW *window);
+void					vis_print_winner(t_vm *vm, WINDOW *window);
+void					vis_print_info(t_vm *vm, WINDOW *window);
+void					vis_print_skull(WINDOW *window, int pos);
+void					vis_print_cup(WINDOW *window, int pos);
+void					clear_zone(WINDOW *window, int pos, int y);
 
 void					vm_init(t_vm *vm);
 void					vm_introduce_contestants(t_vm *vm);
