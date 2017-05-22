@@ -32,7 +32,8 @@ void		check_position_players(t_vm vm)
 			while (a <= MAX_PLAYERS)
 			{
 				if (vm.players[a].number != 0)
-					vm_error_exit(&vm, "Bad entry of players");
+					vm_error_exit(&vm, "Player numbers are incorrectly \
+assinged");
 				a++;
 			}
 		}
