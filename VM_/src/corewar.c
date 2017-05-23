@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pdady <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: pdady <pdady@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 14:29:08 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/22 17:22:00 by pdady            ###   ########.fr       */
+/*   Updated: 2017/05/23 10:36:30 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int				print_usage(void)
 	ft_printf("Usage: ./corewar [-a -vis -d N -v N] <champion1.cor> <...>\n");
 	ft_printf("\t-a\t: Prints output from 'aff' (Default is to hide it)\n");
 	ft_printf("\t-vis\t: Ncurses output mode\n");
-	ft_printf("\t-d N\t: Dumps memory after N cycles then exits\n");
+	ft_printf("\t-dump N\t: Dumps memory after N cycles then exits\n");
 	ft_printf("\t-v N\t: Verbosity levels, can be added together to enable \
 several\n");
 	ft_printf("\t\t- 0 : Show only essentials\n");
