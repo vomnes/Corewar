@@ -9,7 +9,7 @@
 ![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/usage_asm.png "Usage asm")
 
 ### file.s (Pseudo-ASM) to file.cor (Binary file)
-![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/asm_input.png "Assembler input")![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/hexdump_cor.png "Binary created")
+![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/asm_input.png "Assembler input") → ![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/hexdump_cor.png "Binary created")
 
 ### Details binary compilation
 ![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/asm_details.png "Details binary compilation")
