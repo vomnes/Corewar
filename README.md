@@ -10,19 +10,19 @@
 ![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/asm_input.png "Assembler input")![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/hexdump_cor.png "Binary created")
 
 ### Details binary compilation
-[alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/asm_details.png "Details binary compilation")
+![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/asm_details.png "Details binary compilation")
 
 ## VM
 - The virtual machine: It’s the “arena” in which your champions will be executed. It offers various functions, all of which will be useful for the battle of the champions. Obviously, the virtual machine should allow for numerous simultaneous processes; we are asking you for a gladiator fight, not a one-man show simulator.
 
 ### Corewar Visual with ncurses
-[alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/corewar_visual.png "Corewar visual")
+![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/corewar_visual.png "Corewar visual")
 
 ### Corewar Visual end
-[alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/corewar_finish.png "Corewar finish")
+![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/corewar_finish.png "Corewar finish")
 
 ### Corewar Verbose mode
-[alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/corewar_verbose_mode.png "Corewar verbose")
+![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/corewar_verbose_mode.png "Corewar verbose")
 
 ### Corewar Dump mode
-[alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/corewar_dump.png "Corewar dump")
+![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/corewar_dump.png "Corewar dump")
