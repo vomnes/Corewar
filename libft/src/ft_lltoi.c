@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/08 11:43:39 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/08 11:56:20 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/23 13:05:29 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ long long int	ft_lltoi(const char *nptr)
 		result = result * 10 + (nptr[i++] - '0');
 	if (neg == 1)
 		result = -result;
-    if (*nptr == '-' && (result > 0 || ft_strlen(nptr) > 20))
-        return (0);
-    else if (*nptr != '-' && (result < 0 || ft_strlen(nptr) > 19))
-        return (-1);
+	if (*nptr == '-' && (result > 0 || ft_strlen(nptr) > 20))
+		return (0);
+	else if (*nptr != '-' && (result < 0 || ft_strlen(nptr) > 19))
+		return (-1);
 	return (result);
 }

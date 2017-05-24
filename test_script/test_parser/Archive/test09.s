@@ -1,2 +1,0 @@
-.name "d"
-.comment ""

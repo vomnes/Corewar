@@ -6,15 +6,15 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/05 19:38:51 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/05 19:39:14 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/23 12:32:01 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_strtab_free(char **tab)
+void	ft_strtab_free(char **tab)
 {
-    int	i;
+	int	i;
 
 	i = 0;
 	if (tab == NULL)

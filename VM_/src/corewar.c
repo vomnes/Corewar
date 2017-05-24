@@ -6,7 +6,7 @@
 /*   By: pdady <pdady@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/22 14:29:08 by pdady             #+#    #+#             */
-/*   Updated: 2017/05/23 10:36:30 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/24 10:26:42 by atrudel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void			go_fight(t_vm *vm, WINDOW *windows[4])
 	t_player	*winner;
 
 	ret = 1;
-	vm_init(vm);
 	check_position_players(*vm);
+	vm_init(vm);
 	vm_fill_memory_vm(vm);
 	vm_introduce_contestants(vm);
 	while (ret == 1)

@@ -6,7 +6,7 @@
 /*   By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/18 11:40:20 by atrudel           #+#    #+#             */
-/*   Updated: 2017/05/22 18:37:24 by atrudel          ###   ########.fr       */
+/*   Updated: 2017/05/23 15:50:14 by pdady            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void				parse_instruction(size_t size, unsigned char buf[size],\
 
 	i = 0;
 	j = 0;
+	if (player->size_player != size)
+	{
+		ft_dprintf(2, "Player size differs from what is written in the header");
+		exit(-1);
+	}
 	while (i < size && buf[i] == 0)
 		i++;
 	while (i < size)
@@ -34,7 +39,7 @@ char				**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 	char			c;
 
 	c = 0;
-	size = PROG_NAME_LENGTH + COMMENT_LENGTH;
+	size = sizeof(t_header);
 	if (*av && ft_strcmp(*av, "-n") == 0)
 	{
 		if ((no_player = ft_lltoi(av[1])) <= 0)
@@ -49,8 +54,8 @@ char				**vm_read_file_champ(char **av, t_vm *vm, int no_player)
 	vm->nb_players += 1;
 	read(fd, buf, size);
 	vm_parse_header(size, buf, vm, no_player);
-	size = vm->players[no_player].size_player + 16;
-	size = read(fd, buf, size);
+	size = read(fd, buf, vm->players[no_player].size_player + 16);
 	parse_instruction(size, buf, &vm->players[no_player]);
+	close(fd);
 	return (av);
 }

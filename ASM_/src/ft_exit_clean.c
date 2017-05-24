@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/12 15:11:37 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/16 16:03:18 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/23 15:38:44 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	delete_lst_args_a(t_args **lst)
 	}
 }
 
-int			ft_exit_clean(t_instructions **lst, int type)
+int			ft_exit_clean(t_instructions **lst, int type, t_data *data)
 {
 	t_instructions *tmp;
 
@@ -40,5 +40,7 @@ int			ft_exit_clean(t_instructions **lst, int type)
 		delete_lst_args_a(&tmp->arg);
 		tmp = tmp->next;
 	}
+	close(data->input.fd);
+	close(data->binary_file.fd);
 	return (type);
 }

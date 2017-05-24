@@ -6,7 +6,7 @@
 #    By: atrudel <atrudel@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/18 11:15:05 by atrudel           #+#    #+#              #
-#    Updated: 2017/05/22 18:53:35 by atrudel          ###   ########.fr        #
+#    Updated: 2017/05/23 12:00:27 by atrudel          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME = ../corewar
@@ -76,7 +76,7 @@ all : $(NAME)
 
 $(NAME): $(OBJ) ../shared_files/op.o $(INC) $(LIB_PATH)/libft.a $(LIB_PATH)/includes/libft.h $(OBJ_VIS)
 	@gcc -o $(NAME) $(OBJ) ../shared_files/op.o $(OBJ_VIS) -lncurses $(FLAGS) -L $(LIB_PATH) -lft -I . -I $(INC_PATH) -I $(LIB_PATH)/includes -I ../shared_files
-	@echo "> \\033[4;m$(NAME)\\033[0m  :  [\\033[38;5;214mOK\\033[0m]"
+	@echo "> \\033[4;mcorewar\\033[0m  :  [\\033[38;5;214mOK\\033[0m]"
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) $(LIB_PATH)/includes/libft.h
 	@mkdir $(OBJ_PATH) 2> /dev/null || true

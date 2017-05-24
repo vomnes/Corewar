@@ -6,7 +6,7 @@
 /*   By: vomnes <vomnes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/12 18:07:36 by vomnes            #+#    #+#             */
-/*   Updated: 2017/05/14 15:15:54 by vomnes           ###   ########.fr       */
+/*   Updated: 2017/05/23 15:31:21 by vomnes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,5 @@ void			rev_process_reverse_binary(int argc, char **argv)
 	size = read(fd, buf, size);
 	rev_stock_instructions_area(size, buf, memory);
 	rev_transform_instructions(memory, size_prog);
+	close(fd);
 }
