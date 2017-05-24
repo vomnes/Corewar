@@ -5,6 +5,7 @@
 
 ## ASM
 - The assembler: this is the program that will compile your champions and translate them from the language you will write them in (assembly language) into “Bytecode”. Bytecode is a machine code, which will be directly interpreted by the virtual machine.
+
 ![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/usage_asm.png "Usage asm")
 
 ### file.s (Pseudo-ASM) to file.cor (Binary file)
@@ -15,6 +16,7 @@
 
 ## VM
 - The virtual machine: It’s the “arena” in which your champions will be executed. It offers various functions, all of which will be useful for the battle of the champions. Obviously, the virtual machine should allow for numerous simultaneous processes; we are asking you for a gladiator fight, not a one-man show simulator.
+
 ![alt text](https://github.com/vomnes/Corewar/blob/master/screenshot/usage_vm.png "Usage vm")
 
 ### Corewar Visual with ncurses
