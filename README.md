@@ -3,6 +3,11 @@
 
 [ASM Explanation](https://github.com/vomnes/Corewar/blob/master/ASM_/README.md)
 
+#### Teamwork
+- @vomnes : The Assembler
+- @atrudel : The Virtual Machine
+- @pdady : The Virtual Machine and the Visual (ncurses)
+
 ## ASM
 - The assembler: this is the program that will compile your champions and translate them from the language you will write them in (assembly language) into “Bytecode”. Bytecode is a machine code, which will be directly interpreted by the virtual machine.
 
